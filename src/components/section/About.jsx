@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Download, Github, Layers, Award, GitBranch } from 'lucide-react';
+import { Download, Github, Layers, FolderGit2 } from 'lucide-react';
 
 const aboutText =
   'A passionate individual in various fields of Information Technology. I combine skills from various IT branches to build reliable systems and clean digital experiences — from network infrastructure to full-stack development.';
@@ -10,11 +10,7 @@ const aboutText =
 const nameWords = 'Dimas Aksa Oktapian'.split(' ');
 const labelLetters = 'Who I Am'.split('');
 
-const stats = [
-  { icon: Layers, value: '5+', label: 'Multidisciplinary Fields', desc: 'Network, security, full-stack & more' },
-  { icon: Award, value: '3+', label: 'Certifications', desc: 'Validated professional skills' },
-  { icon: GitBranch, value: '14', label: 'GitHub Contributions', desc: 'Active open-source activity' },
-];
+const GITHUB_USERNAME = 'zero-route';
 
 const upVariants = {
   hidden: { opacity: 0, y: 28 },
@@ -71,8 +67,39 @@ function TypingParagraph({ text, className, startDelay = 0 }) {
 }
 
 export default function About() {
+  const [repoCount, setRepoCount] = useState(null);
+
+  useEffect(() => {
+    let active = true;
+
+    fetch(`https://api.github.com/users/${GITHUB_USERNAME}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (active && typeof data.public_repos === 'number') {
+          setRepoCount(data.public_repos);
+        }
+      })
+      .catch(() => {
+        if (active) setRepoCount(null);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const stats = [
+    { icon: Layers, value: '5+', label: 'Multidisciplinary Fields', desc: 'Network, security, full-stack & more' },
+    {
+      icon: FolderGit2,
+      value: repoCount === null ? '—' : `${repoCount}+`,
+      label: 'GitHub Projects',
+      desc: 'Total public repositories',
+    },
+  ];
+
   return (
-    <section className="relative w-full px-6 py-24 bg-[#030014] overflow-hidden">
+    <section className="relative w-full px-6 py-24 bg-[#0a0a0a] overflow-hidden">
       <div className="max-w-6xl mx-auto text-center mb-16">
         <h2 className="text-4xl md:text-5xl font-bold text-white mb-3">About Me</h2>
         <p className="text-gray-400">Transforming ideas into digital experiences</p>
@@ -139,7 +166,7 @@ export default function About() {
             </motion.a>
 
             <motion.a
-              href="https://github.com/USERNAME"
+              href="https://github.com/zero-route"
               target="_blank"
               rel="noopener noreferrer"
               custom={1}
@@ -158,7 +185,7 @@ export default function About() {
         <div className="lanyard-slot relative w-full h-[420px] md:h-[480px]" style={{ height: '100%' }} />
       </div>
 
-      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-6">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-6">
         {stats.map((stat, i) => {
           const Icon = stat.icon;
           return (
