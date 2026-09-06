@@ -199,7 +199,7 @@ export default function About() {
               variants={upVariants}
               className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 text-center hover:border-white/30 transition-colors"
             >
-              <Icon className="mx-auto mb-3 text-white" size={28} />
+              <Icon className="mx-auto mb-3 text-indigo-400" size={28} />
               <div className="text-3xl font-bold text-white mb-1">{stat.value}</div>
               <div className="font-semibold text-white mb-1">{stat.label}</div>
               <div className="text-sm text-gray-500">{stat.desc}</div>
