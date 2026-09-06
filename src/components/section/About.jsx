@@ -1,4 +1,4 @@
- 'use client';
+'use client';
 
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
@@ -146,7 +146,7 @@ export default function About() {
             startDelay={900}
           />
 
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-nowrap items-center gap-3 sm:gap-4">
             <motion.a
               href="/cv-dimas-aksa-oktapian.pdf"
               download
@@ -155,7 +155,7 @@ export default function About() {
               whileInView="visible"
               viewport={{ once: true }}
               variants={upVariants}
-              className="group relative inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-white"
+              className="group relative inline-flex items-center gap-2 whitespace-nowrap rounded-xl px-4 py-2.5 text-sm font-semibold text-white sm:px-6 sm:py-3 sm:text-base"
             >
               <span className="absolute -inset-0.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 opacity-70 group-hover:opacity-100 blur-md transition-opacity" />
               <span className="absolute inset-0 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600" />
@@ -175,7 +175,7 @@ export default function About() {
               whileInView="visible"
               viewport={{ once: true }}
               variants={upVariants}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-white border border-white/15 bg-white/5 hover:bg-white/10 transition-colors"
+              className="inline-flex items-center gap-2 whitespace-nowrap rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white/10 sm:px-6 sm:py-3 sm:text-base"
             >
               <Github size={18} />
               Github Project
