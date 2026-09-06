@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Download, Github, Layers, FolderGit2 } from 'lucide-react';
+import { Download, Github, Layers, FolderGit2, Code2 } from 'lucide-react';
 
 const aboutText =
   'A passionate individual in various fields of Information Technology. I combine skills from various IT branches to build reliable systems and clean digital experiences — from network infrastructure to full-stack development.';
@@ -90,6 +90,7 @@ export default function About() {
 
   const stats = [
     { icon: Layers, value: '5+', label: 'Multidisciplinary Fields', desc: 'Network, security, full-stack & more' },
+    { icon: Code2, value: '19+', label: 'Tech Stack', desc: 'Languages, frameworks & tools mastered' },
     {
       icon: FolderGit2,
       value: repoCount === null ? '—' : `${repoCount}+`,
@@ -99,7 +100,7 @@ export default function About() {
   ];
 
   return (
-    <section className="relative w-full px-6 py-24 bg-[#0a0a0a] overflow-hidden">
+    <section className="relative w-full px-6 py-24 overflow-hidden">
       <div className="max-w-6xl mx-auto text-center mb-16">
         <h2 className="text-4xl md:text-5xl font-bold text-white mb-3">About Me</h2>
         <p className="text-gray-400">Transforming ideas into digital experiences</p>
@@ -185,7 +186,7 @@ export default function About() {
         <div className="lanyard-slot relative w-full h-[420px] md:h-[480px]" style={{ height: '100%' }} />
       </div>
 
-      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-6">
         {stats.map((stat, i) => {
           const Icon = stat.icon;
           return (
@@ -196,9 +197,9 @@ export default function About() {
               whileInView="visible"
               viewport={{ once: true }}
               variants={upVariants}
-              className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 text-center hover:border-cyan-400/30 transition-colors"
+              className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 text-center hover:border-white/30 transition-colors"
             >
-              <Icon className="mx-auto mb-3 text-cyan-400" size={28} />
+              <Icon className="mx-auto mb-3 text-white" size={28} />
               <div className="text-3xl font-bold text-white mb-1">{stat.value}</div>
               <div className="font-semibold text-white mb-1">{stat.label}</div>
               <div className="text-sm text-gray-500">{stat.desc}</div>
