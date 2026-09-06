@@ -1,4 +1,4 @@
- 'use client';
+'use client';
 
 import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
@@ -189,7 +189,7 @@ export default function About() {
         </div>
 
         <div className="relative w-full h-[420px] md:h-[480px] overflow-hidden">
-          <Lanyard frontImage="/lanyard/profile.png" />
+          <Lanyard frontImage="/images/profile.png" />
         </div>
       </div>
 

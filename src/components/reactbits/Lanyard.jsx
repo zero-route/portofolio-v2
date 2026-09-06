@@ -10,8 +10,8 @@ import * as THREE from 'three';
 
 extend({ MeshLineGeometry, MeshLineMaterial });
 
-const CARD_GLB_PATH = '/lanyard/card.glb';
-const LANYARD_TEXTURE_PATH = '/lanyard/lanyard.png';
+const CARD_GLB_PATH = '/data/card.glb';
+const LANYARD_TEXTURE_PATH = '/images/lanyard.png';
 
 // 1x1 transparent pixel — lets useTexture be called unconditionally when a
 // front/back image isn't supplied.
