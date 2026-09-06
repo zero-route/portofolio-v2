@@ -7,7 +7,8 @@ import { Code2, User, Globe } from "lucide-react";
 const icons = [Code2, User, Globe];
 const lineTwo = ["PORTOFOLIO", "WEBSITE"];
 
-const LOADING_DURATION = 4000;
+const LOADING_START_DELAY = 2200;
+const LOADING_DURATION = 1500;
 
 const easeOut = [0.16, 1, 0.3, 1];
 
@@ -96,30 +97,37 @@ export default function IntroLoader({ onComplete }) {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    const startTime = Date.now();
+    let interval;
 
-    const interval = setInterval(() => {
-      const elapsed = Date.now() - startTime;
+    const startTimeout = setTimeout(() => {
+      const startTime = Date.now();
 
-      const percentage = Math.min(
-        Math.round((elapsed / LOADING_DURATION) * 100),
-        100
-      );
+      interval = setInterval(() => {
+        const elapsed = Date.now() - startTime;
 
-      setProgress(percentage);
+        const percentage = Math.min(
+          Math.round((elapsed / LOADING_DURATION) * 100),
+          100
+        );
 
-      if (percentage >= 100) {
-        clearInterval(interval);
+        setProgress(percentage);
 
-        setTimeout(() => {
-          if (onComplete) {
-            onComplete();
-          }
-        }, 150);
-      }
-    }, 16);
+        if (percentage >= 100) {
+          clearInterval(interval);
 
-    return () => clearInterval(interval);
+          setTimeout(() => {
+            if (onComplete) {
+              onComplete();
+            }
+          }, 150);
+        }
+      }, 16);
+    }, LOADING_START_DELAY);
+
+    return () => {
+      clearTimeout(startTimeout);
+      clearInterval(interval);
+    };
   }, [onComplete]);
 
   return (
@@ -155,7 +163,7 @@ export default function IntroLoader({ onComplete }) {
         ))}
       </motion.div>
 
-      <div className="flex flex-col items-center gap-2 text-center">
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-center">
         <div className="flex flex-wrap items-center justify-center gap-2">
           <motion.span
             variants={welcomeToVariants}
