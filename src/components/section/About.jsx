@@ -153,7 +153,7 @@ export default function About() {
 
           <div className="flex flex-nowrap items-center gap-3 sm:gap-4">
             <motion.a
-              href="/cv-dimas-aksa-oktapian.pdf"
+              href="data/CV-DIMAS.pdf"
               download
               custom={0}
               initial="hidden"
