@@ -55,13 +55,16 @@ function useTypewriter(
   words,
   typingSpeed = 120,
   deletingSpeed = 75,
-  pause = 1800
+  pause = 1800,
+  enabled = true
 ) {
   const [wordIndex, setWordIndex] = useState(0);
   const [text, setText] = useState("");
   const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
+    if (!enabled) return;
+
     const currentWord = words[wordIndex];
     let timeout;
 
@@ -93,14 +96,30 @@ function useTypewriter(
     typingSpeed,
     deletingSpeed,
     pause,
+    enabled,
   ]);
 
   return text;
 }
 
 export default function Home() {
-  const role = useTypewriter(roleList, 120, 75, 1900);
-  const skill = useTypewriter(skillsList, 110, 70, 1700);
+  const [revealed, setRevealed] = useState(false);
+
+  useEffect(() => {
+    const reveal = () => setRevealed(true);
+
+    window.addEventListener("intro:complete", reveal);
+
+    const fallback = setTimeout(reveal, 6000);
+
+    return () => {
+      window.removeEventListener("intro:complete", reveal);
+      clearTimeout(fallback);
+    };
+  }, []);
+
+  const role = useTypewriter(roleList, 120, 75, 1900, revealed);
+  const skill = useTypewriter(skillsList, 110, 70, 1700, revealed);
 
   const [astreaOpen, setAstreaOpen] = useState(false);
 
@@ -213,7 +232,7 @@ export default function Home() {
           <div className="min-w-0">
             <motion.div
               initial="hidden"
-              animate="visible"
+              animate={revealed ? "visible" : "hidden"}
               className="mb-5 flex gap-3 sm:mb-6"
             >
               {introIcons.map((Icon, index) => {
@@ -262,7 +281,9 @@ export default function Home() {
             <div className="mb-7 leading-none sm:mb-8">
               <motion.h1
                 initial={{ opacity: 0, x: -65 }}
-                animate={{ opacity: 1, x: 0 }}
+                animate={
+                  revealed ? { opacity: 1, x: 0 } : { opacity: 0, x: -65 }
+                }
                 transition={{
                   duration: 1.15,
                   delay: 0.4,
@@ -275,7 +296,9 @@ export default function Home() {
 
               <motion.h2
                 initial={{ opacity: 0, x: 65 }}
-                animate={{ opacity: 1, x: 0 }}
+                animate={
+                  revealed ? { opacity: 1, x: 0 } : { opacity: 0, x: 65 }
+                }
                 transition={{
                   duration: 1.15,
                   delay: 0.6,
@@ -289,7 +312,7 @@ export default function Home() {
 
             <motion.p
               initial="hidden"
-              animate="visible"
+              animate={revealed ? "visible" : "hidden"}
               className="max-w-[680px] font-mono text-[12px] leading-6 text-white/55 sm:text-[13px] sm:leading-7 lg:max-w-[650px] lg:text-[14px]"
             >
               {paragraphWords.map((word, index) => (
@@ -313,7 +336,9 @@ export default function Home() {
 
             <motion.div
               initial={{ opacity: 0, y: 35 }}
-              animate={{ opacity: 1, y: 0 }}
+              animate={
+                revealed ? { opacity: 1, y: 0 } : { opacity: 0, y: 35 }
+              }
               transition={{
                 duration: 0.9,
                 delay: 1.7,
@@ -323,7 +348,7 @@ export default function Home() {
             >
               <a
                 href="#projects"
-                className="group relative flex items-center gap-2 overflow-hidden rounded-xl border border-[#a78bfa]/30 bg-gradient-to-r from-[#6d28d9] via-[#8b5cf6] to-[#c4b5fd] px-5 py-3 font-mono text-[12px] font-semibold text-white shadow-[0_0_25px_rgba(124,58,237,0.18)] transition-all duration-300 hover:scale-[1.025] hover:shadow-[0_0_35px_rgba(139,92,246,0.3)]"
+                className="group relative flex items-center gap-2 overflow-hidden rounded-xl border border-[#a78bfa]/30 bg-gradient-to-r from-purple-600 to-indigo-600 px-5 py-3 font-mono text-[12px] font-semibold text-white shadow-[0_0_25px_rgba(124,58,237,0.18)] transition-all duration-300 hover:scale-[1.025] hover:shadow-[0_0_35px_rgba(139,92,246,0.3)]"
               >
                 <span className="button-shine absolute inset-0" />
                 <span className="relative">View Projects</span>
@@ -344,7 +369,7 @@ export default function Home() {
 
             <motion.div
               initial="hidden"
-              animate="visible"
+              animate={revealed ? "visible" : "hidden"}
               className="mt-6 flex flex-wrap gap-3"
             >
               {socialLinks.map((item, index) => {
@@ -377,7 +402,7 @@ export default function Home() {
 
           <motion.div
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            animate={{ opacity: revealed ? 1 : 0 }}
             transition={{
               duration: 1.4,
               delay: 2.3,

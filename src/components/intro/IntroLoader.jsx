@@ -116,6 +116,10 @@ export default function IntroLoader({ onComplete }) {
           clearInterval(interval);
 
           setTimeout(() => {
+            if (typeof window !== "undefined") {
+              window.dispatchEvent(new Event("intro:complete"));
+            }
+
             if (onComplete) {
               onComplete();
             }
