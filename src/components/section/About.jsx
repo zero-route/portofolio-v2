@@ -189,7 +189,7 @@ export default function About() {
         </div>
 
         <div className="relative w-full h-[420px] md:h-[480px] overflow-hidden">
-          <Lanyard frontImage="/images/profile.png" />
+          <Lanyard frontImage="/images/profile.png" backImage="/images/back_profile.png" />
         </div>
       </div>
 
