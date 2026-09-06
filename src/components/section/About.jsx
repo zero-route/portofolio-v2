@@ -1,8 +1,13 @@
-'use client';
+ 'use client';
 
 import { useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
 import { Download, Github, Layers, FolderGit2, Code2 } from 'lucide-react';
+
+const Lanyard = dynamic(() => import('@/components/reactbits/Lanyard'), {
+  ssr: false,
+});
 
 const aboutText =
   'A passionate individual in various fields of Information Technology. I combine skills from various IT branches to build reliable systems and clean digital experiences — from network infrastructure to full-stack development.';
@@ -183,7 +188,9 @@ export default function About() {
           </div>
         </div>
 
-        <div className="lanyard-slot relative w-full h-[420px] md:h-[480px]" style={{ height: '100%' }} />
+        <div className="relative w-full h-[420px] md:h-[480px] overflow-hidden">
+          <Lanyard frontImage="/lanyard/profile.png" />
+        </div>
       </div>
 
       <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-6">
