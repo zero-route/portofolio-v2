@@ -195,27 +195,27 @@ export default function Home() {
     },
     {
       icon: Gitlab,
-      href: "https://gitlab.com/",
+      href: "https://gitlab.com/zero-route",
       label: "GitLab",
     },
     {
       icon: Linkedin,
-      href: "https://www.linkedin.com/",
+      href: "https://www.linkedin.com/dimas-aksa-oktapian",
       label: "LinkedIn",
     },
     {
       icon: Send,
-      href: "https://t.me/",
+      href: "https://t.me/Tehpucuts",
       label: "Telegram",
     },
     {
       icon: Instagram,
-      href: "https://www.instagram.com/",
+      href: "https://www.instagram.com/uknown.1982",
       label: "Instagram",
     },
     {
       icon: Music2,
-      href: "https://www.tiktok.com/",
+      href: "https://www.tiktok.com/altera1975",
       label: "TikTok",
     },
   ];
