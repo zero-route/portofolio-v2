@@ -1,0 +1,168 @@
+.gooey-nav-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gooey-nav-container nav {
+  position: relative;
+  z-index: 2;
+}
+
+.gooey-nav-container ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.gooey-nav-container li {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gooey-nav-container li a {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 110px;
+  height: 48px;
+  padding: 0 22px;
+  border-radius: 9999px;
+  color: rgba(255, 255, 255, 0.58);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    color 0.3s ease,
+    background 0.3s ease;
+}
+
+.gooey-nav-container li a:hover {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.gooey-nav-container li.active a {
+  color: #09090b;
+}
+
+.gooey-nav-container .effect {
+  position: absolute;
+  pointer-events: none;
+}
+
+.gooey-nav-container .effect.filter {
+  z-index: 1;
+  overflow: visible;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.96);
+  filter: blur(0px);
+  transform-origin: center;
+  transition:
+    left 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    top 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    width 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    height 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.gooey-nav-container .effect.text {
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 9999px;
+  color: #09090b;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  opacity: 0;
+  transform: scale(0.96);
+}
+
+.gooey-nav-container .effect.text.active {
+  opacity: 1;
+  transform: scale(1);
+  transition:
+    opacity 0.35s ease,
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.gooey-nav-container .particle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  pointer-events: none;
+  transform:
+    translate(-50%, -50%)
+    translate(var(--start-x), var(--start-y))
+    rotate(var(--rotate));
+  animation: gooeyParticle var(--time) ease-out forwards;
+}
+
+.gooey-nav-container .point {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: var(--color);
+  transform: scale(var(--scale));
+  box-shadow: 0 0 12px var(--color);
+}
+
+@keyframes gooeyParticle {
+  0% {
+    transform:
+      translate(-50%, -50%)
+      translate(var(--start-x), var(--start-y))
+      rotate(var(--rotate));
+    opacity: 1;
+  }
+
+  100% {
+    transform:
+      translate(-50%, -50%)
+      translate(var(--end-x), var(--end-y))
+      rotate(var(--rotate));
+    opacity: 0;
+  }
+}
+
+.gooey-nav-container .filter {
+  --color-1: #8b5cf6;
+  --color-2: #6366f1;
+  --color-3: #38bdf8;
+  --color-4: #a855f7;
+}
+
+@media (max-width: 640px) {
+  .gooey-nav-container ul {
+    gap: 4px;
+  }
+
+  .gooey-nav-container li a {
+    min-width: 86px;
+    height: 42px;
+    padding: 0 15px;
+    font-size: 12px;
+  }
+
+  .gooey-nav-container .effect.text {
+    font-size: 12px;
+  }
+}
