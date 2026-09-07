@@ -124,13 +124,25 @@ const BorderGlow = ({
     const card = cardRef.current;
     if (!card) return;
     card.classList.add('touch-active');
+    try {
+      e.target.setPointerCapture(e.pointerId);
+    } catch (err) {
+      // pointer capture not supported — safe to ignore
+    }
     updateFromPoint(e.clientX, e.clientY);
   }, [updateFromPoint]);
 
-  const handlePointerEnd = useCallback(() => {
+  const handlePointerEnd = useCallback((e) => {
     const card = cardRef.current;
     if (!card) return;
     card.classList.remove('touch-active');
+    if (e && e.target?.releasePointerCapture && e.pointerId !== undefined) {
+      try {
+        e.target.releasePointerCapture(e.pointerId);
+      } catch (err) {
+        // ignore
+      }
+    }
   }, []);
 
   useEffect(() => {
