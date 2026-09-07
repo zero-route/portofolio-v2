@@ -199,30 +199,32 @@ export default function About() {
           const Icon = stat.icon;
           return (
             <motion.div
-              key={stat.label}
-              custom={i}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={upVariants}
-            >
-              <BorderGlow
-                backgroundColor="#0d0d14"
-                borderRadius={16}
-                glowRadius={36}
-                glowIntensity={1}
-                edgeSensitivity={30}
-                coneSpread={25}
-                colors={['#8b5cf6', '#6366f1', '#38bdf8']}
-              >
-                <div className="p-6 text-center">
-                  <Icon className="mx-auto mb-3 text-indigo-400" size={28} />
-                  <div className="text-3xl font-bold text-white mb-1">{stat.value}</div>
-                  <div className="font-semibold text-white mb-1">{stat.label}</div>
-                  <div className="text-sm text-gray-500">{stat.desc}</div>
-                </div>
-              </BorderGlow>
-            </motion.div>
+  key={stat.label}
+  custom={i}
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: true }}
+  variants={upVariants}
+  className="h-full"
+>
+  <BorderGlow
+    backgroundColor="#0d0d14"
+    borderRadius={16}
+    glowRadius={36}
+    glowIntensity={1}
+    edgeSensitivity={30}
+    coneSpread={25}
+    colors={['#8b5cf6', '#6366f1', '#38bdf8']}
+    className="w-full h-full"
+  >
+    <div className="p-6 text-center">
+      <Icon className="mx-auto mb-3 text-indigo-400" size={28} />
+      <div className="text-3xl font-bold text-white mb-1">{stat.value}</div>
+      <div className="font-semibold text-white mb-1">{stat.label}</div>
+      <div className="text-sm text-gray-500">{stat.desc}</div>
+    </div>
+  </BorderGlow>
+</motion.div>
           );
         })}
       </div>

@@ -7,6 +7,10 @@
   --glow-padding: 40px;
   --cone-spread: 25;
 
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+
   position: relative;
   border-radius: var(--border-radius);
   isolation: isolate;
@@ -55,7 +59,6 @@
   transition: opacity 0.75s ease-in-out;
 }
 
-/* colored mesh-gradient border */
 .border-glow-card::before {
   border: 1px solid transparent;
   background:
@@ -82,7 +85,6 @@
     );
 }
 
-/* colored mesh-gradient background fill near edges */
 .border-glow-card::after {
   border: 1px solid transparent;
   background:
@@ -109,7 +111,6 @@
   mix-blend-mode: soft-light;
 }
 
-/* outer glow layer */
 .border-glow-card > .edge-light {
   inset: calc(var(--glow-padding) * -1);
   pointer-events: none;

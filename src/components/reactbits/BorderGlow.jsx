@@ -120,29 +120,25 @@ const BorderGlow = ({
     updateFromPoint(e.clientX, e.clientY);
   }, [updateFromPoint]);
 
-  const handlePointerDown = useCallback((e) => {
+  const handleTouchStart = useCallback((e) => {
     const card = cardRef.current;
     if (!card) return;
     card.classList.add('touch-active');
-    try {
-      e.target.setPointerCapture(e.pointerId);
-    } catch (err) {
-      // pointer capture not supported — safe to ignore
+    if (e.touches && e.touches[0]) {
+      updateFromPoint(e.touches[0].clientX, e.touches[0].clientY);
     }
-    updateFromPoint(e.clientX, e.clientY);
   }, [updateFromPoint]);
 
-  const handlePointerEnd = useCallback((e) => {
+  const handleTouchMove = useCallback((e) => {
+    if (e.touches && e.touches[0]) {
+      updateFromPoint(e.touches[0].clientX, e.touches[0].clientY);
+    }
+  }, [updateFromPoint]);
+
+  const handleTouchEnd = useCallback(() => {
     const card = cardRef.current;
     if (!card) return;
     card.classList.remove('touch-active');
-    if (e && e.target?.releasePointerCapture && e.pointerId !== undefined) {
-      try {
-        e.target.releasePointerCapture(e.pointerId);
-      } catch (err) {
-        // ignore
-      }
-    }
   }, []);
 
   useEffect(() => {
@@ -173,10 +169,10 @@ const BorderGlow = ({
     <div
       ref={cardRef}
       onPointerMove={handlePointerMove}
-      onPointerDown={handlePointerDown}
-      onPointerUp={handlePointerEnd}
-      onPointerCancel={handlePointerEnd}
-      onPointerLeave={handlePointerEnd}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+      onTouchCancel={handleTouchEnd}
       className={`border-glow-card${lightSurface ? ' border-glow-card--light' : ''} ${className}`}
       style={{
         '--card-bg': backgroundColor,
