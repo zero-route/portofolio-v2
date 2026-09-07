@@ -161,7 +161,7 @@ export default function About() {
               whileInView="visible"
               viewport={{ once: true }}
               variants={upVariants}
-              className="group relative inline-flex items-center gap-2 whitespace-nowrap rounded-xl px-4 py-2.5 text-sm font-semibold text-white sm:px-6 sm:py-3 sm:text-base"
+              className="group relative inline-flex items-center gap-2 whitespace-nowrap rounded-xl px-4 py-2.5 text-sm font-mono text-white sm:px-6 sm:py-3 sm:text-base"
             >
               <span className="absolute -inset-0.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 opacity-70 group-hover:opacity-100 blur-md transition-opacity" />
               <span className="absolute inset-0 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600" />
@@ -181,7 +181,7 @@ export default function About() {
               whileInView="visible"
               viewport={{ once: true }}
               variants={upVariants}
-              className="inline-flex items-center gap-2 whitespace-nowrap rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white/10 sm:px-6 sm:py-3 sm:text-base"
+              className="inline-flex items-center gap-2 whitespace-nowrap rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-sm font-mono text-white transition-colors hover:bg-white/10 sm:px-6 sm:py-3 sm:text-base"
             >
               <Github size={18} />
               Github Project
