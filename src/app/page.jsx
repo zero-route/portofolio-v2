@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Home from "@/components/section/Home";
 import About from "@/components/section/About";
+ import Beyond from "@/components/section/Beyond";
 import Navigation from "@/components/layout/Navigation";
 import IntroLoader from "@/components/intro/IntroLoader";
 
@@ -27,7 +28,9 @@ export default function Page() {
         <About />
       </section>
 
-      <section id="beyond" />
+      <section id="beyond">
+        <Beyond />
+      </section>
       <section id="projects" />
       <section id="contact" />
     </main>
