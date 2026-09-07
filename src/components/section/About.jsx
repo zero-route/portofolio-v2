@@ -183,8 +183,8 @@ export default function About() {
               variants={upVariants}
               className="inline-flex items-center gap-2 whitespace-nowrap rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-sm font-mono text-white transition-colors hover:bg-white/10 sm:px-6 sm:py-3 sm:text-base"
             >
-              <Github size={18} />
               Github Project
+              <Github size={18} />
             </motion.a>
           </div>
         </div>
