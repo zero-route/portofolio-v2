@@ -98,6 +98,7 @@ export default function IntroLoader({ onComplete }) {
 
   useEffect(() => {
     let interval;
+    let completeTimeout;
 
     const startTimeout = setTimeout(() => {
       const startTime = Date.now();
@@ -115,12 +116,12 @@ export default function IntroLoader({ onComplete }) {
         if (percentage >= 100) {
           clearInterval(interval);
 
-          setTimeout(() => {
+          completeTimeout = setTimeout(() => {
             if (typeof window !== "undefined") {
               window.dispatchEvent(new Event("intro:complete"));
             }
 
-            if (onComplete) {
+            if (typeof onComplete === "function") {
               onComplete();
             }
           }, 150);
@@ -130,6 +131,7 @@ export default function IntroLoader({ onComplete }) {
 
     return () => {
       clearTimeout(startTimeout);
+      clearTimeout(completeTimeout);
       clearInterval(interval);
     };
   }, [onComplete]);
@@ -154,20 +156,14 @@ export default function IntroLoader({ onComplete }) {
           <motion.div
             key={index}
             variants={iconItemVariants}
-            className="
-              flex h-9 w-9
-              items-center justify-center
-              rounded-full
-              border border-white/15
-              text-white/80
-            "
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-white/80"
           >
             <Icon size={15} strokeWidth={1.75} />
           </motion.div>
         ))}
       </motion.div>
 
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-center">
+      <div className="flex flex-col items-center justify-center gap-2 text-center sm:flex-row sm:gap-4">
         <div className="flex flex-wrap items-center justify-center gap-2">
           <motion.span
             variants={welcomeToVariants}
@@ -222,7 +218,7 @@ export default function IntroLoader({ onComplete }) {
         }}
         className="mt-8 w-[280px] sm:w-[380px]"
       >
-        <div className="mb-2 flex items-center justify-between text-xs tracking-wide text-white/60">
+        <div className="mb-2 flex items-center justify-between font-sans text-xs tracking-wide text-white/60">
           <span>Loading.....</span>
           <span>{progress}%</span>
         </div>

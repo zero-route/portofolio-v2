@@ -1,29 +1,33 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import dynamic from 'next/dynamic';
-import { motion } from 'framer-motion';
-import { Download, Github, Layers, FolderGit2, Code2 } from 'lucide-react';
-import BorderGlow from '@/components/reactbits/BorderGlow';
+import { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
+import { motion } from "framer-motion";
+import { Download, Layers, FolderGit2, Code2 } from "lucide-react";
+import BorderGlow from "@/components/reactbits/BorderGlow";
 
-const Lanyard = dynamic(() => import('@/components/reactbits/Lanyard'), {
+const Lanyard = dynamic(() => import("@/components/reactbits/Lanyard"), {
   ssr: false,
 });
 
 const aboutText =
-  'A passionate individual in various fields of Information Technology. I combine skills from various IT branches to build reliable systems and clean digital experiences — from network infrastructure to full-stack development.';
+  "A passionate individual in various fields of Information Technology. I combine skills from various IT branches to build reliable systems and clean digital experiences — from network infrastructure to full-stack development.";
 
-const nameWords = 'Dimas Aksa Oktapian'.split(' ');
-const labelLetters = 'Who I Am'.split('');
+const nameWords = "Dimas Aksa Oktapian".split(" ");
+const labelLetters = "Who I Am".split("");
 
-const GITHUB_USERNAME = 'zero-route';
+const GITHUB_USERNAME = "zero-route";
 
 const upVariants = {
   hidden: { opacity: 0, y: 28 },
   visible: (i) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.08, duration: 0.5, ease: 'easeOut' },
+    transition: {
+      delay: i * 0.08,
+      duration: 0.5,
+      ease: "easeOut",
+    },
   }),
 };
 
@@ -32,21 +36,27 @@ const wordVariants = {
   visible: (i) => ({
     opacity: 1,
     x: 0,
-    transition: { delay: i * 0.18, duration: 0.55, ease: 'easeOut' },
+    transition: {
+      delay: i * 0.18,
+      duration: 0.55,
+      ease: "easeOut",
+    },
   }),
 };
 
 function TypingParagraph({ text, className, startDelay = 0 }) {
-  const [shown, setShown] = useState('');
+  const [shown, setShown] = useState("");
   const [done, setDone] = useState(false);
 
   useEffect(() => {
     let index = 0;
     let interval;
+
     const timeout = setTimeout(() => {
       interval = setInterval(() => {
         index += 1;
         setShown(text.slice(0, index));
+
         if (index >= text.length) {
           clearInterval(interval);
           setDone(true);
@@ -64,8 +74,8 @@ function TypingParagraph({ text, className, startDelay = 0 }) {
     <p className={className}>
       {shown}
       <span
-        className={`inline-block w-[2px] h-[1em] bg-cyan-400 align-middle ml-[2px] ${
-          done ? 'opacity-0' : 'animate-pulse'
+        className={`ml-[2px] inline-block h-[1em] w-[2px] bg-cyan-400 align-middle ${
+          done ? "opacity-0" : "animate-pulse"
         }`}
       />
     </p>
@@ -81,7 +91,7 @@ export default function About() {
     fetch(`https://api.github.com/users/${GITHUB_USERNAME}`)
       .then((res) => res.json())
       .then((data) => {
-        if (active && typeof data.public_repos === 'number') {
+        if (active && typeof data.public_repos === "number") {
           setRepoCount(data.public_repos);
         }
       })
@@ -95,26 +105,44 @@ export default function About() {
   }, []);
 
   const stats = [
-    { icon: Layers, value: '5+', label: 'Multidisciplinary Fields', desc: 'Network, security, full-stack & more' },
-    { icon: Code2, value: '19+', label: 'Tech Stack', desc: 'Languages, frameworks & tools mastered' },
+    {
+      icon: Layers,
+      value: "5+",
+      label: "Multidisciplinary Fields",
+      desc: "Network, security, full-stack & more",
+    },
+    {
+      icon: Code2,
+      value: "19+",
+      label: "Tech Stack",
+      desc: "Languages, frameworks & tools mastered",
+    },
     {
       icon: FolderGit2,
-      value: repoCount === null ? '—' : `${repoCount}+`,
-      label: 'GitHub Projects',
-      desc: 'Total public repositories',
+      value: repoCount === null ? "—" : `${repoCount}+`,
+      label: "GitHub Projects",
+      desc: "Total public repositories",
     },
   ];
 
   return (
-    <section className="relative w-full px-6 py-24 overflow-hidden">
-      <div className="max-w-6xl mx-auto text-center mb-16">
-        <h2 className="text-4xl md:text-5xl font-bold text-white mb-3">About Me</h2>
-        <p className="text-gray-400">Transforming ideas into digital experiences</p>
+    <section
+      id="about"
+      className="relative w-full overflow-hidden px-6 py-24 font-sans"
+    >
+      <div className="mx-auto mb-16 max-w-6xl text-center">
+        <h2 className="mb-3 text-4xl font-bold text-white md:text-5xl">
+          About Me
+        </h2>
+
+        <p className="font-sans text-gray-400">
+          Transforming ideas into digital experiences
+        </p>
       </div>
 
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center mb-20">
+      <div className="mx-auto mb-20 grid max-w-6xl items-center gap-12 md:grid-cols-2">
         <div>
-          <div className="flex mb-3">
+          <div className="mb-3 flex">
             {labelLetters.map((char, i) => (
               <motion.span
                 key={i}
@@ -123,14 +151,14 @@ export default function About() {
                 whileInView="visible"
                 viewport={{ once: true }}
                 variants={upVariants}
-                className="text-cyan-400 text-lg font-mono inline-block"
+                className="inline-block font-sans text-lg text-cyan-400"
               >
-                {char === ' ' ? '\u00A0' : char}
+                {char === " " ? "\u00A0" : char}
               </motion.span>
             ))}
           </div>
 
-          <h3 className="mb-4 flex flex-wrap gap-x-3 font-mono text-[3rem] font-black tracking-[-0.08em] text-[#f4f4f5] sm:text-[3.5rem] lg:text-[4rem]">
+          <h3 className="mb-4 flex flex-wrap gap-x-3 font-sans text-[3rem] font-bold tracking-[-0.065em] text-[#f4f4f5] sm:text-[3.5rem] lg:text-[4rem]">
             {nameWords.map((word, i) => (
               <motion.span
                 key={word}
@@ -146,11 +174,11 @@ export default function About() {
             ))}
           </h3>
 
-         <TypingParagraph
-  text={aboutText}
-  className="mb-8 min-h-[110px] max-w-[680px] font-mono text-[12px] leading-6 text-white/55 sm:text-[13px] sm:leading-7 lg:text-[14px]"
-  startDelay={900}
-/>
+          <TypingParagraph
+            text={aboutText}
+            className="mb-8 min-h-[110px] max-w-[680px] font-sans text-[12px] leading-6 text-white/55 sm:text-[13px] sm:leading-7 lg:text-[14px]"
+            startDelay={900}
+          />
 
           <div className="flex flex-nowrap items-center gap-3 sm:gap-4">
             <motion.a
@@ -161,15 +189,19 @@ export default function About() {
               whileInView="visible"
               viewport={{ once: true }}
               variants={upVariants}
-              className="group relative inline-flex items-center gap-2 whitespace-nowrap rounded-xl px-4 py-2.5 text-sm font-mono text-white sm:px-6 sm:py-3 sm:text-base"
+              className="group relative inline-flex items-center gap-2 whitespace-nowrap rounded-xl px-4 py-2.5 font-sans text-sm text-white sm:px-6 sm:py-3 sm:text-base"
             >
-              <span className="absolute -inset-0.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 opacity-70 group-hover:opacity-100 blur-md transition-opacity" />
+              <span className="absolute -inset-0.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 opacity-70 blur-md transition-opacity group-hover:opacity-100" />
+
               <span className="absolute inset-0 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600" />
-              <span className="absolute inset-0 rounded-xl overflow-hidden">
-                <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+
+              <span className="absolute inset-0 overflow-hidden rounded-xl">
+                <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
               </span>
+
               <span className="relative">Download CV</span>
-               <Download size={18} className="relative" />
+
+              <Download size={18} className="relative" />
             </motion.a>
 
             <motion.a
@@ -181,49 +213,65 @@ export default function About() {
               whileInView="visible"
               viewport={{ once: true }}
               variants={upVariants}
-              className="inline-flex items-center gap-2 whitespace-nowrap rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-sm font-mono text-white transition-colors hover:bg-white/10 sm:px-6 sm:py-3 sm:text-base"
+              className="inline-flex items-center gap-2 whitespace-nowrap rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 font-sans text-sm text-white transition-colors hover:bg-white/10 sm:px-6 sm:py-3 sm:text-base"
             >
               Github Project
             </motion.a>
           </div>
         </div>
 
-        <div className="relative w-full h-[420px] md:h-[480px] overflow-hidden">
-          <Lanyard frontImage="/images/profile.png" backImage="/images/back_profile.png" />
+        <div className="relative h-[420px] w-full overflow-hidden md:h-[480px]">
+          <Lanyard
+            frontImage="/images/profile.png"
+            backImage="/images/back_profile.png"
+          />
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-6">
+      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 sm:grid-cols-3">
         {stats.map((stat, i) => {
           const Icon = stat.icon;
+
           return (
             <motion.div
-  key={stat.label}
-  custom={i}
-  initial="hidden"
-  whileInView="visible"
-  viewport={{ once: true }}
-  variants={upVariants}
-  className="h-full"
->
-  <BorderGlow
-    backgroundColor="#0d0d14"
-    borderRadius={16}
-    glowRadius={36}
-    glowIntensity={1}
-    edgeSensitivity={30}
-    coneSpread={25}
-    colors={['#8b5cf6', '#6366f1', '#38bdf8']}
-    className="w-full h-full"
-  >
-    <div className="p-6 text-center">
-      <Icon className="mx-auto mb-3 text-indigo-400" size={28} />
-      <div className="text-3xl font-bold text-white mb-1">{stat.value}</div>
-      <div className="font-semibold text-white mb-1">{stat.label}</div>
-      <div className="text-sm text-gray-500">{stat.desc}</div>
-    </div>
-  </BorderGlow>
-</motion.div>
+              key={stat.label}
+              custom={i}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={upVariants}
+              className="h-full"
+            >
+              <BorderGlow
+                backgroundColor="#0d0d14"
+                borderRadius={16}
+                glowRadius={36}
+                glowIntensity={1}
+                edgeSensitivity={30}
+                coneSpread={25}
+                colors={["#8b5cf6", "#6366f1", "#38bdf8"]}
+                className="h-full w-full"
+              >
+                <div className="p-6 text-center">
+                  <Icon
+                    className="mx-auto mb-3 text-indigo-400"
+                    size={28}
+                  />
+
+                  <div className="mb-1 font-sans text-3xl font-bold text-white">
+                    {stat.value}
+                  </div>
+
+                  <div className="mb-1 font-sans font-semibold text-white">
+                    {stat.label}
+                  </div>
+
+                  <div className="font-sans text-sm text-gray-500">
+                    {stat.desc}
+                  </div>
+                </div>
+              </BorderGlow>
+            </motion.div>
           );
         })}
       </div>

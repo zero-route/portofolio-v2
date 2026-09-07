@@ -226,7 +226,10 @@ export default function Home() {
   const paragraphWords = paragraph.split(" ");
 
   return (
-<section className="relative overflow-hidden bg-[#030305] px-5 pb-24 pt-32 text-white sm:px-7 sm:pt-40 lg:px-10 lg:pt-44 xl:px-14 xl:pt-48">
+    <section
+      id="home"
+      className="relative overflow-hidden bg-[#030305] px-5 pb-24 pt-32 font-sans text-white sm:px-7 sm:pt-40 lg:px-10 lg:pt-44 xl:px-14 xl:pt-48"
+    >
       <div className="mx-auto w-full max-w-[1550px]">
         <div className="home-layout">
           <div className="min-w-0">
@@ -289,7 +292,7 @@ export default function Home() {
                   delay: 0.4,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                className="font-mono text-[3rem] font-black tracking-[-0.08em] text-[#f4f4f5] sm:text-[4rem] lg:text-[4.2rem] xl:text-[4.8rem]"
+                className="font-sans text-[3rem] font-bold tracking-[-0.065em] text-[#f4f4f5] sm:text-[4rem] lg:text-[4.2rem] xl:text-[4.8rem]"
               >
                 DevSecOps
               </motion.h1>
@@ -304,7 +307,7 @@ export default function Home() {
                   delay: 0.6,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                className="mt-3 font-mono text-[3rem] font-black tracking-[-0.08em] text-white sm:mt-4 sm:text-[4rem] lg:text-[4.2rem] xl:text-[4.8rem]"
+                className="mt-3 font-sans text-[3rem] font-bold tracking-[-0.065em] text-white sm:mt-4 sm:text-[4rem] lg:text-[4.2rem] xl:text-[4.8rem]"
               >
                 ENGINEER
               </motion.h2>
@@ -313,7 +316,7 @@ export default function Home() {
             <motion.p
               initial="hidden"
               animate={revealed ? "visible" : "hidden"}
-              className="max-w-[680px] font-mono text-[12px] leading-6 text-white/55 sm:text-[13px] sm:leading-7 lg:max-w-[650px] lg:text-[14px]"
+              className="max-w-[680px] font-sans text-[12px] leading-6 text-white/55 sm:text-[13px] sm:leading-7 lg:max-w-[650px] lg:text-[14px]"
             >
               {paragraphWords.map((word, index) => (
                 <motion.span
@@ -348,7 +351,7 @@ export default function Home() {
             >
               <a
                 href="#projects"
-                className="group relative flex items-center gap-2 overflow-hidden rounded-xl border border-[#a78bfa]/30 bg-gradient-to-r from-purple-600 to-indigo-600 px-5 py-3 font-mono text-[12px] font-semibold text-white shadow-[0_0_25px_rgba(124,58,237,0.18)] transition-all duration-300 hover:scale-[1.025] hover:shadow-[0_0_35px_rgba(139,92,246,0.3)]"
+                className="group relative flex items-center gap-2 overflow-hidden rounded-xl border border-[#a78bfa]/30 bg-gradient-to-r from-purple-600 to-indigo-600 px-5 py-3 font-sans text-[12px] font-semibold text-white shadow-[0_0_25px_rgba(124,58,237,0.18)] transition-all duration-300 hover:scale-[1.025] hover:shadow-[0_0_35px_rgba(139,92,246,0.3)]"
               >
                 <span className="button-shine absolute inset-0" />
                 <span className="relative">View Projects</span>
@@ -360,7 +363,7 @@ export default function Home() {
 
               <a
                 href="#contact"
-                className="flex items-center gap-2 rounded-xl border border-white/[0.15] bg-white/[0.035] px-5 py-3 font-mono text-[12px] font-semibold text-white/75 transition-all duration-300 hover:border-white/30 hover:bg-white/[0.07] hover:text-white"
+                className="flex items-center gap-2 rounded-xl border border-white/[0.15] bg-white/[0.035] px-5 py-3 font-sans text-[12px] font-semibold text-white/75 transition-all duration-300 hover:border-white/30 hover:bg-white/[0.07] hover:text-white"
               >
                 Let&apos;s Talk
                 <Mail size={15} />
@@ -533,11 +536,11 @@ export default function Home() {
               </div>
 
               <div className="min-w-0">
-                <p className="truncate font-mono text-[11px] font-semibold text-white sm:text-xs">
+                <p className="truncate font-sans text-[11px] font-semibold text-white sm:text-xs">
                   {currentSong.title}
                 </p>
 
-                <p className="mt-0.5 truncate font-mono text-[9px] text-white/35 sm:text-[10px]">
+                <p className="mt-0.5 truncate font-sans text-[9px] text-white/35 sm:text-[10px]">
                   {currentSong.artist}
                 </p>
               </div>
@@ -594,7 +597,7 @@ export default function Home() {
             </div>
 
             <div className="hidden w-[180px] shrink-0 lg:block">
-              <div className="flex items-center justify-between font-mono text-[8px] text-white/25">
+              <div className="flex items-center justify-between font-sans text-[8px] text-white/25">
                 <span>
                   {Math.floor(musicCurrentTime / 60)}:
                   {Math.floor(musicCurrentTime % 60)
