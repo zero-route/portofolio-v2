@@ -31,6 +31,7 @@ export default function Page() {
       <section id="beyond">
         <Beyond />
       </section>
+      
       <section id="projects" />
       <section id="contact" />
     </main>

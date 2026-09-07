@@ -58,10 +58,7 @@ const GooeyNav = ({
     element.style.setProperty("--time", `${bubbleTime}ms`);
 
     for (let i = 0; i < particleCount; i++) {
-      const t =
-        animationTime * 2 +
-        noise(timeVariance * 2);
-
+      const t = animationTime * 2 + noise(timeVariance * 2);
       const p = createParticle(i, t, d, r);
 
       element.classList.remove("active");
@@ -71,49 +68,34 @@ const GooeyNav = ({
         const point = document.createElement("span");
 
         particle.classList.add("particle");
-
         particle.style.setProperty(
           "--start-x",
           `${p.start[0]}px`
         );
-
         particle.style.setProperty(
           "--start-y",
           `${p.start[1]}px`
         );
-
         particle.style.setProperty(
           "--end-x",
           `${p.end[0]}px`
         );
-
         particle.style.setProperty(
           "--end-y",
           `${p.end[1]}px`
         );
-
-        particle.style.setProperty(
-          "--time",
-          `${p.time}ms`
-        );
-
-        particle.style.setProperty(
-          "--scale",
-          `${p.scale}`
-        );
-
+        particle.style.setProperty("--time", `${p.time}ms`);
+        particle.style.setProperty("--scale", `${p.scale}`);
         particle.style.setProperty(
           "--color",
           `var(--color-${p.color}, white)`
         );
-
         particle.style.setProperty(
           "--rotate",
           `${p.rotate}deg`
         );
 
         point.classList.add("point");
-
         particle.appendChild(point);
         element.appendChild(particle);
 
@@ -160,9 +142,9 @@ const GooeyNav = ({
   const handleClick = (e, index) => {
     e.preventDefault();
 
-    const liEl = e.currentTarget.closest("li");
+    const liEl = e.currentTarget;
 
-    if (!liEl || activeIndex === index) {
+    if (activeIndex === index) {
       return;
     }
 
@@ -174,7 +156,7 @@ const GooeyNav = ({
         filterRef.current.querySelectorAll(".particle");
 
       particles.forEach((particle) => {
-        particle.remove();
+        filterRef.current.removeChild(particle);
       });
     }
 
@@ -200,8 +182,8 @@ const GooeyNav = ({
       if (liEl) {
         handleClick(
           {
+            currentTarget: liEl,
             preventDefault: () => {},
-            currentTarget: e.currentTarget,
           },
           index
         );
@@ -233,9 +215,7 @@ const GooeyNav = ({
 
     resizeObserver.observe(containerRef.current);
 
-    return () => {
-      resizeObserver.disconnect();
-    };
+    return () => resizeObserver.disconnect();
   }, [activeIndex]);
 
   return (
@@ -247,7 +227,7 @@ const GooeyNav = ({
         <ul ref={navRef}>
           {items.map((item, index) => (
             <li
-              key={`${item.label}-${index}`}
+              key={index}
               className={
                 activeIndex === index ? "active" : ""
               }
