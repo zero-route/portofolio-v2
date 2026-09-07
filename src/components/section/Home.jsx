@@ -56,7 +56,7 @@ function useTypewriter(
   typingSpeed = 120,
   deletingSpeed = 75,
   pause = 1800,
-  enabled = false
+  enabled = true
 ) {
   const [wordIndex, setWordIndex] = useState(0);
   const [text, setText] = useState("");
@@ -106,32 +106,20 @@ export default function Home() {
   const [revealed, setRevealed] = useState(false);
 
   useEffect(() => {
-    const handleIntroComplete = () => {
-      setRevealed(true);
-    };
+    const reveal = () => setRevealed(true);
 
-    window.addEventListener("intro:complete", handleIntroComplete);
+    window.addEventListener("intro:complete", reveal);
+
+    const fallback = setTimeout(reveal, 6000);
 
     return () => {
-      window.removeEventListener("intro:complete", handleIntroComplete);
+      window.removeEventListener("intro:complete", reveal);
+      clearTimeout(fallback);
     };
   }, []);
 
-  const role = useTypewriter(
-    roleList,
-    120,
-    75,
-    1900,
-    revealed
-  );
-
-  const skill = useTypewriter(
-    skillsList,
-    110,
-    70,
-    1700,
-    revealed
-  );
+  const role = useTypewriter(roleList, 120, 75, 1900, revealed);
+  const skill = useTypewriter(skillsList, 110, 70, 1700, revealed);
 
   const [astreaOpen, setAstreaOpen] = useState(false);
 
@@ -166,9 +154,7 @@ export default function Home() {
     if (!musicQueue.length) return;
 
     const nextIndex =
-      currentIndex >= musicQueue.length - 1
-        ? 0
-        : currentIndex + 1;
+      currentIndex >= musicQueue.length - 1 ? 0 : currentIndex + 1;
 
     setCurrentIndex(nextIndex);
     setCurrentSong(musicQueue[nextIndex]);
@@ -178,9 +164,7 @@ export default function Home() {
     if (!musicQueue.length) return;
 
     const previousIndex =
-      currentIndex <= 0
-        ? musicQueue.length - 1
-        : currentIndex - 1;
+      currentIndex <= 0 ? musicQueue.length - 1 : currentIndex - 1;
 
     setCurrentIndex(previousIndex);
     setCurrentSong(musicQueue[previousIndex]);
@@ -242,10 +226,7 @@ export default function Home() {
   const paragraphWords = paragraph.split(" ");
 
   return (
-    <section
-      id="home"
-      className="relative overflow-hidden bg-[#030305] px-5 pb-24 pt-32 font-sans text-white sm:px-7 sm:pt-40 lg:px-10 lg:pt-44 xl:px-14 xl:pt-48"
-    >
+<section className="relative overflow-hidden bg-[#030305] px-5 pb-24 pt-32 text-white sm:px-7 sm:pt-40 lg:px-10 lg:pt-44 xl:px-14 xl:pt-48">
       <div className="mx-auto w-full max-w-[1550px]">
         <div className="home-layout">
           <div className="min-w-0">
@@ -272,14 +253,8 @@ export default function Home() {
                       }
                     }}
                     variants={{
-                      hidden: {
-                        opacity: 0,
-                        y: 28,
-                      },
-                      visible: {
-                        opacity: 1,
-                        y: 0,
-                      },
+                      hidden: { opacity: 0, y: 28 },
+                      visible: { opacity: 1, y: 0 },
                     }}
                     transition={{
                       duration: 0.8,
@@ -303,55 +278,33 @@ export default function Home() {
               })}
             </motion.div>
 
-            <div className="mb-7 leading-[0.9] sm:mb-8">
+            <div className="mb-7 leading-none sm:mb-8">
               <motion.h1
-                initial={{
-                  opacity: 0,
-                  x: -65,
-                }}
+                initial={{ opacity: 0, x: -65 }}
                 animate={
-                  revealed
-                    ? {
-                        opacity: 1,
-                        x: 0,
-                      }
-                    : {
-                        opacity: 0,
-                        x: -65,
-                      }
+                  revealed ? { opacity: 1, x: 0 } : { opacity: 0, x: -65 }
                 }
                 transition={{
-                  duration: 1.05,
-                  delay: 0.2,
+                  duration: 1.15,
+                  delay: 0.4,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                className="font-sans text-[3rem] font-bold tracking-[-0.065em] text-[#f4f4f5] sm:text-[4rem] lg:text-[4.2rem] xl:text-[4.8rem]"
+                className="font-mono text-[3rem] font-black tracking-[-0.08em] text-[#f4f4f5] sm:text-[4rem] lg:text-[4.2rem] xl:text-[4.8rem]"
               >
                 DevSecOps
               </motion.h1>
 
               <motion.h2
-                initial={{
-                  opacity: 0,
-                  x: 65,
-                }}
+                initial={{ opacity: 0, x: 65 }}
                 animate={
-                  revealed
-                    ? {
-                        opacity: 1,
-                        x: 0,
-                      }
-                    : {
-                        opacity: 0,
-                        x: 65,
-                      }
+                  revealed ? { opacity: 1, x: 0 } : { opacity: 0, x: 65 }
                 }
                 transition={{
-                  duration: 1.05,
-                  delay: 0.35,
+                  duration: 1.15,
+                  delay: 0.6,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                className="mt-3 font-sans text-[3rem] font-bold tracking-[-0.065em] text-white sm:mt-4 sm:text-[4rem] lg:text-[4.2rem] xl:text-[4.8rem]"
+                className="mt-3 font-mono text-[3rem] font-black tracking-[-0.08em] text-white sm:mt-4 sm:text-[4rem] lg:text-[4.2rem] xl:text-[4.8rem]"
               >
                 ENGINEER
               </motion.h2>
@@ -360,24 +313,18 @@ export default function Home() {
             <motion.p
               initial="hidden"
               animate={revealed ? "visible" : "hidden"}
-              className="max-w-[680px] font-sans text-[12px] leading-6 text-white/55 sm:text-[13px] sm:leading-7 lg:max-w-[650px] lg:text-[14px]"
+              className="max-w-[680px] font-mono text-[12px] leading-6 text-white/55 sm:text-[13px] sm:leading-7 lg:max-w-[650px] lg:text-[14px]"
             >
               {paragraphWords.map((word, index) => (
                 <motion.span
                   key={`${word}-${index}`}
                   variants={{
-                    hidden: {
-                      opacity: 0,
-                      y: 15,
-                    },
-                    visible: {
-                      opacity: 1,
-                      y: 0,
-                    },
+                    hidden: { opacity: 0, y: 15 },
+                    visible: { opacity: 1, y: 0 },
                   }}
                   transition={{
-                    duration: 0.5,
-                    delay: 0.65 + index * 0.035,
+                    duration: 0.55,
+                    delay: 0.95 + index * 0.045,
                     ease: [0.22, 1, 0.36, 1],
                   }}
                   className="mr-1.5 inline-block"
@@ -388,38 +335,23 @@ export default function Home() {
             </motion.p>
 
             <motion.div
-              initial={{
-                opacity: 0,
-                y: 35,
-              }}
+              initial={{ opacity: 0, y: 35 }}
               animate={
-                revealed
-                  ? {
-                      opacity: 1,
-                      y: 0,
-                    }
-                  : {
-                      opacity: 0,
-                      y: 35,
-                    }
+                revealed ? { opacity: 1, y: 0 } : { opacity: 0, y: 35 }
               }
               transition={{
                 duration: 0.9,
-                delay: 1.35,
+                delay: 1.7,
                 ease: [0.22, 1, 0.36, 1],
               }}
               className="mt-7 flex flex-wrap gap-3 sm:mt-8"
             >
               <a
                 href="#projects"
-                className="group relative flex items-center gap-2 overflow-hidden rounded-xl border border-[#a78bfa]/30 bg-gradient-to-r from-purple-600 to-indigo-600 px-5 py-3 font-sans text-[12px] font-semibold text-white shadow-[0_0_25px_rgba(124,58,237,0.18)] transition-all duration-300 hover:scale-[1.025] hover:shadow-[0_0_35px_rgba(139,92,246,0.3)]"
+                className="group relative flex items-center gap-2 overflow-hidden rounded-xl border border-[#a78bfa]/30 bg-gradient-to-r from-purple-600 to-indigo-600 px-5 py-3 font-mono text-[12px] font-semibold text-white shadow-[0_0_25px_rgba(124,58,237,0.18)] transition-all duration-300 hover:scale-[1.025] hover:shadow-[0_0_35px_rgba(139,92,246,0.3)]"
               >
                 <span className="button-shine absolute inset-0" />
-
-                <span className="relative">
-                  View Projects
-                </span>
-
+                <span className="relative">View Projects</span>
                 <ArrowUpRight
                   size={16}
                   className="relative transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1"
@@ -428,7 +360,7 @@ export default function Home() {
 
               <a
                 href="#contact"
-                className="flex items-center gap-2 rounded-xl border border-white/[0.15] bg-white/[0.035] px-5 py-3 font-sans text-[12px] font-semibold text-white/75 transition-all duration-300 hover:border-white/30 hover:bg-white/[0.07] hover:text-white"
+                className="flex items-center gap-2 rounded-xl border border-white/[0.15] bg-white/[0.035] px-5 py-3 font-mono text-[12px] font-semibold text-white/75 transition-all duration-300 hover:border-white/30 hover:bg-white/[0.07] hover:text-white"
               >
                 Let&apos;s Talk
                 <Mail size={15} />
@@ -451,26 +383,17 @@ export default function Home() {
                     rel="noopener noreferrer"
                     aria-label={item.label}
                     variants={{
-                      hidden: {
-                        opacity: 0,
-                        y: 28,
-                      },
-                      visible: {
-                        opacity: 1,
-                        y: 0,
-                      },
+                      hidden: { opacity: 0, y: 28 },
+                      visible: { opacity: 1, y: 0 },
                     }}
                     transition={{
-                      duration: 0.7,
-                      delay: 1.75 + index * 0.12,
+                      duration: 0.8,
+                      delay: 2.1 + index * 0.25,
                       ease: [0.22, 1, 0.36, 1],
                     }}
                     className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/[0.09] bg-white/[0.025] text-white/55 transition-all duration-300 hover:-translate-y-1 hover:border-purple-400/30 hover:bg-purple-500/[0.08] hover:text-white"
                   >
-                    <Icon
-                      size={16}
-                      strokeWidth={1.7}
-                    />
+                    <Icon size={16} strokeWidth={1.7} />
                   </motion.a>
                 );
               })}
@@ -478,25 +401,12 @@ export default function Home() {
           </div>
 
           <motion.div
-            initial={{
-              opacity: 0,
-              x: 40,
-            }}
-            animate={
-              revealed
-                ? {
-                    opacity: 1,
-                    x: 0,
-                  }
-                : {
-                    opacity: 0,
-                    x: 40,
-                  }
-            }
+            initial={{ opacity: 0 }}
+            animate={{ opacity: revealed ? 1 : 0 }}
             transition={{
-              duration: 1.1,
-              delay: 1.1,
-              ease: [0.22, 1, 0.36, 1],
+              duration: 1.4,
+              delay: 2.3,
+              ease: "easeOut",
             }}
             className="portfolio-wrapper"
           >
@@ -515,88 +425,59 @@ export default function Home() {
 
               <div className="min-h-[195px] p-5 font-mono text-[11px] leading-[1.8] sm:p-6 sm:text-[12px]">
                 <div>
-                  <span className="font-semibold text-[#c084fc]">
-                    const
-                  </span>{" "}
+                  <span className="font-semibold text-[#c084fc]">const</span>{" "}
                   <span className="font-semibold text-[#60a5fa]">
                     developer
                   </span>{" "}
-                  <span className="text-white/60">
-                    = {"{"}
-                  </span>
+                  <span className="text-white/60">= {"{"}</span>
                 </div>
 
                 <div className="pl-4 text-white/60">
                   <div>
-                    Nama{" "}
-                    <span className="text-white/40">
-                      :
-                    </span>{" "}
+                    Nama <span className="text-white/40">:</span>{" "}
                     <span className="text-[#86efac]">
                       &quot;Dimas Aksa Oktapian&quot;
                     </span>
-                    <span className="text-white/40">
-                      ,
-                    </span>
+                    <span className="text-white/40">,</span>
                   </div>
 
                   <div>
-                    Role{" "}
-                    <span className="text-white/40">
-                      :
-                    </span>{" "}
+                    Role <span className="text-white/40">:</span>{" "}
                     <span className="text-[#86efac]">
                       &quot;{role}
                       <span className="ml-[1px] inline-block h-[12px] w-[1px] animate-pulse bg-[#d8b4fe] align-middle" />
                       &quot;
                     </span>
-                    <span className="text-white/40">
-                      ,
-                    </span>
+                    <span className="text-white/40">,</span>
                   </div>
 
                   <div>
-                    Skills{" "}
-                    <span className="text-white/40">
-                      :
-                    </span>{" "}
+                    Skills <span className="text-white/40">:</span>{" "}
                     <span className="text-[#86efac]">
                       &quot;{skill}
                       <span className="ml-[1px] inline-block h-[12px] w-[1px] animate-pulse bg-[#d8b4fe] align-middle" />
                       &quot;
                     </span>
-                    <span className="text-white/40">
-                      ,
-                    </span>
+                    <span className="text-white/40">,</span>
                   </div>
 
                   <div>
-                    Passion{" "}
-                    <span className="text-white/40">
-                      :
-                    </span>{" "}
+                    Passion <span className="text-white/40">:</span>{" "}
                     <span className="text-[#86efac]">
                       &quot;DevSecOps Engineer&quot;
                     </span>
-                    <span className="text-white/40">
-                      ,
-                    </span>
+                    <span className="text-white/40">,</span>
                   </div>
 
                   <div>
-                    Status{" "}
-                    <span className="text-white/40">
-                      :
-                    </span>{" "}
+                    Status <span className="text-white/40">:</span>{" "}
                     <span className="text-[#86efac]">
                       &quot;Building........&quot;
                     </span>
                   </div>
                 </div>
 
-                <div className="text-white/60">
-                  {"};"}
-                </div>
+                <div className="text-white/60">{"};"}</div>
               </div>
             </div>
           </motion.div>
@@ -627,14 +508,8 @@ export default function Home() {
 
       {currentSong && (
         <motion.div
-          initial={{
-            opacity: 0,
-            y: 40,
-          }}
-          animate={{
-            opacity: 1,
-            y: 0,
-          }}
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
           className="fixed bottom-3 left-3 right-3 z-[9998] sm:bottom-5 sm:left-5 sm:right-5"
         >
           <div className="mx-auto flex max-w-[1280px] items-center gap-3 rounded-2xl border border-purple-400/20 bg-[#07070d]/95 px-3 py-2.5 shadow-[0_20px_70px_rgba(0,0,0,0.65)] backdrop-blur-xl sm:gap-4 sm:px-5 sm:py-3">
@@ -652,20 +527,17 @@ export default function Home() {
                   />
                 ) : (
                   <div className="flex h-full w-full items-center justify-center">
-                    <Music2
-                      size={18}
-                      className="text-white/40"
-                    />
+                    <Music2 size={18} className="text-white/40" />
                   </div>
                 )}
               </div>
 
               <div className="min-w-0">
-                <p className="truncate font-sans text-[11px] font-semibold text-white sm:text-xs">
+                <p className="truncate font-mono text-[11px] font-semibold text-white sm:text-xs">
                   {currentSong.title}
                 </p>
 
-                <p className="mt-0.5 truncate font-sans text-[9px] text-white/35 sm:text-[10px]">
+                <p className="mt-0.5 truncate font-mono text-[9px] text-white/35 sm:text-[10px]">
                   {currentSong.artist}
                 </p>
               </div>
@@ -746,9 +618,7 @@ export default function Home() {
                       musicDuration > 0
                         ? `${Math.min(
                             100,
-                            (musicCurrentTime /
-                              musicDuration) *
-                              100
+                            (musicCurrentTime / musicDuration) * 100
                           )}%`
                         : "0%",
                   }}
