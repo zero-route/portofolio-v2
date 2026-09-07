@@ -168,8 +168,8 @@ export default function About() {
               <span className="absolute inset-0 rounded-xl overflow-hidden">
                 <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
               </span>
-              <Download size={18} className="relative" />
               <span className="relative">Download CV</span>
+               <Download size={18} className="relative" />
             </motion.a>
 
             <motion.a
@@ -183,8 +183,9 @@ export default function About() {
               variants={upVariants}
               className="inline-flex items-center gap-2 whitespace-nowrap rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-sm font-mono text-white transition-colors hover:bg-white/10 sm:px-6 sm:py-3 sm:text-base"
             >
-              <Github size={18} />
+              
               Github Project
+              <Github size={18} />
             </motion.a>
           </div>
         </div>
