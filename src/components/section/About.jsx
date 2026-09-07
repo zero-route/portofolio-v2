@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
 import { Download, Github, Layers, FolderGit2, Code2 } from 'lucide-react';
+import BorderGlow from '@/components/reactbits/BorderGlow';
 
 const Lanyard = dynamic(() => import('@/components/reactbits/Lanyard'), {
   ssr: false,
@@ -204,12 +205,23 @@ export default function About() {
               whileInView="visible"
               viewport={{ once: true }}
               variants={upVariants}
-              className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 text-center hover:border-white/30 transition-colors"
             >
-              <Icon className="mx-auto mb-3 text-indigo-400" size={28} />
-              <div className="text-3xl font-bold text-white mb-1">{stat.value}</div>
-              <div className="font-semibold text-white mb-1">{stat.label}</div>
-              <div className="text-sm text-gray-500">{stat.desc}</div>
+              <BorderGlow
+                backgroundColor="#0d0d14"
+                borderRadius={16}
+                glowRadius={36}
+                glowIntensity={1}
+                edgeSensitivity={30}
+                coneSpread={25}
+                colors={['#8b5cf6', '#6366f1', '#38bdf8']}
+              >
+                <div className="p-6 text-center">
+                  <Icon className="mx-auto mb-3 text-indigo-400" size={28} />
+                  <div className="text-3xl font-bold text-white mb-1">{stat.value}</div>
+                  <div className="font-semibold text-white mb-1">{stat.label}</div>
+                  <div className="text-sm text-gray-500">{stat.desc}</div>
+                </div>
+              </BorderGlow>
             </motion.div>
           );
         })}
