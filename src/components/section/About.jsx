@@ -44,11 +44,22 @@ const wordVariants = {
   }),
 };
 
-function TypingParagraph({ text, className, startDelay = 0 }) {
+function TypingParagraph({
+  text,
+  className,
+  startDelay = 0,
+  enabled = false,
+}) {
   const [shown, setShown] = useState("");
   const [done, setDone] = useState(false);
 
   useEffect(() => {
+    if (!enabled) {
+      setShown("");
+      setDone(false);
+      return;
+    }
+
     let index = 0;
     let interval;
 
@@ -68,7 +79,7 @@ function TypingParagraph({ text, className, startDelay = 0 }) {
       clearTimeout(timeout);
       clearInterval(interval);
     };
-  }, [text, startDelay]);
+  }, [text, startDelay, enabled]);
 
   return (
     <p className={className}>
@@ -84,6 +95,17 @@ function TypingParagraph({ text, className, startDelay = 0 }) {
 
 export default function About() {
   const [repoCount, setRepoCount] = useState(null);
+  const [revealed, setRevealed] = useState(false);
+
+  useEffect(() => {
+    const reveal = () => setRevealed(true);
+
+    window.addEventListener("intro:complete", reveal);
+
+    return () => {
+      window.removeEventListener("intro:complete", reveal);
+    };
+  }, []);
 
   useEffect(() => {
     let active = true;
@@ -148,8 +170,7 @@ export default function About() {
                 key={i}
                 custom={i}
                 initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
+                animate={revealed ? "visible" : "hidden"}
                 variants={upVariants}
                 className="inline-block font-sans text-lg text-cyan-400"
               >
@@ -158,14 +179,13 @@ export default function About() {
             ))}
           </div>
 
-          <h3 className="mb-4 flex flex-wrap gap-x-3 font-sans text-[3rem] font-bold tracking-[-0.065em] text-[#f4f4f5] sm:text-[3.5rem] lg:text-[4rem]">
+          <h3 className="mb-4 flex flex-wrap gap-x-3 font-sans text-[2.5rem] font-bold tracking-[-0.065em] text-[#f4f4f5] sm:text-[3rem] lg:text-[3.4rem]">
             {nameWords.map((word, i) => (
               <motion.span
                 key={word}
                 custom={i}
                 initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
+                animate={revealed ? "visible" : "hidden"}
                 variants={wordVariants}
                 className="inline-block"
               >
@@ -178,6 +198,7 @@ export default function About() {
             text={aboutText}
             className="mb-8 min-h-[110px] max-w-[680px] font-sans text-[12px] leading-6 text-white/55 sm:text-[13px] sm:leading-7 lg:text-[14px]"
             startDelay={900}
+            enabled={revealed}
           />
 
           <div className="flex flex-nowrap items-center gap-3 sm:gap-4">
@@ -186,8 +207,7 @@ export default function About() {
               download
               custom={0}
               initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
+              animate={revealed ? "visible" : "hidden"}
               variants={upVariants}
               className="group relative inline-flex items-center gap-2 whitespace-nowrap rounded-xl px-4 py-2.5 font-sans text-sm text-white sm:px-6 sm:py-3 sm:text-base"
             >
@@ -210,8 +230,7 @@ export default function About() {
               rel="noopener noreferrer"
               custom={1}
               initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
+              animate={revealed ? "visible" : "hidden"}
               variants={upVariants}
               className="inline-flex items-center gap-2 whitespace-nowrap rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 font-sans text-sm text-white transition-colors hover:bg-white/10 sm:px-6 sm:py-3 sm:text-base"
             >
@@ -220,12 +239,20 @@ export default function About() {
           </div>
         </div>
 
-        <div className="relative h-[420px] w-full overflow-hidden md:h-[480px]">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={revealed ? { opacity: 1 } : { opacity: 0 }}
+          transition={{
+            duration: 1,
+            ease: "easeOut",
+          }}
+          className="relative h-[420px] w-full overflow-hidden md:h-[480px]"
+        >
           <Lanyard
             frontImage="/images/profile.png"
             backImage="/images/back_profile.png"
           />
-        </div>
+        </motion.div>
       </div>
 
       <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 sm:grid-cols-3">
@@ -237,8 +264,7 @@ export default function About() {
               key={stat.label}
               custom={i}
               initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
+              animate={revealed ? "visible" : "hidden"}
               variants={upVariants}
               className="h-full"
             >

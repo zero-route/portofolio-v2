@@ -122,7 +122,6 @@ export default function Home() {
   const skill = useTypewriter(skillsList, 110, 70, 1700, revealed);
 
   const [astreaOpen, setAstreaOpen] = useState(false);
-
   const [musicSearchOpen, setMusicSearchOpen] = useState(false);
   const [vinylOpen, setVinylOpen] = useState(false);
 
@@ -292,7 +291,7 @@ export default function Home() {
                   delay: 0.4,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                className="font-sans text-[3rem] font-bold tracking-[-0.065em] text-[#f4f4f5] sm:text-[4rem] lg:text-[4.2rem] xl:text-[4.8rem]"
+                className="font-sans text-[2.5rem] font-bold tracking-[-0.065em] text-[#f4f4f5] sm:text-[3.4rem] lg:text-[3.7rem] xl:text-[4.1rem]"
               >
                 DevSecOps
               </motion.h1>
@@ -307,7 +306,7 @@ export default function Home() {
                   delay: 0.6,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                className="mt-3 font-sans text-[3rem] font-bold tracking-[-0.065em] text-white sm:mt-4 sm:text-[4rem] lg:text-[4.2rem] xl:text-[4.8rem]"
+                className="mt-2.5 font-sans text-[2.5rem] font-bold tracking-[-0.065em] text-white sm:mt-3 sm:text-[3.4rem] lg:text-[3.7rem] xl:text-[4.1rem]"
               >
                 ENGINEER
               </motion.h2>
