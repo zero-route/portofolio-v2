@@ -130,7 +130,7 @@ export default function About() {
             ))}
           </div>
 
-          <h3 className="text-3xl md:text-4xl font-bold text-white mb-4 flex flex-wrap gap-x-3">
+          <h3 className="mb-4 flex flex-wrap gap-x-3 font-mono text-[3rem] font-black tracking-[-0.08em] text-[#f4f4f5] sm:text-[3.5rem] lg:text-[4rem]">
             {nameWords.map((word, i) => (
               <motion.span
                 key={word}
@@ -146,11 +146,11 @@ export default function About() {
             ))}
           </h3>
 
-          <TypingParagraph
-            text={aboutText}
-            className="text-gray-300 leading-relaxed mb-8 min-h-[110px]"
-            startDelay={900}
-          />
+         <TypingParagraph
+  text={aboutText}
+  className="mb-8 min-h-[110px] max-w-[680px] font-mono text-[12px] leading-6 text-white/55 sm:text-[13px] sm:leading-7 lg:text-[14px]"
+  startDelay={900}
+/>
 
           <div className="flex flex-nowrap items-center gap-3 sm:gap-4">
             <motion.a
