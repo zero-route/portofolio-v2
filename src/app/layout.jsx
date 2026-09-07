@@ -1,23 +1,16 @@
-import { Space_Grotesk } from "next/font/google";
-import "./globals.css";
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-space-grotesk",
-});
-
-export const metadata = {
-  title: "Dimas Aksa Oktapian",
-  description: "Portfolio Website",
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ["var(--font-geist)", "sans-serif"],
+      },
+    },
+  },
+  plugins: [],
 };
-
-export default function RootLayout({ children }) {
-  return (
-    <html lang="en">
-      <body className={`${spaceGrotesk.variable} font-sans antialiased`}>
-        {children}
-      </body>
-    </html>
-  );
-}
