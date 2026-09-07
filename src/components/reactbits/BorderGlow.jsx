@@ -173,7 +173,7 @@ const BorderGlow = ({
         '--glow-padding': `${glowRadius}px`,
         '--cone-spread': coneSpread,
         '--fill-opacity': fillOpacity,
-        touchAction: 'pan-y',
+        touchAction: 'none',
         ...glowVars,
         ...buildGradientVars(colors),
       }}
