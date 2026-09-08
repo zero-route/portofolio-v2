@@ -11,7 +11,8 @@ const TYPE_STYLES = {
 };
 
 export default function ProjectCard({ project, onViewDetail }) {
-  const typeStyle = TYPE_STYLES[project.type] || TYPE_STYLES.automation;
+  const typeStyle =
+    TYPE_STYLES[project.type] || TYPE_STYLES.automation;
 
   return (
     <BorderGlow
@@ -49,7 +50,7 @@ export default function ProjectCard({ project, onViewDetail }) {
           className="inline-flex w-fit items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-white/80 transition-colors hover:bg-white/10"
         >
           <Eye size={14} />
-          View Detail
+          Lihat Detail
         </button>
       </div>
     </BorderGlow>
