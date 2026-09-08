@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { Download, Github, Layers, FolderGit2, Code2 } from "lucide-react";
@@ -9,6 +9,31 @@ import BorderGlow from "@/components/reactbits/BorderGlow";
 const Lanyard = dynamic(() => import("@/components/reactbits/Lanyard"), {
   ssr: false,
 });
+
+function useInView(rootMargin = "200px") {
+  const ref = useRef(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node || inView) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin }
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [inView, rootMargin]);
+
+  return [ref, inView];
+}
 
 const aboutText =
   "A passionate individual in various fields of Information Technology. I combine skills from various IT branches to build reliable systems and clean digital experiences — from network infrastructure to full-stack development.";
@@ -96,6 +121,7 @@ function TypingParagraph({
 export default function About() {
   const [repoCount, setRepoCount] = useState(null);
   const [revealed, setRevealed] = useState(false);
+  const [lanyardRef, lanyardInView] = useInView("150px");
 
   useEffect(() => {
     const reveal = () => setRevealed(true);
@@ -241,6 +267,7 @@ export default function About() {
         </div>
 
         <motion.div
+          ref={lanyardRef}
           initial={{ opacity: 0 }}
           animate={revealed ? { opacity: 1 } : { opacity: 0 }}
           transition={{
@@ -249,10 +276,12 @@ export default function About() {
           }}
           className="relative h-[420px] w-full overflow-hidden md:h-[480px]"
         >
-          <Lanyard
-            frontImage="/images/profile.png"
-            backImage="/images/back_profile.png"
-          />
+          {lanyardInView && (
+            <Lanyard
+              frontImage="/images/profile.png"
+              backImage="/images/back_profile.png"
+            />
+          )}
         </motion.div>
       </div>
 
