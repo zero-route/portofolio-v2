@@ -1,6 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import GooeyNav from "../reactbits/GooeyNav";
+import ProjectPanel from "../beyond/Project/ProjectPanel";
 
 const items = [
   {
@@ -18,6 +20,8 @@ const items = [
 ];
 
 export default function Beyond() {
+  const [activeTab, setActiveTab] = useState(0);
+
   return (
     <section
       id="beyond"
@@ -44,7 +48,24 @@ export default function Beyond() {
             animationTime={600}
             timeVariance={300}
             colors={[1, 2, 3, 1, 2, 3, 1, 4]}
+            onChange={(index) => setActiveTab(index)}
           />
+        </div>
+
+        <div className="mt-16 w-full">
+          {activeTab === 0 && <ProjectPanel />}
+
+          {activeTab === 1 && (
+            <p className="text-center text-sm text-white/40">
+              Hoby — coming soon.
+            </p>
+          )}
+
+          {activeTab === 2 && (
+            <p className="text-center text-sm text-white/40">
+              Activity — coming soon.
+            </p>
+          )}
         </div>
       </div>
     </section>

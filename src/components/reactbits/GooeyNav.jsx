@@ -12,6 +12,7 @@ const GooeyNav = ({
   timeVariance = 300,
   colors = [1, 2, 3, 1, 2, 3, 1, 4],
   initialActiveIndex = 0,
+  onChange,
 }) => {
   const containerRef = useRef(null);
   const navRef = useRef(null);
@@ -170,6 +171,10 @@ const GooeyNav = ({
 
     if (filterRef.current) {
       makeParticles(filterRef.current);
+    }
+
+    if (onChange) {
+      onChange(index, items[index]);
     }
   };
 
