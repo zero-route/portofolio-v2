@@ -24,9 +24,9 @@ export default function ProjectPanel() {
               x: 0,
             }}
             transition={{
-              duration: 0.7,
-              delay: index * 0.12,
-              ease: [0.22, 1, 0.36, 1],
+              duration: 1,
+              delay: index * 0.16,
+              ease: [0.16, 1, 0.3, 1],
             }}
           >
             <ProjectCard
