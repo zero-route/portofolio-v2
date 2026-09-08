@@ -18,7 +18,7 @@ export const projects = [
     type: "hardware",
     typeLabel: "Perangkat Keras",
     nodes: [
-      "Sensor (Kelembapan/Suhu/pH/Angin)",
+      "Seluruh Unit Sensor",
       "Gateway ESP32-S3",
       "Uplink 4G LTE",
       "Server Pusat",
