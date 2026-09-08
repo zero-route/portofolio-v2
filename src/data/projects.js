@@ -51,7 +51,7 @@ export const projects = [
     id: "project-dashboard",
     title: "Project Dashboard",
     type: "dashboard",
-    typeLabel: "Dasbor",
+    typeLabel: "Dashboard",
     nodes: [
       "GitHub / Vercel / Netlify / Cloudflare",
       "Supabase / Backblaze",
