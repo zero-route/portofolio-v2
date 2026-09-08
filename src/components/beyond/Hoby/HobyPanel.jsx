@@ -1,6 +1,11 @@
 "use client";
 
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 import { useRef } from "react";
 
 const hobbies = [
@@ -48,19 +53,19 @@ function HobbyImage({ hobby, index }) {
   const mouseY = useMotionValue(0);
 
   const springX = useSpring(mouseX, {
-    stiffness: 120,
-    damping: 20,
-    mass: 0.5,
+    stiffness: 100,
+    damping: 22,
+    mass: 0.6,
   });
 
   const springY = useSpring(mouseY, {
-    stiffness: 120,
-    damping: 20,
-    mass: 0.5,
+    stiffness: 100,
+    damping: 22,
+    mass: 0.6,
   });
 
   const imageX = useTransform(springX, [-1, 1], [-10, 10]);
-  const imageY = useTransform(springY, [-1, 1], [-7, 7]);
+  const imageY = useTransform(springY, [-1, 1], [-8, 8]);
 
   const handleMouseMove = (event) => {
     const rect = containerRef.current?.getBoundingClientRect();
@@ -85,8 +90,8 @@ function HobbyImage({ hobby, index }) {
     <motion.div
       initial={{
         opacity: 0,
-        x: hobby.direction * 70,
-        scale: 0.96,
+        x: hobby.direction * 80,
+        scale: 0.94,
       }}
       whileInView={{
         opacity: 1,
@@ -98,14 +103,14 @@ function HobbyImage({ hobby, index }) {
         amount: 0.2,
       }}
       transition={{
-        duration: 1.1,
-        delay: index * 0.12,
+        duration: 1.15,
+        delay: index * 0.14,
         ease: [0.16, 1, 0.3, 1],
       }}
       className={`relative w-full ${
         hobby.position === "left"
-          ? "lg:w-[76%] lg:self-start"
-          : "lg:w-[58%] lg:self-end"
+          ? "lg:w-[48%] lg:self-start"
+          : "lg:w-[40%] lg:self-end"
       }`}
     >
       <motion.div
@@ -113,16 +118,16 @@ function HobbyImage({ hobby, index }) {
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         whileHover={{
-          scale: 1.012,
+          scale: 1.018,
         }}
         transition={{
-          duration: 0.6,
+          duration: 0.7,
           ease: [0.16, 1, 0.3, 1],
         }}
-        className="group relative aspect-[16/9] cursor-pointer overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03]"
+        className="group relative aspect-[9/16] cursor-pointer overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03]"
       >
         <motion.div
-          className="absolute inset-[-12px]"
+          className="absolute inset-[-14px]"
           style={{
             x: imageX,
             y: imageY,
@@ -133,13 +138,13 @@ function HobbyImage({ hobby, index }) {
             alt={hobby.title}
             className="h-full w-full object-cover"
             initial={{
-              scale: 1.05,
+              scale: 1.06,
             }}
             whileInView={{
               scale: 1,
             }}
             whileHover={{
-              scale: 1.035,
+              scale: 1.055,
             }}
             transition={{
               duration: 1.2,
@@ -148,47 +153,75 @@ function HobbyImage({ hobby, index }) {
           />
         </motion.div>
 
-        <div className="absolute inset-0 bg-black/10 transition-opacity duration-700 group-hover:bg-black/30" />
+        <div className="absolute inset-0 bg-black/5 transition-all duration-700 group-hover:bg-black/25" />
+
+        <div className="absolute inset-x-0 bottom-0 h-[45%] bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-70 transition-opacity duration-700 group-hover:opacity-100" />
 
         <motion.div
-          className="pointer-events-none absolute inset-y-0 -left-[45%] w-[35%] rotate-[18deg] bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 blur-xl"
+          className="pointer-events-none absolute inset-y-0 -left-[55%] w-[38%] rotate-[18deg] bg-gradient-to-r from-transparent via-white/25 to-transparent opacity-0 blur-2xl"
           whileHover={{
-            left: "120%",
+            left: "125%",
             opacity: 1,
           }}
           transition={{
-            duration: 0.9,
+            duration: 1,
             ease: "easeInOut",
           }}
         />
 
-        <div className="absolute inset-x-0 bottom-0 p-5 sm:p-7">
+        <motion.div
+          className="absolute left-5 top-5 sm:left-6 sm:top-6"
+          initial={{
+            opacity: 0,
+            y: -8,
+          }}
+          whileHover={{
+            opacity: 1,
+            y: 0,
+          }}
+          transition={{
+            duration: 0.45,
+            ease: [0.16, 1, 0.3, 1],
+          }}
+        >
+          <span className="text-[10px] font-medium tracking-[0.3em] text-white/60">
+            BEYOND
+          </span>
+        </motion.div>
+
+        <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
           <motion.div
             initial={{
               opacity: 0,
-              y: 18,
+              y: 22,
             }}
             whileHover={{
               opacity: 1,
               y: 0,
             }}
             transition={{
-              duration: 0.45,
+              duration: 0.5,
               ease: [0.16, 1, 0.3, 1],
             }}
-            className="flex items-center justify-between"
+            className="flex items-end justify-between gap-4"
           >
-            <span className="text-sm font-medium tracking-wide text-white sm:text-base">
-              {hobby.title}
-            </span>
+            <div>
+              <span className="block text-base font-medium tracking-wide text-white sm:text-lg">
+                {hobby.title}
+              </span>
 
-            <span className="text-xs tracking-widest text-white/60">
+              <span className="mt-1 block text-[10px] uppercase tracking-[0.25em] text-white/45">
+                Personal Interest
+              </span>
+            </div>
+
+            <span className="text-xs font-medium tracking-[0.2em] text-white/50">
               0{index + 1}
             </span>
           </motion.div>
         </div>
 
-        <div className="pointer-events-none absolute inset-0 rounded-2xl border border-white/0 transition-all duration-700 group-hover:border-white/20 group-hover:shadow-[0_0_45px_rgba(255,255,255,0.08)]" />
+        <div className="pointer-events-none absolute inset-0 rounded-2xl border border-white/0 transition-all duration-700 group-hover:border-white/20 group-hover:shadow-[0_0_50px_rgba(255,255,255,0.08)]" />
       </motion.div>
     </motion.div>
   );
@@ -196,7 +229,7 @@ function HobbyImage({ hobby, index }) {
 
 export default function HobyPanel() {
   return (
-    <div className="mx-auto flex w-full max-w-6xl flex-col gap-14 py-2 sm:gap-20 lg:gap-28">
+    <div className="mx-auto flex w-full max-w-6xl flex-col gap-16 py-2 sm:gap-24 lg:gap-32">
       {hobbies.map((hobby, index) => (
         <HobbyImage
           key={hobby.id}
