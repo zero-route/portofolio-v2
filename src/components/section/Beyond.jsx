@@ -3,6 +3,7 @@
 import { useState } from "react";
 import GooeyNav from "../reactbits/GooeyNav";
 import ProjectPanel from "../beyond/Project/ProjectPanel";
+import HobyPanel from "../beyond/Hoby/HobyPanel";
 
 const items = [
   {
@@ -55,11 +56,7 @@ export default function Beyond() {
         <div className="mt-16 w-full">
           {activeTab === 0 && <ProjectPanel />}
 
-          {activeTab === 1 && (
-            <p className="text-center text-sm text-white/40">
-              Hoby — coming soon.
-            </p>
-          )}
+          {activeTab === 1 && <HobyPanel />}
 
           {activeTab === 2 && (
             <p className="text-center text-sm text-white/40">
