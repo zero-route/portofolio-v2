@@ -132,9 +132,6 @@ export default function ActivityPanel() {
   return (
     <div className="flex w-full flex-col gap-10">
 
-      {/* =========================
-          STATS
-      ========================= */}
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
         {stats.map((stat, index) => {
           const Icon = stat.icon;
@@ -181,9 +178,6 @@ export default function ActivityPanel() {
         })}
       </div>
 
-      {/* =========================
-          GITHUB CONTRIBUTION
-      ========================= */}
       <div
         className="activity-fade-up w-full"
         style={{
@@ -250,9 +244,6 @@ export default function ActivityPanel() {
         )}
       </div>
 
-      {/* =========================
-          NOW LEARNING
-      ========================= */}
       <div>
         <h3
           className="activity-fade-up mb-4 font-sans text-lg font-semibold text-white"
