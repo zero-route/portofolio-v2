@@ -7,7 +7,7 @@ export const projects = [
     nodes: ["Pemicu Gmail", "Ringkasan AI Gemini", "Bot Telegram"],
     description:
       "Otomasi berbasis n8n yang membaca email masuk, merangkum setiap percakapan menggunakan Google Gemini, lalu mengirimkan ringkasannya langsung ke Telegram sehingga isi email penting dapat dipantau tanpa harus membuka inbox satu per satu.",
-    complexity: 3,
+    complexity: 2,
     impact:
       "Mengurangi waktu untuk memeriksa email dengan menyajikan informasi penting langsung melalui chat.",
     image: "/images/AI-GmailBot.png",
@@ -25,7 +25,7 @@ export const projects = [
     ],
     description:
       "Perangkat pemantauan lahan berbasis ESP32-S3 yang memantau kelembapan tanah dan udara, suhu, kondisi cuaca, kecepatan angin, serta pH air. Sistem berkomunikasi melalui 4G LTE dan berfungsi sebagai gateway utama untuk mengirim data sekaligus mengendalikan sistem lain di lapangan.",
-    complexity: 5,
+    complexity: 3,
     impact:
       "Memberikan visibilitas kondisi lahan secara real-time sekaligus memusatkan kendali berbagai sistem lapangan dalam satu gateway.",
     image: "/images/Moture-Agriculture.png",
