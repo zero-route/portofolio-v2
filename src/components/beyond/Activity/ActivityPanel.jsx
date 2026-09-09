@@ -183,19 +183,8 @@ export default function ActivityPanel() {
           <div className="relative w-full overflow-hidden rounded-2xl border border-white/10 bg-white/[0.025] shadow-[inset_0_0_50px_rgba(34,197,94,0.025)] backdrop-blur-xl">
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_85%_85%,rgba(34,197,94,0.08),transparent_30%),radial-gradient(circle_at_15%_15%,rgba(99,102,241,0.05),transparent_28%)]" />
 
-            <div className="relative min-h-[190px]">
-              <div className="absolute left-5 top-4 flex items-center gap-2">
-                <Github
-                  size={16}
-                  className="text-white/50"
-                />
-
-                <span className="font-sans text-xs font-medium tracking-wide text-white/60">
-                  Zero Route
-                </span>
-              </div>
-
-              <div className="flex min-h-[190px] w-full items-center justify-center overflow-x-auto px-5 py-14 scrollbar-hide">
+            <div className="relative min-h-[135px]">
+              <div className="flex min-h-[135px] w-full items-center justify-center overflow-x-auto px-5 py-10 scrollbar-hide">
                 <div className="flex w-fit shrink-0 gap-[2px] sm:gap-[3px]">
                   {weeks.map((week, wi) => (
                     <div
@@ -232,9 +221,7 @@ export default function ActivityPanel() {
                             style={
                               day
                                 ? {
-                                    animationDelay: `${
-                                      cellIndex * 8
-                                    }ms`,
+                                    animationDelay: `${cellIndex * 8}ms`,
                                   }
                                 : undefined
                             }
@@ -246,13 +233,19 @@ export default function ActivityPanel() {
                 </div>
               </div>
 
-              <div className="absolute bottom-4 right-5 flex items-center gap-2">
-                <span className="font-sans text-xs font-medium tracking-wide text-white/50">
+              <div className="absolute bottom-3 left-4">
+                <span className="font-sans text-[10px] font-medium tracking-wide text-white/50">
+                  Zero Route
+                </span>
+              </div>
+
+              <div className="absolute bottom-3 right-4 flex items-center gap-1.5">
+                <span className="font-sans text-[10px] font-medium tracking-wide text-white/50">
                   Github Contribution
                 </span>
 
                 <Github
-                  size={14}
+                  size={12}
                   className="text-green-400/60"
                 />
               </div>
