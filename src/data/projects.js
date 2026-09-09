@@ -45,7 +45,7 @@ export const projects = [
     complexity: 3,
     impact:
       "Mempercepat proses triase tiket dengan membiarkan AI mengklasifikasikan tingkat keparahan dan SLA secara otomatis.",
-    image: "/images/beyond/ai-ticketing-agent.png",
+    image: "/images/AI-TicketingBot.png",
   },
   {
     id: "project-dashboard",
