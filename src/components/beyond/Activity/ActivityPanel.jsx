@@ -174,22 +174,22 @@ export default function ActivityPanel() {
       </div>
 
       <div
-        className="activity-fade-up"
+        className="activity-fade-up flex w-full justify-center py-2"
         style={{
           animationDelay: "300ms",
         }}
       >
         {weeks.length ? (
-          <div className="relative mx-auto w-full max-w-[520px] overflow-hidden ...">
+          <div className="w-[calc(100%-24px)] max-w-[680px] overflow-hidden rounded-2xl border border-white/10 bg-white/[0.025] shadow-[inset_0_0_50px_rgba(34,197,94,0.025)] backdrop-blur-xl">
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_85%_85%,rgba(34,197,94,0.08),transparent_30%),radial-gradient(circle_at_15%_15%,rgba(99,102,241,0.05),transparent_28%)]" />
 
-            <div className="relative h-[105px] w-full sm:h-[125px]">
-              <div className="flex h-full w-full items-center justify-center px-3 pb-7 pt-4 sm:px-5 sm:pb-8 sm:pt-5">
-                <div className="flex w-fit shrink-0 gap-[1px] sm:gap-[2px]">
+            <div className="relative min-h-[118px]">
+              <div className="flex min-h-[118px] w-full items-center justify-center overflow-x-auto px-4 pb-9 pt-7 scrollbar-hide">
+                <div className="flex w-fit shrink-0 gap-[2px] sm:gap-[3px]">
                   {weeks.map((week, wi) => (
                     <div
                       key={wi}
-                      className="flex flex-col gap-[1px] sm:gap-[2px]"
+                      className="flex flex-col gap-[2px] sm:gap-[3px]"
                     >
                       {week.map((day, di) => {
                         const cellIndex = wi * 7 + di;
@@ -203,10 +203,10 @@ export default function ActivityPanel() {
                                 : ""
                             }
                             className={`
-                              h-[5px] w-[5px]
-                              rounded-[1px]
-                              sm:h-[8px] sm:w-[8px]
-                              sm:rounded-[2px]
+                              h-[7px] w-[7px]
+                              rounded-[2px]
+                              sm:h-[9px] sm:w-[9px]
+                              sm:rounded-sm
                               ${
                                 day
                                   ? levelColor(day.level)
@@ -221,7 +221,7 @@ export default function ActivityPanel() {
                             style={
                               day
                                 ? {
-                                    animationDelay: `${cellIndex * 6}ms`,
+                                    animationDelay: `${cellIndex * 8}ms`,
                                   }
                                 : undefined
                             }
@@ -234,19 +234,19 @@ export default function ActivityPanel() {
               </div>
 
               <div className="absolute bottom-3 left-4">
-                <span className="font-sans text-[9px] font-medium tracking-wide text-white/50 sm:text-[10px]">
+                <span className="font-sans text-[9px] font-medium tracking-wide text-white/45 sm:text-[10px]">
                   Zero Route
                 </span>
               </div>
 
               <div className="absolute bottom-3 right-4 flex items-center gap-1.5">
-                <span className="font-sans text-[9px] font-medium tracking-wide text-white/50 sm:text-[10px]">
+                <span className="font-sans text-[9px] font-medium tracking-wide text-white/45 sm:text-[10px]">
                   Github Contribution
                 </span>
 
                 <Github
-                  size={11}
-                  className="text-green-400/60 sm:h-3 sm:w-3"
+                  size={12}
+                  className="text-green-400/60"
                 />
               </div>
             </div>
@@ -260,7 +260,7 @@ export default function ActivityPanel() {
         )}
       </div>
 
-      <div>
+      <div className="pt-2">
         <h3
           className="activity-fade-up mb-4 font-sans text-lg font-semibold text-white"
           style={{
