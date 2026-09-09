@@ -1,57 +1,61 @@
-export const showcaseProjects = [
+export const portfolioProjects = [
   {
-    id: "project-01",
+    id: "institutional-website",
     title: "Institutional Website",
-    category: "Client Project",
+    category: "Client",
     description:
-      "A responsive institutional website designed to present information, services, announcements, and organizational content in a clean digital platform.",
+      "Responsive institutional website designed to deliver structured information and services through a clean digital experience.",
     image: "/imagesg/projects/institutional-website.webp",
-    technologies: ["Next.js", "Tailwind CSS", "JavaScript"],
+    technologies: ["Next.js", "React", "Tailwind CSS"],
     platform: "Vercel",
     url: "#",
   },
   {
-    id: "project-02",
+    id: "organization-website",
     title: "Organization Website",
-    category: "Client Project",
+    category: "Client",
     description:
-      "A modern organization website focused on structured information, responsive layouts, and an accessible experience across devices.",
+      "Modern organization website focused on responsive presentation, structured content, and accessible navigation.",
     image: "/imagesg/projects/organization-website.webp",
     technologies: ["React", "Vite", "Tailwind CSS"],
     platform: "Netlify",
     url: "#",
   },
   {
-    id: "project-03",
+    id: "monitoring-dashboard",
     title: "Monitoring Dashboard",
     category: "Utility",
     description:
-      "A web dashboard for monitoring data and system conditions through a focused interface built for quick observation and analysis.",
+      "Web dashboard designed for monitoring data and system conditions through a focused and practical interface.",
     image: "/imagesg/projects/monitoring-dashboard.webp",
     technologies: ["Next.js", "React", "Chart.js"],
     platform: "Vercel",
     url: "#",
   },
   {
-    id: "project-04",
+    id: "rf-calculator",
     title: "RF Calculator",
     category: "Utility",
     description:
-      "A practical RF calculation tool for transmit power, frequency, and related radio communication calculations.",
+      "Practical RF calculation tool for transmit power, frequency, and radio communication calculations.",
     image: "/imagesg/projects/rf-calculator.webp",
-    technologies: ["JavaScript", "React", "Tailwind CSS"],
+    technologies: ["React", "JavaScript", "Tailwind CSS"],
     platform: "GitHub Pages",
     url: "#",
   },
   {
-    id: "project-05",
+    id: "it-techmap",
     title: "IT-TechMap",
     category: "Utility",
     description:
-      "An interactive map of IT roles and career paths designed to help users explore different areas and positions within the technology field.",
+      "Interactive map for exploring IT roles, career paths, and different areas within the technology field.",
     image: "/imagesg/projects/it-techmap.webp",
     technologies: ["React", "Vite", "JavaScript"],
     platform: "Vercel",
     url: "#",
   },
 ]
+
+export const portfolioTools = []
+
+export const portfolioSkills = []
