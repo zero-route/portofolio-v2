@@ -10,7 +10,7 @@ export const projects = [
     complexity: 3,
     impact:
       "Mengurangi waktu untuk memeriksa email dengan menyajikan informasi penting langsung melalui chat.",
-    image: "/images/beyond/ai-gmail-automation.png",
+    image: "/images/AI-GmailBot.png",
   },
   {
     id: "moture-agriculture-monitoring",
