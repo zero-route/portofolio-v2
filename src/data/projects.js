@@ -63,6 +63,6 @@ export const projects = [
     complexity: 4,
     impact:
       "Menghadirkan satu tampilan untuk memantau kondisi berbagai layanan tanpa harus berpindah-pindah di antara banyak dasbor.",
-    image: "/images/beyond/project-dashboard.png",
+    image: "/images/project-dashboard.png",
   },
 ];
