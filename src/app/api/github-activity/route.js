@@ -12,26 +12,16 @@ function parseContributionDays(html) {
   const dayRegex =
     /<td\b[^>]*class="[^"]*ContributionCalendar-day[^"]*"[^>]*>[\s\S]*?<\/td>/gi;
 
-  const rectRegex =
-    /<rect\b[^>]*class="[^"]*ContributionCalendar-day[^"]*"[^>]*>[\s\S]*?<\/rect>/gi;
-
-  const candidates = [
-    ...(html.match(dayRegex) || []),
-    ...(html.match(rectRegex) || []),
-  ];
+  const candidates = html.match(dayRegex) || [];
 
   const getAttr = (tag, name) => {
-    const regex = new RegExp(`${escapeRegExp(name)}="([^"]*)"`, "i");
+    const regex = new RegExp(
+      `${escapeRegExp(name)}="([^"]*)"`,
+      "i"
+    );
     const match = tag.match(regex);
     return match ? match[1] : null;
   };
-
-  const cleanText = (value) =>
-    value
-      ?.replace(/<[^>]*>/g, " ")
-      .replace(/&nbsp;/gi, " ")
-      .replace(/\s+/g, " ")
-      .trim() || "";
 
   const parseCount = (value) => {
     if (!value) return null;
@@ -53,7 +43,6 @@ function parseContributionDays(html) {
 
     const ariaLabel = getAttr(tag, "aria-label");
     const title = getAttr(tag, "title");
-    const text = cleanText(tag);
 
     let count = parseCount(ariaLabel);
 
@@ -62,19 +51,19 @@ function parseContributionDays(html) {
     }
 
     if (count === null) {
-      count = parseCount(text);
-    }
-
-    if (count === null) {
       count = 0;
     }
 
-    const level =
-      levelRaw !== null && !Number.isNaN(parseInt(levelRaw, 10))
+    const parsedLevel =
+      levelRaw !== null
         ? parseInt(levelRaw, 10)
-        : count === 0
-          ? 0
-          : Math.min(4, Math.ceil(count / 3));
+        : NaN;
+
+    const level = Number.isNaN(parsedLevel)
+      ? count === 0
+        ? 0
+        : Math.min(4, Math.ceil(count / 3))
+      : parsedLevel;
 
     days.push({
       date,
@@ -95,75 +84,73 @@ function parseContributionDays(html) {
 }
 
 function parseTotalContributions(html, days) {
-  const totalPatterns = [
+  const patterns = [
     /([\d,]+)\s+contributions?\s+in\s+the\s+last\s+year/i,
     /([\d,]+)\s+contributions?\s+in\s+the\s+last\s+12\s+months/i,
   ];
 
-  for (const pattern of totalPatterns) {
+  for (const pattern of patterns) {
     const match = html.match(pattern);
 
     if (match) {
-      return parseInt(match[1].replace(/,/g, ""), 10);
+      return parseInt(
+        match[1].replace(/,/g, ""),
+        10
+      );
     }
   }
 
-  return days.reduce((sum, day) => sum + day.count, 0);
+  return days.reduce(
+    (sum, day) => sum + day.count,
+    0
+  );
 }
 
 function computeStreak(days) {
   if (!days.length) return 0;
 
   const contributionDays = new Map(
-    days.map((day) => [day.date, day.count])
+    days.map((day) => [
+      day.date,
+      day.level > 0,
+    ])
   );
 
-  const latestDate = new Date(
+  const lastDate = new Date(
     `${days[days.length - 1].date}T00:00:00`
   );
 
-  let currentDate = new Date(latestDate);
+  let currentDate = new Date(lastDate);
   let streak = 0;
 
+  const latestKey = currentDate
+    .toISOString()
+    .slice(0, 10);
+
+  const latestHasContribution =
+    contributionDays.get(latestKey) === true;
+
+  if (!latestHasContribution) {
+    currentDate.setDate(
+      currentDate.getDate() - 1
+    );
+  }
+
   while (true) {
-    const key = currentDate.toISOString().slice(0, 10);
-    const count = contributionDays.get(key) ?? 0;
+    const key = currentDate
+      .toISOString()
+      .slice(0, 10);
 
-    if (count > 0) {
-      streak++;
-      currentDate.setDate(currentDate.getDate() - 1);
-      continue;
-    }
+    const hasContribution =
+      contributionDays.get(key) === true;
 
-    if (streak === 0) {
-      currentDate.setDate(currentDate.getDate() - 1);
+    if (!hasContribution) break;
 
-      const previousKey = currentDate
-        .toISOString()
-        .slice(0, 10);
+    streak++;
 
-      const previousCount = contributionDays.get(previousKey) ?? 0;
-
-      if (previousCount > 0) {
-        streak++;
-        currentDate.setDate(currentDate.getDate() - 1);
-
-        while (true) {
-          const key = currentDate
-            .toISOString()
-            .slice(0, 10);
-
-          const count = contributionDays.get(key) ?? 0;
-
-          if (count === 0) break;
-
-          streak++;
-          currentDate.setDate(currentDate.getDate() - 1);
-        }
-      }
-    }
-
-    break;
+    currentDate.setDate(
+      currentDate.getDate() - 1
+    );
   }
 
   return streak;
@@ -198,14 +185,9 @@ export async function GET() {
       days = parseContributionDays(html);
     }
 
-    let totalContributions = 0;
-
-    if (html) {
-      totalContributions = parseTotalContributions(
-        html,
-        days
-      );
-    }
+    const totalContributions = html
+      ? parseTotalContributions(html, days)
+      : 0;
 
     const currentStreak = computeStreak(days);
 
