@@ -13,57 +13,81 @@ export default function PortofolioShowcase() {
   return (
     <section
       id="capabilities"
-      className="relative w-full py-20"
+      className="relative w-full py-24 sm:py-28"
     >
       <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
-        <div className="mb-10">
-          <p className="mb-3 text-[10px] font-medium uppercase tracking-[0.3em] text-cyan-400">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{
+            duration: 0.7,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+          className="text-center"
+        >
+          <h1 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
             Capabilities
-          </p>
-
-          <h1 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">
-            Things I build, use, and understand.
           </h1>
-        </div>
 
-        <div className="mb-10 flex w-fit items-center rounded-2xl border border-white/[0.07] bg-white/[0.035] p-1.5 backdrop-blur-xl">
-          {sections.map((section) => {
-            const active = activeSection === section
+          <p className="mx-auto mt-3 max-w-md text-xs leading-6 text-slate-500 sm:text-sm">
+            Things I build, use, and understand.
+          </p>
+        </motion.div>
 
-            return (
-              <button
-                key={section}
-                type="button"
-                onClick={() => setActiveSection(section)}
-                className="relative min-w-[82px] rounded-xl px-4 py-2.5 text-[10px] font-medium transition-colors duration-300"
-              >
-                {active && (
-                  <motion.span
-                    layoutId="capabilities-active-tab"
-                    className="absolute inset-0 rounded-xl bg-white"
-                    transition={{
-                      type: "spring",
-                      stiffness: 400,
-                      damping: 32,
-                    }}
-                  />
-                )}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{
+            duration: 0.6,
+            delay: 0.12,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+          className="mt-10 flex justify-center"
+        >
+          <div className="flex items-center rounded-2xl border border-white/[0.06] bg-white/[0.025] p-1.5 backdrop-blur-xl">
+            {sections.map((section) => {
+              const active = activeSection === section
 
-                <span
-                  className={`relative z-10 ${
-                    active ? "text-black" : "text-slate-400"
-                  }`}
+              return (
+                <button
+                  key={section}
+                  type="button"
+                  onClick={() => setActiveSection(section)}
+                  className="relative min-w-[82px] rounded-xl px-4 py-2.5 text-[10px] font-medium transition-colors duration-300 sm:min-w-[92px]"
                 >
-                  {section}
-                </span>
-              </button>
-            )
-          })}
-        </div>
+                  {active && (
+                    <motion.span
+                      layoutId="capabilities-active-tab"
+                      className="absolute inset-0 rounded-xl bg-white"
+                      transition={{
+                        type: "spring",
+                        stiffness: 380,
+                        damping: 30,
+                        mass: 0.7,
+                      }}
+                    />
+                  )}
 
-        {activeSection === "Projects" && (
-          <Project projects={portfolioProjects} />
-        )}
+                  <span
+                    className={`relative z-10 ${
+                      active ? "text-black" : "text-slate-400"
+                    }`}
+                  >
+                    {section}
+                  </span>
+                </button>
+              )
+            })}
+          </div>
+        </motion.div>
+
+        <div className="mt-12">
+          {activeSection === "Projects" && (
+            <Project projects={portfolioProjects} />
+          )}
+        </div>
       </div>
     </section>
   )
