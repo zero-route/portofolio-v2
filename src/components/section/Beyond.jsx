@@ -4,6 +4,7 @@ import { useState } from "react";
 import GooeyNav from "../reactbits/GooeyNav";
 import ProjectPanel from "../beyond/Project/ProjectPanel";
 import HobyPanel from "../beyond/Hoby/HobyPanel";
+import ActivityPanel from "../beyond/Activity/ActivityPanel";
 
 const items = [
   {
@@ -58,11 +59,7 @@ export default function Beyond() {
 
           {activeTab === 1 && <HobyPanel />}
 
-          {activeTab === 2 && (
-            <p className="text-center text-sm text-white/40">
-              Activity — coming soon.
-            </p>
-          )}
+          {activeTab === 2 && <ActivityPanel />}
         </div>
       </div>
     </section>
