@@ -3,7 +3,8 @@
 import { useState } from "react";
 import Home from "@/components/section/Home";
 import About from "@/components/section/About";
- import Beyond from "@/components/section/Beyond";
+import Beyond from "@/components/section/Beyond";
+import Portofolio from "@/components/section/PortofolioShowcase"
 import Navigation from "@/components/layout/Navigation";
 import IntroLoader from "@/components/intro/IntroLoader";
 
@@ -32,7 +33,10 @@ export default function Page() {
         <Beyond />
       </section>
       
-      <section id="projects" />
+      <section id="projects">
+        <Portofolio />
+      </section>
+      
       <section id="contact" />
     </main>
   );
