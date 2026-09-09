@@ -8,7 +8,7 @@ const containerVariants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.08,
+      staggerChildren: 0.1,
     },
   },
 }
@@ -16,16 +16,14 @@ const containerVariants = {
 const cardVariants = {
   hidden: {
     opacity: 0,
-    y: 28,
-    scale: 0.96,
+    y: 18,
   },
   visible: {
     opacity: 1,
     y: 0,
-    scale: 1,
     transition: {
-      duration: 0.55,
-      ease: [0.16, 1, 0.3, 1],
+      duration: 0.7,
+      ease: [0.22, 1, 0.36, 1],
     },
   },
 }
@@ -35,22 +33,22 @@ function ProjectCard({ project, index }) {
     <motion.article
       variants={cardVariants}
       whileHover={{
-        y: -3,
+        y: -2,
         transition: {
-          duration: 0.25,
-          ease: [0.22, 1, 0.36, 1],
+          duration: 0.3,
+          ease: "easeOut",
         },
       }}
       className="group overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.018] shadow-[0_8px_28px_rgba(0,0,0,0.12)] transition-colors duration-300 hover:bg-white/[0.03]"
     >
-      <div className="relative aspect-[16/9] overflow-hidden">
+      <div className="relative aspect-[16/9] overflow-hidden bg-black/20">
         <Image
           src={project.image}
           alt={project.title}
           fill
           sizes="(max-width: 768px) 100vw, 50vw"
           priority={index < 2}
-          className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.025]"
+          className="object-cover"
         />
 
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-black/5 to-transparent" />
@@ -105,8 +103,8 @@ export default function Project({ projects = [] }) {
       whileInView="visible"
       viewport={{
         once: true,
-        amount: 0.08,
-        margin: "0px 0px -80px 0px",
+        amount: 0.04,
+        margin: "0px 0px -40px 0px",
       }}
       variants={containerVariants}
     >
