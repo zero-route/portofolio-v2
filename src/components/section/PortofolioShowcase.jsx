@@ -13,12 +13,12 @@ export default function PortofolioShowcase() {
   return (
     <section
       id="capabilities"
-      className="relative w-full py-24 sm:py-28"
+      className="relative w-full py-12 sm:py-16"
     >
       <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 18, filter: "blur(4px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{
             duration: 0.7,
@@ -30,21 +30,21 @@ export default function PortofolioShowcase() {
             Capabilities
           </h1>
 
-          <p className="mx-auto mt-3 max-w-md text-xs leading-6 text-slate-500 sm:text-sm">
+          <p className="mx-auto mt-2 max-w-md text-xs leading-6 text-slate-500 sm:text-sm">
             Things I build, use, and understand.
           </p>
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 12, scale: 0.97 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{
             duration: 0.6,
-            delay: 0.12,
+            delay: 0.1,
             ease: [0.22, 1, 0.36, 1],
           }}
-          className="mt-10 flex justify-center"
+          className="mt-7 flex justify-center"
         >
           <div className="flex items-center rounded-2xl border border-white/[0.06] bg-white/[0.025] p-1.5 backdrop-blur-xl">
             {sections.map((section) => {
@@ -83,7 +83,7 @@ export default function PortofolioShowcase() {
           </div>
         </motion.div>
 
-        <div className="mt-12">
+        <div className="mt-9">
           {activeSection === "Projects" && (
             <Project projects={portfolioProjects} />
           )}
