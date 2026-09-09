@@ -10,6 +10,7 @@ import {
   Flame,
   GitCommit,
   Languages,
+  Github,
 } from "lucide-react";
 import BorderGlow from "@/components/reactbits/BorderGlow";
 import { nowLearning } from "@/data/nowLearning";
@@ -20,19 +21,14 @@ function levelColor(level) {
   switch (level) {
     case 0:
       return "bg-[#161b22]";
-
     case 1:
       return "bg-[#0e4429]";
-
     case 2:
       return "bg-[#006d32]";
-
     case 3:
       return "bg-[#26a641]";
-
     case 4:
       return "bg-[#39d353]";
-
     default:
       return "bg-[#161b22]";
   }
@@ -131,7 +127,6 @@ export default function ActivityPanel() {
 
   return (
     <div className="flex w-full flex-col gap-10">
-
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
         {stats.map((stat, index) => {
           const Icon = stat.icon;
@@ -179,60 +174,88 @@ export default function ActivityPanel() {
       </div>
 
       <div
-        className="activity-fade-up w-full"
+        className="activity-fade-up"
         style={{
           animationDelay: "300ms",
         }}
       >
         {weeks.length ? (
-          <div className="flex w-full justify-center overflow-x-auto px-2 py-2 scrollbar-hide">
-            <div className="flex w-fit shrink-0 gap-[2px] sm:gap-[3px]">
-              {weeks.map((week, wi) => (
-                <div
-                  key={wi}
-                  className="flex flex-col gap-[2px] sm:gap-[3px]"
-                >
-                  {week.map((day, di) => {
-                    const cellIndex = wi * 7 + di;
+          <div className="relative w-full overflow-hidden rounded-2xl border border-white/10 bg-white/[0.025] shadow-[inset_0_0_50px_rgba(34,197,94,0.025)] backdrop-blur-xl">
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_85%_85%,rgba(34,197,94,0.08),transparent_30%),radial-gradient(circle_at_15%_15%,rgba(99,102,241,0.05),transparent_28%)]" />
 
-                    return (
-                      <div
-                        key={di}
-                        title={
-                          day
-                            ? `${day.count} contributions on ${day.date}`
-                            : ""
-                        }
-                        className={`
-                          h-[8px] w-[8px]
-                          rounded-[2px]
-                          sm:h-[10px] sm:w-[10px]
-                          sm:rounded-sm
-                          ${
-                            day
-                              ? levelColor(day.level)
-                              : "bg-transparent"
-                          }
-                          ${
-                            day
-                              ? "activity-cell cursor-pointer"
-                              : ""
-                          }
-                        `}
-                        style={
-                          day
-                            ? {
-                                animationDelay: `${
-                                  cellIndex * 8
-                                }ms`,
+            <div className="relative min-h-[190px]">
+              <div className="absolute left-5 top-4 flex items-center gap-2">
+                <Github
+                  size={16}
+                  className="text-white/50"
+                />
+
+                <span className="font-sans text-xs font-medium tracking-wide text-white/60">
+                  Zero Route
+                </span>
+              </div>
+
+              <div className="flex min-h-[190px] w-full items-center justify-center overflow-x-auto px-5 py-14 scrollbar-hide">
+                <div className="flex w-fit shrink-0 gap-[2px] sm:gap-[3px]">
+                  {weeks.map((week, wi) => (
+                    <div
+                      key={wi}
+                      className="flex flex-col gap-[2px] sm:gap-[3px]"
+                    >
+                      {week.map((day, di) => {
+                        const cellIndex = wi * 7 + di;
+
+                        return (
+                          <div
+                            key={di}
+                            title={
+                              day
+                                ? `${day.count} contributions on ${day.date}`
+                                : ""
+                            }
+                            className={`
+                              h-[8px] w-[8px]
+                              rounded-[2px]
+                              sm:h-[10px] sm:w-[10px]
+                              sm:rounded-sm
+                              ${
+                                day
+                                  ? levelColor(day.level)
+                                  : "bg-transparent"
                               }
-                            : undefined
-                        }
-                      />
-                    );
-                  })}
+                              ${
+                                day
+                                  ? "activity-cell cursor-pointer"
+                                  : ""
+                              }
+                            `}
+                            style={
+                              day
+                                ? {
+                                    animationDelay: `${
+                                      cellIndex * 8
+                                    }ms`,
+                                  }
+                                : undefined
+                            }
+                          />
+                        );
+                      })}
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
+
+              <div className="absolute bottom-4 right-5 flex items-center gap-2">
+                <span className="font-sans text-xs font-medium tracking-wide text-white/50">
+                  Github Contribution
+                </span>
+
+                <Github
+                  size={14}
+                  className="text-green-400/60"
+                />
+              </div>
             </div>
           </div>
         ) : (
@@ -261,12 +284,12 @@ export default function ActivityPanel() {
             return (
               <div
                 key={item.id}
-                className="activity-fade-up flex items-start gap-3 rounded-xl border border-white/10 bg-white/[0.03] p-4 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.05] hover:-translate-y-[2px]"
+                className="activity-fade-up flex items-start gap-3 rounded-xl border border-white/10 bg-white/[0.03] p-4 transition-all duration-300 hover:-translate-y-[2px] hover:border-white/20 hover:bg-white/[0.05]"
                 style={{
                   animationDelay: `${450 + index * 80}ms`,
                 }}
               >
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-indigo-500/10 text-indigo-300 transition-transform duration-300 group-hover:scale-105">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-indigo-500/10 text-indigo-300">
                   <Icon size={16} />
                 </span>
 
