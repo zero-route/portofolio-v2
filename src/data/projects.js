@@ -28,7 +28,7 @@ export const projects = [
     complexity: 5,
     impact:
       "Memberikan visibilitas kondisi lahan secara real-time sekaligus memusatkan kendali berbagai sistem lapangan dalam satu gateway.",
-    image: "/images/beyond/moture-agriculture.png",
+    image: "/images/Moture-Agriculture.png",
   },
   {
     id: "ai-ticketing-agent",
