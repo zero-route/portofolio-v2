@@ -55,7 +55,7 @@ export default function PortofolioShowcase() {
                   key={section}
                   type="button"
                   onClick={() => setActiveSection(section)}
-                  className="relative min-w-[82px] rounded-xl px-4 py-2.5 text-[11px] font-medium transition-colors duration-300 sm:min-w-[92px] sm:text-xs"
+                  className="relative min-w-[92px] rounded-xl px-5 py-3 text-sm font-medium transition-colors duration-300 sm:min-w-[110px] sm:px-6 sm:py-3.5 sm:text-base"
                 >
                   {active && (
                     <motion.span
