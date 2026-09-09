@@ -13,38 +13,38 @@ export default function PortofolioShowcase() {
   return (
     <section
       id="capabilities"
-      className="relative w-full py-12 sm:py-16"
+      className="relative w-full bg-[#030305] px-5 py-20 text-white sm:px-7 sm:py-24 lg:px-10 xl:px-14"
     >
-      <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-7xl">
         <motion.div
-          initial={{ opacity: 0, y: 18, filter: "blur(4px)" }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          viewport={{ once: true, amount: 0.3 }}
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
           transition={{
             duration: 0.7,
             ease: [0.22, 1, 0.36, 1],
           }}
-          className="text-center"
+          className="pt-8 text-center sm:pt-10"
         >
-          <h1 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+          <h1 className="text-[3.2rem] font-bold tracking-[-0.05em] text-white sm:text-[4rem] lg:text-[4.5rem]">
             Capabilities
           </h1>
 
-          <p className="mx-auto mt-2 max-w-md text-xs leading-6 text-slate-500 sm:text-sm">
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-white/55 sm:text-lg">
             Things I build, use, and understand.
           </p>
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 12, scale: 0.97 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: true, amount: 0.3 }}
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
           transition={{
             duration: 0.6,
             delay: 0.1,
             ease: [0.22, 1, 0.36, 1],
           }}
-          className="mt-7 flex justify-center"
+          className="mt-12 flex justify-center sm:mt-14"
         >
           <div className="flex items-center rounded-2xl border border-white/[0.06] bg-white/[0.025] p-1.5 backdrop-blur-xl">
             {sections.map((section) => {
@@ -55,7 +55,7 @@ export default function PortofolioShowcase() {
                   key={section}
                   type="button"
                   onClick={() => setActiveSection(section)}
-                  className="relative min-w-[82px] rounded-xl px-4 py-2.5 text-[10px] font-medium transition-colors duration-300 sm:min-w-[92px]"
+                  className="relative min-w-[82px] rounded-xl px-4 py-2.5 text-[11px] font-medium transition-colors duration-300 sm:min-w-[92px] sm:text-xs"
                 >
                   {active && (
                     <motion.span
@@ -72,7 +72,7 @@ export default function PortofolioShowcase() {
 
                   <span
                     className={`relative z-10 ${
-                      active ? "text-black" : "text-slate-400"
+                      active ? "text-black" : "text-white/55"
                     }`}
                   >
                     {section}
@@ -83,7 +83,7 @@ export default function PortofolioShowcase() {
           </div>
         </motion.div>
 
-        <div className="mt-9">
+        <div className="mt-12 sm:mt-14">
           {activeSection === "Projects" && (
             <Project projects={portfolioProjects} />
           )}
