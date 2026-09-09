@@ -36,9 +36,12 @@ function ProjectCard({ project, index }) {
       variants={cardVariants}
       whileHover={{
         y: -3,
-        transition: { duration: 0.25, ease: [0.22, 1, 0.36, 1] },
+        transition: {
+          duration: 0.25,
+          ease: [0.22, 1, 0.36, 1],
+        },
       }}
-      className="group will-change-transform overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.018] shadow-[0_8px_28px_rgba(0,0,0,0.12)] transition-colors duration-300 hover:bg-white/[0.03]"
+      className="group overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.018] shadow-[0_8px_28px_rgba(0,0,0,0.12)] transition-colors duration-300 hover:bg-white/[0.03]"
     >
       <div className="relative aspect-[16/9] overflow-hidden">
         <Image
@@ -47,15 +50,10 @@ function ProjectCard({ project, index }) {
           fill
           sizes="(max-width: 768px) 100vw, 50vw"
           priority={index < 2}
-          loading={index < 2 ? "eager" : "lazy"}
           className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.025]"
         />
 
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-black/5 to-transparent" />
-
-        <span className="absolute left-3 top-3 rounded-full border border-white/10 bg-black/45 px-2.5 py-1 text-[9px] font-medium text-white backdrop-blur-md">
-          {project.category}
-        </span>
       </div>
 
       <div className="p-4 sm:p-5">
@@ -105,11 +103,19 @@ export default function Project({ projects = [] }) {
       className="grid grid-cols-1 gap-5 md:grid-cols-2"
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.08, margin: "0px 0px -80px 0px" }}
+      viewport={{
+        once: true,
+        amount: 0.08,
+        margin: "0px 0px -80px 0px",
+      }}
       variants={containerVariants}
     >
       {projects.map((project, index) => (
-        <ProjectCard key={project.id ?? project.title} project={project} index={index} />
+        <ProjectCard
+          key={project.id ?? project.title}
+          project={project}
+          index={index}
+        />
       ))}
     </motion.div>
   )
