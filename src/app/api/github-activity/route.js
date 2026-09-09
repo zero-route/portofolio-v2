@@ -1,4 +1,5 @@
 const GITHUB_USERNAME = "zero-route";
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 
 export const revalidate = 3600;
 
@@ -19,7 +20,9 @@ function parseContributionDays(html) {
       `${escapeRegExp(name)}="([^"]*)"`,
       "i"
     );
+
     const match = tag.match(regex);
+
     return match ? match[1] : null;
   };
 
@@ -78,9 +81,163 @@ function parseContributionDays(html) {
     uniqueDays.set(day.date, day);
   }
 
-  return Array.from(uniqueDays.values()).sort((a, b) =>
-    a.date.localeCompare(b.date)
+  return Array.from(uniqueDays.values()).sort(
+    (a, b) => a.date.localeCompare(b.date)
   );
+}
+
+async function getGitHubContributionData() {
+  if (!GITHUB_TOKEN) {
+    return null;
+  }
+
+  const query = `
+    query {
+      user(login: "${GITHUB_USERNAME}") {
+        contributionsCollection {
+          contributionCalendar {
+            totalContributions
+            weeks {
+              contributionDays {
+                date
+                contributionCount
+                contributionLevel
+              }
+            }
+          }
+        }
+      }
+    }
+  `;
+
+  const response = await fetch(
+    "https://api.github.com/graphql",
+    {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${GITHUB_TOKEN}`,
+        "Content-Type": "application/json",
+        Accept: "application/vnd.github+json",
+        "User-Agent": "zero-route-portfolio",
+      },
+      body: JSON.stringify({
+        query,
+      }),
+      next: {
+        revalidate: 3600,
+      },
+    }
+  );
+
+  if (!response.ok) {
+    return null;
+  }
+
+  const result = await response.json();
+
+  if (
+    result.errors ||
+    !result.data?.user?.contributionsCollection
+      ?.contributionCalendar
+  ) {
+    return null;
+  }
+
+  const calendar =
+    result.data.user.contributionsCollection
+      .contributionCalendar;
+
+  const days = calendar.weeks.flatMap(
+    (week) =>
+      week.contributionDays.map((day) => ({
+        date: day.date,
+        count: day.contributionCount,
+        level: mapContributionLevel(
+          day.contributionLevel
+        ),
+      }))
+  );
+
+  return {
+    days,
+    totalContributions:
+      calendar.totalContributions,
+  };
+}
+
+function mapContributionLevel(level) {
+  switch (level) {
+    case "NONE":
+      return 0;
+    case "FIRST_QUARTILE":
+      return 1;
+    case "SECOND_QUARTILE":
+      return 2;
+    case "THIRD_QUARTILE":
+      return 3;
+    case "FOURTH_QUARTILE":
+      return 4;
+    default:
+      return 0;
+  }
+}
+
+function computeCurrentStreak(days) {
+  if (!days.length) {
+    return 0;
+  }
+
+  const contributionDays = new Map(
+    days.map((day) => [
+      day.date,
+      day.count > 0,
+    ])
+  );
+
+  let currentDate = new Date();
+
+  currentDate.setUTCHours(
+    0,
+    0,
+    0,
+    0
+  );
+
+  const todayKey = currentDate
+    .toISOString()
+    .slice(0, 10);
+
+  const todayHasContribution =
+    contributionDays.get(todayKey) === true;
+
+  if (!todayHasContribution) {
+    currentDate.setUTCDate(
+      currentDate.getUTCDate() - 1
+    );
+  }
+
+  let streak = 0;
+
+  while (true) {
+    const key = currentDate
+      .toISOString()
+      .slice(0, 10);
+
+    const hasContribution =
+      contributionDays.get(key) === true;
+
+    if (!hasContribution) {
+      break;
+    }
+
+    streak++;
+
+    currentDate.setUTCDate(
+      currentDate.getUTCDate() - 1
+    );
+  }
+
+  return streak;
 }
 
 function parseTotalContributions(html, days) {
@@ -106,59 +263,59 @@ function parseTotalContributions(html, days) {
   );
 }
 
-function computeStreak(days) {
-  if (!days.length) return 0;
-
-  const contributionDays = new Map(
-    days.map((day) => [
-      day.date,
-      day.level > 0,
-    ])
+async function getRepositories() {
+  const response = await fetch(
+    `https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100`,
+    {
+      headers: {
+        Accept: "application/vnd.github+json",
+        "User-Agent": "zero-route-portfolio",
+        ...(GITHUB_TOKEN
+          ? {
+              Authorization: `Bearer ${GITHUB_TOKEN}`,
+            }
+          : {}),
+      },
+      next: {
+        revalidate: 3600,
+      },
+    }
   );
 
-  const lastDate = new Date(
-    `${days[days.length - 1].date}T00:00:00`
+  if (!response.ok) {
+    return [];
+  }
+
+  return response.json();
+}
+
+function getTopLanguage(repos) {
+  const tally = {};
+
+  for (const repo of repos) {
+    if (repo.language) {
+      tally[repo.language] =
+        (tally[repo.language] || 0) + 1;
+    }
+  }
+
+  const sorted = Object.entries(tally).sort(
+    (a, b) => b[1] - a[1]
   );
 
-  let currentDate = new Date(lastDate);
-  let streak = 0;
-
-  const latestKey = currentDate
-    .toISOString()
-    .slice(0, 10);
-
-  const latestHasContribution =
-    contributionDays.get(latestKey) === true;
-
-  if (!latestHasContribution) {
-    currentDate.setDate(
-      currentDate.getDate() - 1
-    );
-  }
-
-  while (true) {
-    const key = currentDate
-      .toISOString()
-      .slice(0, 10);
-
-    const hasContribution =
-      contributionDays.get(key) === true;
-
-    if (!hasContribution) break;
-
-    streak++;
-
-    currentDate.setDate(
-      currentDate.getDate() - 1
-    );
-  }
-
-  return streak;
+  return sorted.length
+    ? sorted[0][0]
+    : null;
 }
 
 export async function GET() {
   try {
-    const [contribRes, reposRes] = await Promise.all([
+    const [
+      contributionData,
+      contribRes,
+      repos,
+    ] = await Promise.all([
+      getGitHubContributionData(),
       fetch(
         `https://github.com/users/${GITHUB_USERNAME}/contributions`,
         {
@@ -167,51 +324,34 @@ export async function GET() {
           },
         }
       ),
-      fetch(
-        `https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100`,
-        {
-          next: {
-            revalidate: 3600,
-          },
-        }
-      ),
+      getRepositories(),
     ]);
 
     let html = "";
-    let days = [];
+    let htmlDays = [];
 
     if (contribRes.ok) {
       html = await contribRes.text();
-      days = parseContributionDays(html);
+      htmlDays = parseContributionDays(html);
     }
 
-    const totalContributions = html
-      ? parseTotalContributions(html, days)
-      : 0;
+    const days =
+      contributionData?.days?.length
+        ? contributionData.days
+        : htmlDays;
 
-    const currentStreak = computeStreak(days);
-
-    let topLanguage = null;
-
-    if (reposRes.ok) {
-      const repos = await reposRes.json();
-      const tally = {};
-
-      for (const repo of repos) {
-        if (repo.language) {
-          tally[repo.language] =
-            (tally[repo.language] || 0) + 1;
-        }
-      }
-
-      const sorted = Object.entries(tally).sort(
-        (a, b) => b[1] - a[1]
+    const totalContributions =
+      contributionData?.totalContributions ??
+      parseTotalContributions(
+        html,
+        htmlDays
       );
 
-      topLanguage = sorted.length
-        ? sorted[0][0]
-        : null;
-    }
+    const currentStreak =
+      computeCurrentStreak(days);
+
+    const topLanguage =
+      getTopLanguage(repos);
 
     return Response.json({
       days,
