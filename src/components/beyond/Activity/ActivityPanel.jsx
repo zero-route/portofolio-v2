@@ -180,7 +180,7 @@ export default function ActivityPanel() {
         }}
       >
         {weeks.length ? (
-          <div className="relative w-full overflow-hidden rounded-2xl border border-white/10 bg-white/[0.025] shadow-[inset_0_0_50px_rgba(34,197,94,0.025)] backdrop-blur-xl">
+          <div className="relative mx-auto w-full max-w-[520px] overflow-hidden ...">
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_85%_85%,rgba(34,197,94,0.08),transparent_30%),radial-gradient(circle_at_15%_15%,rgba(99,102,241,0.05),transparent_28%)]" />
 
             <div className="relative h-[105px] w-full sm:h-[125px]">
