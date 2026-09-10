@@ -206,3 +206,28 @@ body {
   filter: brightness(1.3);
   z-index: 2;
 }
+
+ @keyframes tool-card-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.tool-card {
+  opacity: 0;
+  animation: tool-card-enter 0.5s cubic-bezier(0.22, 1, 0.36, 1)
+    var(--tool-delay) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tool-card {
+    opacity: 1;
+    animation: none;
+  }
+}

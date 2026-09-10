@@ -28,7 +28,7 @@ export default function PortofolioShowcase() {
           className="pt-8 text-center sm:pt-10"
         >
           <h1 className="text-[3.2rem] font-bold tracking-[-0.05em] text-white sm:text-[4rem] lg:text-[4.5rem]">
-            Expertise & Works
+            Expert
           </h1>
 
           <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-white/55 sm:text-lg">

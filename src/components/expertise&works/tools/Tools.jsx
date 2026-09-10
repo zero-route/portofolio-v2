@@ -1,331 +1,313 @@
 "use client"
 
-import { motion } from "framer-motion"
 import {
   Code2,
   ShieldCheck,
   Network,
-  Cpu,
   ArrowUpRight,
 } from "lucide-react"
 
-const toolGroups = [
+const toolCategories = [
   {
     id: "software",
     title: "Software & Development",
-    description: "Tools I use to build, develop, deploy, and manage applications.",
+    description:
+      "Applications and platforms I use to write code, build applications, deploy projects, automate workflows, and manage development environments.",
     icon: Code2,
-    accent: "indigo",
+    accent: "text-indigo-400",
+    accentBg: "bg-indigo-500/10",
+    border: "hover:border-indigo-400/20",
     tools: [
       {
         name: "Spck Editor",
-        function: "Mobile code editing",
+        description:
+          "Mobile code editor used for writing, editing, and testing web projects directly from Android devices.",
       },
       {
         name: "Acode",
-        function: "Android code editor",
+        description:
+          "Lightweight Android code editor for developing websites and editing HTML, CSS, JavaScript, and other project files.",
       },
       {
         name: "VS Code",
-        function: "Development environment",
+        description:
+          "Primary development environment for building applications, managing source code, extensions, debugging, and project workflows.",
       },
       {
         name: "GitHub",
-        function: "Code hosting & collaboration",
+        description:
+          "Platform for hosting repositories, managing source code, collaborating on projects, and maintaining development history.",
       },
       {
         name: "Vercel",
-        function: "Web deployment",
+        description:
+          "Deployment platform used to publish and operate modern web applications with automated builds and production deployments.",
       },
       {
         name: "Supabase",
-        function: "Backend & database",
+        description:
+          "Backend platform used for databases, authentication, APIs, storage, and supporting application infrastructure.",
       },
       {
         name: "Cloudflare",
-        function: "DNS, CDN & security",
+        description:
+          "Infrastructure and edge platform used for DNS, CDN, security, traffic management, and web application services.",
       },
       {
         name: "ArduinoDroid",
-        function: "Mobile Arduino development",
+        description:
+          "Android development environment used to write, compile, and upload Arduino sketches without relying on a desktop computer.",
       },
       {
         name: "n8n",
-        function: "Workflow automation",
+        description:
+          "Workflow automation platform used to connect services, process data, trigger actions, and build automated workflows.",
       },
       {
         name: "AnyDesk",
-        function: "Remote desktop access",
+        description:
+          "Remote desktop software used to access and manage computers remotely for administration, troubleshooting, and support.",
       },
       {
         name: "Postman",
-        function: "API testing",
+        description:
+          "API development and testing environment used to send requests, inspect responses, and validate backend services.",
       },
       {
         name: "Termius",
-        function: "SSH client",
+        description:
+          "SSH client used to connect to remote servers, manage terminal sessions, and perform remote system administration.",
       },
       {
         name: "Dorfus",
-        function: "Development utility",
+        description:
+          "Development utility used as part of the broader workflow for working with software projects and technical environments.",
       },
       {
         name: "Pydroid 3",
-        function: "Python development on Android",
+        description:
+          "Python development environment for Android used to write, execute, and experiment with Python programs on mobile devices.",
       },
       {
         name: "C++",
-        function: "System & embedded programming",
+        description:
+          "Programming language used for system-level programming, embedded development, performance-oriented applications, and hardware projects.",
       },
     ],
   },
   {
     id: "security",
     title: "Cyber Security",
-    description: "Tools used for security testing, reconnaissance, analysis, and assessment.",
+    description:
+      "Security tools used for reconnaissance, vulnerability assessment, web testing, wireless analysis, password auditing, and security research.",
     icon: ShieldCheck,
-    accent: "red",
+    accent: "text-red-400",
+    accentBg: "bg-red-500/10",
+    border: "hover:border-red-400/20",
     tools: [
       {
         name: "Termux",
-        function: "Linux environment on Android",
+        description:
+          "Android terminal environment used to run Linux utilities, scripting tools, networking commands, and security-related workflows.",
       },
       {
         name: "Metasploit",
-        function: "Security testing framework",
+        description:
+          "Security testing framework used for controlled vulnerability validation, exploitation research, payload testing, and penetration testing.",
       },
       {
         name: "Hashcat",
-        function: "Password recovery & auditing",
+        description:
+          "Password recovery and auditing tool used to evaluate password strength through controlled hash analysis and recovery techniques.",
       },
       {
         name: "Aircrack-ng",
-        function: "Wireless security assessment",
+        description:
+          "Wireless security toolkit used for Wi-Fi analysis, packet capture, monitoring, and authorized wireless security assessments.",
       },
       {
         name: "Burp Suite",
-        function: "Web security testing",
+        description:
+          "Web security testing platform used to inspect, intercept, modify, and analyze HTTP requests during authorized application assessments.",
       },
       {
         name: "Nmap",
-        function: "Network discovery & scanning",
+        description:
+          "Network discovery and scanning utility used to identify hosts, services, ports, and exposed network surfaces.",
       },
       {
         name: "Shodan",
-        function: "Internet asset intelligence",
+        description:
+          "Internet intelligence platform used to discover publicly exposed services, devices, and infrastructure for reconnaissance research.",
       },
       {
         name: "Sherlock",
-        function: "Username reconnaissance",
+        description:
+          "Username reconnaissance utility used to search for the presence of a username across multiple online platforms.",
       },
       {
         name: "Maigret",
-        function: "Username investigation",
+        description:
+          "Username investigation tool used to discover accounts and digital footprints associated with usernames across online services.",
       },
     ],
   },
   {
     id: "networking",
     title: "Networking & Hardware",
-    description: "Tools and devices I use to explore networks, wireless systems, RF, and hardware.",
+    description:
+      "Tools and devices used to work with networks, wireless systems, RF experimentation, embedded platforms, and hardware-oriented projects.",
     icon: Network,
-    accent: "cyan",
+    accent: "text-cyan-400",
+    accentBg: "bg-cyan-500/10",
+    border: "hover:border-cyan-400/20",
     tools: [
       {
         name: "Termius",
-        function: "SSH & remote management",
+        description:
+          "SSH client used for remote access, server administration, terminal sessions, and managing network-connected systems.",
       },
       {
         name: "Winbox",
-        function: "MikroTik management",
+        description:
+          "Management utility used to configure and monitor MikroTik routers, interfaces, firewall rules, routing, and network services.",
       },
       {
         name: "WiFi Analyzer",
-        function: "Wireless network analysis",
+        description:
+          "Wireless analysis utility used to inspect nearby Wi-Fi networks, signal strength, channels, and wireless conditions.",
       },
       {
         name: "RTL-SDR",
-        function: "Software-defined radio",
+        description:
+          "Software-defined radio hardware used to explore radio signals, frequency ranges, spectrum activity, and wireless communication systems.",
       },
       {
         name: "ESP32-S3",
-        function: "Embedded & wireless development",
+        description:
+          "Microcontroller platform used for embedded development, wireless projects, IoT systems, automation, and hardware experimentation.",
       },
       {
         name: "Arduino Uno R3",
-        function: "Microcontroller development",
+        description:
+          "Microcontroller board used for electronics prototyping, sensor integration, automation, and learning embedded programming.",
       },
       {
         name: "WiFi Adapter",
-        function: "Monitor & injection capable wireless adapter",
+        description:
+          "Wireless adapter capable of supporting monitor and injection features for authorized wireless testing and network research.",
       },
       {
         name: "Hack5",
-        function: "Security & hardware experimentation",
+        description:
+          "Hardware ecosystem used for security experimentation, network research, automation, and exploring specialized security workflows.",
       },
       {
-        name: "Promark3",
-        function: "RF & wireless experimentation",
+        name: "Proxmark3",
+        description:
+          "RF research platform used to study and experiment with RFID and NFC technologies in controlled environments.",
       },
       {
         name: "Flipper Zero",
-        function: "Hardware & wireless research",
+        description:
+          "Portable hardware research device used for exploring wireless protocols, RFID, NFC, infrared, GPIO, and embedded systems.",
       },
       {
         name: "Raspberry Pi 5",
-        function: "Mini PC & embedded projects",
+        description:
+          "Compact single-board computer used for network services, automation, Linux environments, monitoring systems, and embedded projects.",
       },
     ],
   },
 ]
 
-const accentStyles = {
-  indigo: {
-    icon: "text-indigo-400",
-    border: "hover:border-indigo-400/30",
-    glow: "bg-indigo-500/10",
-    line: "bg-indigo-400",
-    dot: "bg-indigo-400",
-  },
-  red: {
-    icon: "text-red-400",
-    border: "hover:border-red-400/30",
-    glow: "bg-red-500/10",
-    line: "bg-red-400",
-    dot: "bg-red-400",
-  },
-  cyan: {
-    icon: "text-cyan-400",
-    border: "hover:border-cyan-400/30",
-    glow: "bg-cyan-500/10",
-    line: "bg-cyan-400",
-    dot: "bg-cyan-400",
-  },
-}
-
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.12,
-    },
-  },
-}
-
-const cardVariants = {
-  hidden: {
-    opacity: 0,
-    y: 24,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.55,
-      ease: [0.22, 1, 0.36, 1],
-    },
-  },
-}
-
-function ToolGroup({ group }) {
-  const Icon = group.icon
-  const accent = accentStyles[group.accent]
-
+function ToolCard({ tool, index, category }) {
   return (
-    <motion.article
-      variants={cardVariants}
-      className={`group relative overflow-hidden rounded-3xl border border-white/[0.07] bg-white/[0.018] p-5 transition-colors duration-500 sm:p-6 ${accent.border}`}
+    <article
+      className={`tool-card group relative overflow-hidden rounded-xl border border-white/[0.06] bg-white/[0.018] px-4 py-4 transition-[border-color,background-color,transform] duration-300 ease-out hover:-translate-y-0.5 hover:bg-white/[0.028] ${category.border}`}
+      style={{
+        "--tool-delay": `${index * 35}ms`,
+      }}
     >
-      <div
-        className={`pointer-events-none absolute -right-24 -top-24 h-52 w-52 rounded-full blur-3xl opacity-0 transition-opacity duration-700 group-hover:opacity-100 ${accent.glow}`}
-      />
+      <div className="flex items-start justify-between gap-4">
+        <div className="min-w-0">
+          <h3 className="text-sm font-medium tracking-[-0.01em] text-white">
+            {tool.name}
+          </h3>
 
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px overflow-hidden bg-white/[0.04]">
-        <motion.div
-          className={`h-full w-24 ${accent.line}`}
-          initial={{ x: "-120%" }}
-          whileInView={{ x: "520%" }}
-          viewport={{ once: true }}
-          transition={{
-            duration: 1.6,
-            delay: 0.35,
-            ease: "easeInOut",
-          }}
+          <p className="mt-1.5 max-w-xl text-[11px] leading-[1.65] text-white/40 sm:text-xs">
+            {tool.description}
+          </p>
+        </div>
+
+        <ArrowUpRight
+          size={15}
+          strokeWidth={1.7}
+          className={`mt-0.5 shrink-0 opacity-20 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-70 ${category.accent}`}
         />
       </div>
 
-      <div className="relative flex items-start gap-4">
+      <div
+        className={`pointer-events-none absolute bottom-0 left-4 right-4 h-px origin-left scale-x-0 opacity-0 transition-all duration-300 group-hover:scale-x-100 group-hover:opacity-100 ${category.accentBg}`}
+      />
+    </article>
+  )
+}
+
+function ToolCategory({ category }) {
+  const Icon = category.icon
+
+  return (
+    <section className="mb-14 last:mb-0">
+      <div className="mb-5 flex items-center gap-3">
         <div
-          className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-white/[0.07] bg-white/[0.025] ${accent.icon} transition-transform duration-300 group-hover:scale-105`}
+          className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/[0.07] ${category.accentBg}`}
         >
-          <Icon size={21} strokeWidth={1.7} />
+          <Icon
+            size={17}
+            strokeWidth={1.7}
+            className={category.accent}
+          />
         </div>
 
         <div className="min-w-0">
-          <h3 className="text-sm font-semibold tracking-tight text-white sm:text-base">
-            {group.title}
-          </h3>
+          <h2 className="text-base font-semibold tracking-[-0.02em] text-white sm:text-lg">
+            {category.title}
+          </h2>
 
-          <p className="mt-1.5 text-[10px] leading-5 text-white/40 sm:text-[11px]">
-            {group.description}
+          <p className="mt-0.5 max-w-2xl text-[10px] leading-5 text-white/35 sm:text-[11px]">
+            {category.description}
           </p>
         </div>
       </div>
 
-      <div className="relative mt-5 divide-y divide-white/[0.045] border-t border-white/[0.05]">
-        {group.tools.map((tool) => (
-          <div
+      <div className="mb-5 h-px w-full bg-white/[0.05]" />
+
+      <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+        {category.tools.map((tool, index) => (
+          <ToolCard
             key={tool.name}
-            className="group/tool flex items-center justify-between gap-4 py-3 transition-all duration-200 hover:px-1"
-          >
-            <div className="min-w-0">
-              <p className="truncate text-[11px] font-medium text-white/85 transition-colors duration-200 group-hover/tool:text-white sm:text-xs">
-                {tool.name}
-              </p>
-
-              <p className="mt-0.5 truncate text-[9px] text-white/35 sm:text-[10px]">
-                {tool.function}
-              </p>
-            </div>
-
-            <ArrowUpRight
-              size={13}
-              strokeWidth={1.6}
-              className="shrink-0 text-white/15 transition-all duration-200 group-hover/tool:-translate-y-0.5 group-hover/tool:translate-x-0.5 group-hover/tool:text-white/55"
-            />
-          </div>
+            tool={tool}
+            index={index}
+            category={category}
+          />
         ))}
       </div>
 
-      <div className="relative mt-4 flex items-center gap-2">
-        <span
-          className={`h-1.5 w-1.5 rounded-full ${accent.dot} opacity-60`}
-        />
-
-        <span className="text-[9px] uppercase tracking-[0.16em] text-white/25">
-          {group.tools.length} tools
-        </span>
+      <div className="mt-4 flex items-center gap-2 text-[9px] uppercase tracking-[0.16em] text-white/20">
+        <span className={`h-1.5 w-1.5 rounded-full ${category.accentBg}`} />
+        <span>{category.tools.length} tools</span>
       </div>
-    </motion.article>
+    </section>
   )
 }
 
 export default function Tools() {
   return (
-    <motion.div
-      variants={containerVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{
-        once: true,
-        amount: 0.08,
-        margin: "0px 0px -80px 0px",
-      }}
-      className="grid grid-cols-1 gap-5 lg:grid-cols-3"
-    >
-      {toolGroups.map((group) => (
-        <ToolGroup key={group.id} group={group} />
+    <div className="tools-section">
+      {toolCategories.map((category) => (
+        <ToolCategory key={category.id} category={category} />
       ))}
-    </motion.div>
+    </div>
   )
 }
