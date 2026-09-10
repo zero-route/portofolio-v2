@@ -146,8 +146,8 @@ export default function Navigation({ play = true, entranceDelay = 300 }) {
       icon: <Sparkles size={18} strokeWidth={1.7} />,
     },
     {
-      label: "Projects",
-      target: "projects",
+      label: "Expertise",
+      target: "expertise",
       icon: <FolderGit2 size={18} strokeWidth={1.7} />,
     },
     {

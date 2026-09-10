@@ -4,7 +4,8 @@ import { useState } from "react";
 import Home from "@/components/section/Home";
 import About from "@/components/section/About";
 import Beyond from "@/components/section/Beyond";
-import Portofolio from "@/components/section/PortofolioShowcase"
+import Portofolio from "@/components/section/PortofolioShowcase";
+import Contact from "@/components/section/Contact";
 import Navigation from "@/components/layout/Navigation";
 import IntroLoader from "@/components/intro/IntroLoader";
 
@@ -33,11 +34,14 @@ export default function Page() {
         <Beyond />
       </section>
       
-      <section id="projects">
+      <section id="expertise">
         <Portofolio />
       </section>
       
-      <section id="contact" />
+      <section id="contact">
+        <Contact />
+        
+      </section>
     </main>
   );
 }

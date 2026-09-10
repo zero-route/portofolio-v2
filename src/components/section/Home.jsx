@@ -13,9 +13,9 @@ import {
   Instagram,
 } from "lucide-react";
 import { motion } from "framer-motion";
-import AstreaChatModal from "@/components/intro/AstreaChatModal";
-import MusicSearchModal from "@/components/intro/MusicSearchModal";
-import VinylPlayerModal from "@/components/intro/VinylPlayerModal";
+import AstreaChatModal from "@/components/feature/AstreaChatModal";
+import MusicSearchModal from "@/components/feature/MusicSearchModal";
+import VinylPlayerModal from "@/components/feature/VinylPlayerModal";
 
 const roleList = [
   "Website Developer",
