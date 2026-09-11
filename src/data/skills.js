@@ -221,9 +221,9 @@ export const skillCategories = [
         custom: "switching",
       },
       {
-        name: "MikroTik",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mikrotik/mikrotik-original.svg",
-      },
+  name: "MikroTik",
+  icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mikrotik/mikrotik-original.svg",
+},
       {
         name: "Network Troubleshooting",
         custom: "troubleshoot",
