@@ -4,7 +4,9 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 import Project from "@/components/expertise&works/project/Project"
 import Tools from "@/components/expertise&works/tools/Tools"
+import Skills from "@/components/expertise&works/skills/Skills"
 import { portfolioProjects } from "@/data/portofolioShowcase"
+
 
 const sections = ["Projects", "Tools", "Skills"]
 
@@ -91,13 +93,7 @@ export default function PortofolioShowcase() {
 
           {activeSection === "Tools" && <Tools />}
 
-          {activeSection === "Skills" && (
-            <div className="flex min-h-[300px] items-center justify-center rounded-3xl border border-white/[0.05] bg-white/[0.015]">
-              <span className="text-xs text-white/30">
-                Skills section coming next.
-              </span>
-            </div>
-          )}
+          {activeSection === "Skills" && <Skills />}
         </div>
       </div>
     </section>
