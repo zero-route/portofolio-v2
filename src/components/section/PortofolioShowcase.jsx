@@ -28,7 +28,7 @@ export default function PortofolioShowcase() {
           className="pt-8 text-center sm:pt-10"
         >
           <h1 className="text-[3.2rem] font-bold tracking-[-0.05em] text-white sm:text-[4rem] lg:text-[4.5rem]">
-            Expert
+            Capabilities
           </h1>
 
           <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-white/55 sm:text-lg">
@@ -90,14 +90,6 @@ export default function PortofolioShowcase() {
           )}
 
           {activeSection === "Tools" && <Tools />}
-
-          {activeSection === "Skills" && (
-            <div className="flex min-h-[300px] items-center justify-center rounded-3xl border border-white/[0.05] bg-white/[0.015]">
-              <span className="text-xs text-white/30">
-                Skills section coming next.
-              </span>
-            </div>
-          )}
         </div>
       </div>
     </section>
