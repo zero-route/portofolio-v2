@@ -1,7 +1,7 @@
 export const toolCategories = [
   {
     id: "software",
-    label: "Software",
+    label: "Development Tools",
     icon: "Code2",
     color: "indigo",
     items: [

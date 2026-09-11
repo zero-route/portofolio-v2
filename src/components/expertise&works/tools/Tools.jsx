@@ -9,26 +9,37 @@ const ICONS = { Code2, ShieldHalf, Network, Cpu };
 
 const COLOR_STYLES = {
   indigo: {
-    dot: "bg-indigo-400",
+    badge: "bg-indigo-500/80",
     border: "hover:border-indigo-400/40",
     icon: "text-indigo-300",
   },
   rose: {
-    dot: "bg-rose-400",
+    badge: "bg-rose-500/80",
     border: "hover:border-rose-400/40",
     icon: "text-rose-300",
   },
   sky: {
-    dot: "bg-sky-400",
+    badge: "bg-sky-500/80",
     border: "hover:border-sky-400/40",
     icon: "text-sky-300",
   },
   emerald: {
-    dot: "bg-emerald-400",
+    badge: "bg-emerald-500/80",
     border: "hover:border-emerald-400/40",
     icon: "text-emerald-300",
   },
 };
+
+function getInitials(name) {
+  const clean = name.replace(/[^a-zA-Z0-9 ]/g, "");
+  const words = clean.trim().split(/\s+/);
+
+  if (words.length === 1) {
+    return words[0].slice(0, 2).toUpperCase();
+  }
+
+  return (words[0][0] + words[1][0]).toUpperCase();
+}
 
 const containerVariants = {
   hidden: {},
@@ -111,8 +122,10 @@ export default function Tools() {
             className={`group flex items-start gap-3 rounded-xl border border-white/10 bg-white/[0.02] px-4 py-3 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/[0.05] ${colors.border}`}
           >
             <span
-              className={`mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full transition-transform duration-300 group-hover:scale-125 ${colors.dot}`}
-            />
+              className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-[11px] font-bold text-white transition-transform duration-300 group-hover:scale-105 ${colors.badge}`}
+            >
+              {getInitials(item.name)}
+            </span>
             <div>
               <p className="font-sans text-sm font-semibold text-white">
                 {item.name}
