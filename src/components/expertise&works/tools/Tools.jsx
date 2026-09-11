@@ -1,99 +1,92 @@
 "use client"
 
+import { motion } from "framer-motion"
 import {
   Code2,
   ShieldCheck,
   Network,
+  Cpu,
   ArrowUpRight,
 } from "lucide-react"
 
-const toolCategories = [
+const toolGroups = [
   {
     id: "software",
     title: "Software & Development",
     description:
-      "Perangkat lunak dan platform yang digunakan untuk menulis kode, mengembangkan aplikasi, deployment, otomasi, serta mengelola lingkungan pengembangan.",
+      "Perangkat lunak yang digunakan untuk membangun, mengembangkan, menguji, melakukan deployment, dan mengelola aplikasi.",
     icon: Code2,
-    accent: "text-indigo-400",
-    accentBg: "bg-indigo-500/10",
-    accentBorder: "hover:border-indigo-400/30",
-    glow: "rgba(99,102,241,0.10)",
-    line: "bg-indigo-400",
+    accent: "indigo",
     tools: [
       {
         name: "Spck Editor",
         description:
-          "Editor kode berbasis Android yang saya gunakan untuk menulis, mengedit, dan mengembangkan project web secara langsung melalui perangkat mobile.",
+          "Editor kode mobile untuk mengembangkan dan mengedit project web langsung dari perangkat Android.",
       },
       {
         name: "Acode",
         description:
-          "Code editor ringan di Android untuk mengerjakan HTML, CSS, JavaScript, dan berbagai file project ketika membutuhkan lingkungan coding mobile.",
+          "Editor kode Android untuk mengerjakan HTML, CSS, JavaScript, dan berbagai file project secara mobile.",
       },
       {
         name: "VS Code",
         description:
-          "Editor utama untuk pengembangan aplikasi, pengelolaan source code, debugging, extension, terminal, serta berbagai workflow development.",
+          "Development environment utama untuk menulis kode, mengelola project, debugging, dan menggunakan berbagai extension.",
       },
       {
         name: "GitHub",
         description:
-          "Platform yang digunakan untuk menyimpan repository, mengelola source code, melakukan version control, kolaborasi, dan mendokumentasikan project.",
+          "Platform untuk menyimpan repository, mengelola source code, melakukan version control, dan berkolaborasi.",
       },
       {
         name: "Vercel",
         description:
-          "Platform deployment yang digunakan untuk menjalankan dan mempublikasikan aplikasi web, terutama project Next.js dengan proses build dan deployment otomatis.",
+          "Platform deployment yang digunakan untuk menjalankan dan mempublikasikan aplikasi web berbasis Next.js.",
       },
       {
         name: "Supabase",
         description:
-          "Backend platform yang digunakan untuk database, autentikasi, API, storage, serta berbagai kebutuhan backend pada aplikasi web.",
+          "Backend platform untuk database PostgreSQL, authentication, storage, dan layanan backend lainnya.",
       },
       {
         name: "Cloudflare",
         description:
-          "Platform infrastruktur yang digunakan untuk DNS, CDN, keamanan, proxy, traffic management, serta layanan edge untuk aplikasi web.",
+          "Digunakan untuk DNS, keamanan, CDN, dan berbagai layanan infrastructure untuk aplikasi web.",
       },
       {
         name: "ArduinoDroid",
         description:
-          "Aplikasi Android yang digunakan untuk menulis, melakukan compile, dan mengunggah program Arduino langsung melalui perangkat mobile.",
+          "Aplikasi Android untuk menulis, compile, dan mengunggah program Arduino langsung dari perangkat mobile.",
       },
       {
         name: "n8n",
         description:
-          "Platform workflow automation yang digunakan untuk menghubungkan berbagai layanan, memproses data, membuat trigger, dan menjalankan proses otomatis.",
+          "Platform workflow automation untuk menghubungkan berbagai layanan dan membangun proses otomatis.",
       },
       {
         name: "AnyDesk",
         description:
-          "Aplikasi remote desktop yang digunakan untuk mengakses komputer dari jarak jauh, troubleshooting, administrasi, dan kebutuhan dukungan teknis.",
+          "Remote desktop untuk mengakses dan mengelola perangkat lain dari jarak jauh.",
       },
       {
         name: "Postman",
         description:
-          "Platform untuk menguji dan mengembangkan API dengan mengirim request, memeriksa response, serta melakukan validasi terhadap layanan backend.",
-      },
-      {
-        name: "Termius",
-        description:
-          "SSH client yang digunakan untuk terhubung ke server atau perangkat jaringan secara remote melalui terminal dan melakukan administrasi sistem.",
+          "Tool untuk menguji API, memeriksa request dan response, serta melakukan debugging layanan backend.",
       },
       {
         name: "Dorfus",
         description:
-          "Utility yang digunakan dalam workflow pengembangan dan kebutuhan teknis tertentu sebagai bagian dari lingkungan kerja development.",
+          "Utility yang digunakan untuk mendukung proses pengembangan dan pekerjaan teknis sehari-hari.",
       },
       {
         name: "Pydroid 3",
         description:
-          "Lingkungan pemrograman Python untuk Android yang digunakan untuk menulis, menjalankan, dan bereksperimen dengan program Python melalui perangkat mobile.",
+          "Environment Python pada Android untuk menjalankan script, eksperimen, dan pengembangan aplikasi sederhana.",
       },
       {
         name: "C++",
         description:
-          "Bahasa pemrograman yang digunakan untuk system programming, pengembangan embedded, aplikasi yang membutuhkan performa tinggi, dan berbagai project berbasis hardware.",
+          "Bahasa pemrograman yang digunakan untuk pengembangan sistem, embedded, dan kebutuhan pemrograman tingkat rendah.",
       },
     ],
   },
@@ -101,248 +94,314 @@ const toolCategories = [
     id: "security",
     title: "Cyber Security",
     description:
-      "Tools yang digunakan untuk reconnaissance, analisis keamanan, vulnerability assessment, pengujian aplikasi web, wireless assessment, dan security research.",
+      "Tool yang digunakan untuk security testing, reconnaissance, analisis, auditing, dan assessment.",
     icon: ShieldCheck,
-    accent: "text-red-400",
-    accentBg: "bg-red-500/10",
-    accentBorder: "hover:border-red-400/30",
-    glow: "rgba(248,113,113,0.10)",
-    line: "bg-red-400",
+    accent: "red",
     tools: [
       {
         name: "Termux",
         description:
-          "Lingkungan terminal Linux di Android yang digunakan untuk menjalankan command-line tools, scripting, networking utility, dan berbagai workflow security.",
+          "Terminal environment pada Android untuk menjalankan Linux tools, scripting, networking, dan security utilities.",
       },
       {
         name: "Metasploit",
         description:
-          "Framework pengujian keamanan yang digunakan untuk melakukan validasi kerentanan, penelitian exploit, pengujian payload, dan penetration testing secara terkontrol.",
+          "Framework security testing untuk melakukan validasi vulnerability dan pengujian keamanan secara terkontrol.",
       },
       {
         name: "Hashcat",
         description:
-          "Tool password recovery dan auditing yang digunakan untuk menguji kekuatan password melalui analisis hash dalam lingkungan pengujian yang terkontrol.",
+          "Tool password recovery dan auditing untuk menguji kekuatan hash dalam proses security assessment.",
       },
       {
         name: "Aircrack-ng",
         description:
-          "Toolkit keamanan wireless yang digunakan untuk melakukan analisis jaringan Wi-Fi, packet capture, monitoring, dan pengujian keamanan wireless secara authorized.",
+          "Suite wireless security untuk menganalisis jaringan Wi-Fi dan melakukan pengujian keamanan wireless.",
       },
       {
         name: "Burp Suite",
         description:
-          "Platform pengujian keamanan aplikasi web untuk melakukan intercept, inspeksi, modifikasi, dan analisis HTTP request maupun response.",
+          "Platform web security testing untuk menganalisis request, response, dan keamanan aplikasi web.",
       },
       {
         name: "Nmap",
         description:
-          "Tool network discovery dan scanning yang digunakan untuk mengetahui host aktif, port terbuka, service, serta permukaan jaringan yang dapat dianalisis.",
+          "Network scanner untuk melakukan discovery host, service enumeration, dan pemetaan jaringan.",
       },
       {
         name: "Shodan",
         description:
-          "Platform internet intelligence yang digunakan untuk reconnaissance terhadap perangkat, service, dan infrastruktur yang terekspos secara publik di internet.",
+          "Search engine untuk perangkat dan layanan yang terekspos di internet dalam kebutuhan reconnaissance.",
       },
       {
         name: "Sherlock",
         description:
-          "Utility OSINT yang digunakan untuk mencari keberadaan username tertentu pada berbagai platform dan layanan online.",
+          "Tool username reconnaissance untuk mencari keberadaan username pada berbagai platform online.",
       },
       {
         name: "Maigret",
         description:
-          "Tool username investigation yang digunakan untuk melakukan pencarian akun dan jejak digital berdasarkan username di berbagai layanan internet.",
+          "Tool OSINT untuk melakukan pencarian dan korelasi username pada berbagai layanan internet.",
       },
     ],
   },
   {
     id: "networking",
-    title: "Networking & Hardware",
+    title: "Networking",
     description:
-      "Tools dan perangkat yang digunakan untuk eksplorasi jaringan, wireless, RF, embedded system, mikrokontroler, serta eksperimen hardware.",
+      "Perangkat dan software yang digunakan untuk mengelola, mengakses, menganalisis, dan memahami jaringan.",
     icon: Network,
-    accent: "text-cyan-400",
-    accentBg: "bg-cyan-500/10",
-    accentBorder: "hover:border-cyan-400/30",
-    glow: "rgba(34,211,238,0.10)",
-    line: "bg-cyan-400",
+    accent: "cyan",
     tools: [
       {
         name: "Termius",
         description:
-          "SSH client yang digunakan untuk remote access, administrasi server, mengakses perangkat jaringan, dan menjalankan perintah melalui terminal.",
+          "SSH client untuk mengakses dan mengelola server, router, maupun perangkat jaringan secara remote.",
       },
       {
         name: "Winbox",
         description:
-          "Utility untuk mengelola perangkat MikroTik, termasuk konfigurasi interface, firewall, routing, wireless, serta berbagai layanan jaringan.",
+          "Utility untuk melakukan konfigurasi dan management perangkat jaringan MikroTik.",
       },
       {
         name: "WiFi Analyzer",
         description:
-          "Aplikasi analisis wireless yang digunakan untuk melihat jaringan Wi-Fi di sekitar, kekuatan sinyal, channel, dan kondisi lingkungan wireless.",
+          "Digunakan untuk menganalisis channel Wi-Fi, kekuatan sinyal, dan kondisi jaringan wireless di sekitar.",
       },
+    ],
+  },
+  {
+    id: "hardware",
+    title: "Hardware & Embedded",
+    description:
+      "Perangkat hardware dan platform embedded yang digunakan untuk eksperimen, wireless, RF, IoT, dan penelitian perangkat.",
+    icon: Cpu,
+    accent: "amber",
+    tools: [
       {
         name: "RTL-SDR",
         description:
-          "Perangkat software-defined radio yang digunakan untuk mengeksplorasi spektrum frekuensi, menangkap sinyal radio, dan mempelajari sistem komunikasi wireless.",
+          "Software-defined radio untuk menerima dan mengeksplorasi berbagai sinyal radio pada rentang frekuensi tertentu.",
       },
       {
         name: "ESP32-S3",
         description:
-          "Platform mikrokontroler yang digunakan untuk pengembangan embedded system, IoT, wireless project, otomasi, sensor, dan berbagai eksperimen hardware.",
+          "Microcontroller untuk eksperimen embedded, IoT, wireless communication, dan pengembangan perangkat.",
       },
       {
         name: "Arduino Uno R3",
         description:
-          "Board mikrokontroler yang digunakan untuk prototyping elektronik, membaca sensor, mengendalikan perangkat, otomasi, dan mempelajari embedded programming.",
+          "Platform microcontroller untuk prototyping elektronik, sensor, automation, dan eksperimen embedded.",
       },
       {
         name: "WiFi Adapter",
         description:
-          "Adapter wireless dengan dukungan monitor mode dan packet injection yang digunakan untuk pengujian keamanan wireless secara authorized.",
+          "Adapter wireless dengan dukungan monitor mode dan packet injection untuk kebutuhan wireless testing.",
       },
       {
         name: "Hack5",
         description:
-          "Perangkat dan ekosistem hardware yang digunakan untuk eksperimen keamanan, network research, automation, serta eksplorasi teknologi security-oriented.",
+          "Perangkat dan platform hardware yang digunakan untuk eksperimen keamanan, jaringan, dan wireless.",
       },
       {
-        name: "Promark3",
+        name: "ProMark3",
         description:
-          "Perangkat yang digunakan untuk eksperimen dan penelitian pada teknologi RFID maupun sistem komunikasi berbasis frekuensi radio.",
+          "Perangkat RFID research yang digunakan untuk eksplorasi, analisis, dan eksperimen sistem RFID.",
       },
       {
         name: "Flipper Zero",
         description:
-          "Perangkat hardware portable untuk mengeksplorasi berbagai teknologi wireless, RFID, NFC, infrared, GPIO, dan sistem embedded.",
+          "Multi-tool hardware untuk eksplorasi berbagai teknologi wireless, RFID, NFC, infrared, dan interface perangkat.",
       },
       {
         name: "Raspberry Pi 5",
         description:
-          "Mini PC berbasis Linux yang digunakan untuk menjalankan server, network service, monitoring, automation, lab environment, dan berbagai project embedded.",
+          "Mini PC yang digunakan untuk server ringan, networking, automation, embedded project, dan eksperimen sistem.",
       },
     ],
   },
 ]
 
-function ToolCard({ tool, index, category }) {
-  return (
-    <article
-      className={`tool-card group relative overflow-hidden rounded-xl border border-white/[0.06] bg-white/[0.018] px-4 py-4 transition-[transform,background-color,border-color] duration-300 ease-out hover:-translate-y-1 hover:bg-white/[0.028] ${category.accentBorder}`}
-      style={{
-        "--tool-delay": `${index * 35}ms`,
-        "--tool-glow": category.glow,
-      }}
-    >
-      <div
-        className="pointer-events-none absolute -inset-20 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-        style={{
-          background: `radial-gradient(circle, ${category.glow} 0%, transparent 65%)`,
-        }}
-      />
+const accentStyles = {
+  indigo: {
+    icon: "text-indigo-400",
+    glow: "group-hover:shadow-[0_0_35px_rgba(99,102,241,0.12)]",
+    line: "bg-indigo-400",
+    dot: "bg-indigo-400",
+    hover: "group-hover:border-indigo-400/20",
+  },
+  red: {
+    icon: "text-red-400",
+    glow: "group-hover:shadow-[0_0_35px_rgba(248,113,113,0.11)]",
+    line: "bg-red-400",
+    dot: "bg-red-400",
+    hover: "group-hover:border-red-400/20",
+  },
+  cyan: {
+    icon: "text-cyan-400",
+    glow: "group-hover:shadow-[0_0_35px_rgba(34,211,238,0.11)]",
+    line: "bg-cyan-400",
+    dot: "bg-cyan-400",
+    hover: "group-hover:border-cyan-400/20",
+  },
+  amber: {
+    icon: "text-amber-400",
+    glow: "group-hover:shadow-[0_0_35px_rgba(251,191,36,0.1)]",
+    line: "bg-amber-400",
+    dot: "bg-amber-400",
+    hover: "group-hover:border-amber-400/20",
+  },
+}
 
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px overflow-hidden">
-        <span
-          className={`absolute left-0 top-0 h-full w-0 ${category.line} opacity-0 transition-all duration-500 group-hover:w-full group-hover:opacity-70`}
+const groupVariants = {
+  hidden: {
+    opacity: 0,
+    y: 24,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.55,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+}
+
+const itemVariants = {
+  hidden: {
+    opacity: 0,
+    x: -12,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.35,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+}
+
+function ToolItem({ tool, accent }) {
+  const styles = accentStyles[accent]
+
+  return (
+    <motion.div
+      variants={itemVariants}
+      whileHover={{
+        x: 4,
+        transition: {
+          duration: 0.2,
+          ease: "easeOut",
+        },
+      }}
+      className={`group relative overflow-hidden rounded-xl border border-white/[0.055] bg-white/[0.012] px-4 py-3.5 transition-all duration-300 ${styles.hover} ${styles.glow}`}
+    >
+      <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+        <div
+          className={`absolute -left-20 top-0 h-full w-32 -skew-x-12 blur-2xl ${styles.line} opacity-[0.045]`}
         />
       </div>
 
-      <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-        <div className="absolute -left-20 top-0 h-full w-20 rotate-12 bg-white/[0.025] blur-md transition-transform duration-700 group-hover:translate-x-[500px]" />
-      </div>
+      <div className="relative flex items-center gap-3">
+        <span
+          className={`h-1.5 w-1.5 shrink-0 rounded-full opacity-40 transition-all duration-300 group-hover:scale-125 group-hover:opacity-100 ${styles.dot}`}
+        />
 
-      <div className="relative z-10 flex items-start justify-between gap-4">
-        <div className="min-w-0">
-          <h3 className="text-sm font-medium tracking-[-0.01em] text-white transition-transform duration-300 group-hover:translate-x-0.5">
+        <div className="min-w-0 flex-1">
+          <h3 className="text-[12px] font-medium text-white transition-transform duration-300 group-hover:translate-x-0.5 sm:text-[13px]">
             {tool.name}
           </h3>
 
-          <p className="mt-1.5 max-w-xl text-[11px] leading-[1.7] text-white/40 transition-colors duration-300 group-hover:text-white/55 sm:text-xs">
+          <p className="mt-1 max-w-3xl text-[10px] leading-[1.65] text-white/35 transition-colors duration-300 group-hover:text-white/50 sm:text-[11px]">
             {tool.description}
           </p>
         </div>
 
-        <div className="relative mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center">
-          <span
-            className={`absolute inset-0 scale-50 rounded-full opacity-0 transition-all duration-300 group-hover:scale-100 group-hover:opacity-100 ${category.accentBg}`}
-          />
-
-          <ArrowUpRight
-            size={14}
-            strokeWidth={1.7}
-            className={`relative z-10 opacity-20 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-90 ${category.accent}`}
-          />
-        </div>
+        <ArrowUpRight
+          size={14}
+          strokeWidth={1.6}
+          className={`shrink-0 -translate-x-1 translate-y-1 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:opacity-60 ${styles.icon}`}
+        />
       </div>
 
-      <div
-        className={`pointer-events-none absolute bottom-0 left-4 h-px w-0 ${category.line} opacity-0 transition-all duration-500 group-hover:w-16 group-hover:opacity-60`}
+      <span
+        className={`absolute bottom-0 left-0 h-px w-0 transition-all duration-500 group-hover:w-full ${styles.line} opacity-50`}
       />
-    </article>
+    </motion.div>
   )
 }
 
-function ToolCategory({ category }) {
-  const Icon = category.icon
+function ToolGroup({ group }) {
+  const Icon = group.icon
+  const styles = accentStyles[group.accent]
 
   return (
-    <section className="mb-16 last:mb-0">
-      <div className="mb-5 flex items-center gap-3">
+    <motion.section
+      variants={groupVariants}
+      className="mb-14 last:mb-0"
+    >
+      <div className="mb-5 flex items-start gap-3">
         <div
-          className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/[0.07] ${category.accentBg}`}
+          className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/[0.06] bg-white/[0.02] ${styles.icon}`}
         >
-          <Icon
-            size={17}
-            strokeWidth={1.7}
-            className={category.accent}
-          />
+          <Icon size={18} strokeWidth={1.7} />
         </div>
 
         <div className="min-w-0">
-          <h2 className="text-base font-semibold tracking-[-0.02em] text-white sm:text-lg">
-            {category.title}
+          <h2 className="text-sm font-semibold tracking-tight text-white sm:text-base">
+            {group.title}
           </h2>
 
-          <p className="mt-0.5 max-w-3xl text-[10px] leading-5 text-white/35 sm:text-[11px]">
-            {category.description}
+          <p className="mt-1 max-w-2xl text-[10px] leading-5 text-white/35 sm:text-[11px]">
+            {group.description}
           </p>
         </div>
       </div>
 
-      <div className="mb-5 h-px w-full bg-white/[0.05]" />
-
-      <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-        {category.tools.map((tool, index) => (
-          <ToolCard
+      <motion.div
+        variants={{
+          hidden: {},
+          visible: {
+            transition: {
+              staggerChildren: 0.035,
+              delayChildren: 0.05,
+            },
+          },
+        }}
+        className="grid grid-cols-1 gap-2.5 sm:grid-cols-2"
+      >
+        {group.tools.map((tool) => (
+          <ToolItem
             key={tool.name}
             tool={tool}
-            index={index}
-            category={category}
+            accent={group.accent}
           />
         ))}
-      </div>
-
-      <div className="mt-4 flex items-center gap-2 text-[9px] uppercase tracking-[0.16em] text-white/20">
-        <span
-          className={`h-1.5 w-1.5 rounded-full ${category.accentBg}`}
-        />
-        <span>{category.tools.length} tools</span>
-      </div>
-    </section>
+      </motion.div>
+    </motion.section>
   )
 }
 
 export default function Tools() {
   return (
-    <div className="tools-section">
-      {toolCategories.map((category) => (
-        <ToolCategory
-          key={category.id}
-          category={category}
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{
+        once: true,
+        amount: 0.05,
+        margin: "0px 0px -60px 0px",
+      }}
+      className="w-full"
+    >
+      {toolGroups.map((group) => (
+        <ToolGroup
+          key={group.id}
+          group={group}
         />
       ))}
-    </div>
+    </motion.div>
   )
 }
