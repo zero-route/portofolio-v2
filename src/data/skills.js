@@ -159,15 +159,7 @@ export const skillCategories = [
         icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/gentoo/gentoo-original.svg",
       },
       {
-        name: "Red Hat",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/redhat/redhat-original.svg",
-      },
-      {
         name: "Debian",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/debian/debian-original.svg",
-      },
-      {
-        name: "Parrot OS",
         icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/debian/debian-original.svg",
       },
     ],
@@ -221,9 +213,9 @@ export const skillCategories = [
         custom: "switching",
       },
       {
-  name: "MikroTik",
-  icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mikrotik/mikrotik-original.svg",
-},
+        name: "MikroTik",
+        custom: "mikrotik",
+      },
       {
         name: "Network Troubleshooting",
         custom: "troubleshoot",
@@ -241,7 +233,7 @@ export const skillCategories = [
     skills: [
       {
         name: "Arduino",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/arduino/arduino-original.svg",
+        custom: "arduino",
       },
       {
         name: "ESP32",
