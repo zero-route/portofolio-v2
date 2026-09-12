@@ -1,7 +1,7 @@
 export const portfolioProjects = [
   {
     id: "Website 1",
-    title: "Website Public",
+    title: "It TechMap",
     category: "Public",
     description:
       "Website IT TechMap, Berisi kumpulan seluruh role dibidang Information Technology/IT, Fungsi membantu orang awam dalam memilih karir dibidang IT.",
@@ -12,36 +12,36 @@ export const portfolioProjects = [
   },
   {
     id: "Website 2",
-    title: "Website Public",
+    title: "CyberSecurity Role",
     category: "Public",
     description:
-      "Modern organization website focused on responsive presentation, structured content, and accessible navigation.",
+      "Website CyberSecurity Role, Mirip dengan website IT TechMap website ini dikhususkan dibidang CyberSecuriy dengan berbagai role di dalamnya, Seperti Pentester, Incident Respondr, Dan lainya",
     image: "/images/Website-2.png",
     technologies: ["React", "Vite", "Tailwind CSS"],
     platform: "Vercel",
     url: "https://cyber-security-role-kn3od4869-zero-route.vercel.app/",
   },
   {
-    id: "monitoring-dashboard",
-    title: "Monitoring Dashboard",
-    category: "Utility",
+    id: "Website 3",
+    title: "Project Dashboard",
+    category: "Monitoring",
     description:
-      "Web dashboard designed for monitoring data and system conditions through a focused and practical interface.",
-    image: "/imagesg/projects/monitoring-dashboard.webp",
-    technologies: ["Next.js", "React", "Chart.js"],
+      "Project Dashboard, Untuk melalukan monitoring dari berbagai akun meliputi 'Github, Vercel, Netlify, Supabase, Cloudflare, Backblaze', Yang ditampilkan dalam 1 UI untuk mempermudah terkait project website",
+    image: "/images/Website-3.png",
+    technologies: ["Next.js", "React", " Lucid React"],
     platform: "Vercel",
-    url: "#",
+    url: "https://project-dashboard-five-delta.vercel.app/",
   },
   {
-    id: "rf-calculator",
+    id: "Website 4",
     title: "RF Calculator",
     category: "Utility",
     description:
-      "Practical RF calculation tool for transmit power, frequency, and radio communication calculations.",
-    image: "/imagesg/projects/rf-calculator.webp",
-    technologies: ["React", "JavaScript", "Tailwind CSS"],
+      "Website kalkulasi gelombang frekuensi RF, menggunakan pengukuran basis DBM & DBI, Guna untuk mengindari potensi perangkat menjadi pengacau sinyal (JAMMER) ",
+    image: "/images/Website-4.png",
+    technologies: ["JavaScript", "Html", "CSS"],
     platform: "GitHub Pages",
-    url: "#",
+    url: "https://zero-route.github.io/Eirp-Calculator/",
   },
   {
     id: "it-techmap",
