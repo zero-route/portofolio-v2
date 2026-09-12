@@ -1,14 +1,14 @@
 export const portfolioProjects = [
   {
-    id: "institutional-website",
-    title: "Institutional Website",
+    id: "Website 1",
+    title: "Website Client",
     category: "Client",
     description:
-      "Responsive institutional website designed to deliver structured information and services through a clean digital experience.",
-    image: "/imagesg/projects/institutional-website.webp",
+      "Website IT TechMap, Berisi kumpulan seluruh role dibidang Information Technology/IT, Fungsi membantu orang awam dalam memilih karir dibidang IT.",
+    image: "/images/Website-1.png",
     technologies: ["Next.js", "React", "Tailwind CSS"],
     platform: "Vercel",
-    url: "#",
+    url: "#https://it-role-qyj5zfrsx-zero-route.vercel.app/",
   },
   {
     id: "organization-website",
