@@ -49,22 +49,6 @@ const accentStyles = {
   },
 }
 
-const itemVariants = {
-  hidden: {
-    opacity: 0,
-    y: 12,
-  },
-  visible: (index) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.35,
-      delay: index * 0.035,
-      ease: [0.22, 1, 0.36, 1],
-    },
-  }),
-}
-
 export default function Tools() {
   const [activeCategory, setActiveCategory] = useState(toolCategories[0].id)
 
@@ -81,10 +65,7 @@ export default function Tools() {
         initial={{ opacity: 0, y: 10 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.15 }}
-        transition={{
-          duration: 0.5,
-          ease: [0.22, 1, 0.36, 1],
-        }}
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         className="flex justify-center"
       >
         <div className="w-full overflow-x-auto pb-1 scrollbar-none">
@@ -103,19 +84,12 @@ export default function Tools() {
                     <motion.span
                       layoutId="tools-active-tab"
                       className="absolute inset-0 rounded-xl bg-white"
-                      transition={{
-                        type: "spring",
-                        stiffness: 380,
-                        damping: 30,
-                        mass: 0.7,
-                      }}
+                      transition={{ type: "spring", stiffness: 380, damping: 30, mass: 0.7 }}
                     />
                   )}
 
                   <span
-                    className={`relative z-10 whitespace-nowrap ${
-                      active ? "text-black" : "text-white/50"
-                    }`}
+                    className={`relative z-10 whitespace-nowrap ${active ? "text-black" : "text-white/50"}`}
                   >
                     {category.label}
                   </span>
@@ -126,16 +100,7 @@ export default function Tools() {
         </div>
       </motion.div>
 
-      <motion.div
-        key={activeData.id}
-        initial={{ opacity: 0, x: 10 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{
-          duration: 0.35,
-          ease: [0.22, 1, 0.36, 1],
-        }}
-        className="mt-12 sm:mt-14"
-      >
+      <div className="mt-12 sm:mt-14">
         <div className="mb-7 flex items-start gap-4 sm:mb-9">
           <div
             className={`mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/[0.07] bg-white/[0.025] ${accent.text}`}
@@ -154,16 +119,10 @@ export default function Tools() {
           </div>
         </div>
 
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3"
-        >
-          {activeData.tools.map((tool, index) => (
-            <motion.article
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {activeData.tools.map((tool) => (
+            <article
               key={tool.name}
-              custom={index}
-              variants={itemVariants}
               className={`group relative overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.018] p-4 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/[0.03] ${accent.glow}`}
             >
               <div
@@ -172,9 +131,7 @@ export default function Tools() {
 
               <div className="flex items-start justify-between gap-4">
                 <div className="min-w-0">
-                  <h4
-                    className={`text-sm font-semibold text-white transition-colors duration-300 ${accent.hover}`}
-                  >
+                  <h4 className={`text-sm font-semibold text-white transition-colors duration-300 ${accent.hover}`}>
                     {tool.name}
                   </h4>
 
@@ -191,18 +148,13 @@ export default function Tools() {
               </div>
 
               <div className="mt-4 flex items-center gap-2">
-                <span
-                  className={`h-1 w-1 rounded-full opacity-50 transition-opacity duration-300 group-hover:opacity-100 ${accent.dot}`}
-                />
-
-                <span className="text-[9px] uppercase tracking-[0.16em] text-white/20">
-                  Tool
-                </span>
+                <span className={`h-1 w-1 rounded-full opacity-50 transition-opacity duration-300 group-hover:opacity-100 ${accent.dot}`} />
+                <span className="text-[9px] uppercase tracking-[0.16em] text-white/20">Tool</span>
               </div>
-            </motion.article>
+            </article>
           ))}
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </div>
   )
 }
