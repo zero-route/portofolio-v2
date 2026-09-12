@@ -229,26 +229,27 @@ export default function About() {
 
           <div className="flex flex-nowrap items-center gap-3 sm:gap-4">
             <motion.a
-              href="data/CV-DIMAS.pdf"
-              download
-              custom={0}
-              initial="hidden"
-              animate={revealed ? "visible" : "hidden"}
-              variants={upVariants}
-              className="group relative inline-flex items-center gap-2 whitespace-nowrap rounded-xl px-4 py-2.5 font-sans text-sm text-white sm:px-6 sm:py-3 sm:text-base"
-            >
-              <span className="absolute -inset-0.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 opacity-70 blur-md transition-opacity group-hover:opacity-100" />
+  href="data/CV-DIMAS.pdf"
+  download
+  custom={0}
+  initial="hidden"
+  animate={revealed ? "visible" : "hidden"}
+  variants={upVariants}
+  className="group relative inline-flex items-center gap-2 overflow-hidden whitespace-nowrap rounded-xl px-4 py-2.5 font-sans text-sm text-white shadow-[0_0_25px_rgba(124,58,237,0.18)] transition-all duration-300 hover:scale-[1.025] hover:shadow-[0_0_35px_rgba(139,92,246,0.3)] sm:px-6 sm:py-3 sm:text-base"
+>
+  <span className="absolute -inset-0.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 opacity-70 blur-md transition-opacity group-hover:opacity-100" />
 
-              <span className="absolute inset-0 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600" />
+  <span className="absolute inset-0 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600" />
 
-              <span className="absolute inset-0 overflow-hidden rounded-xl">
-                <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
-              </span>
+  <span className="button-shine absolute inset-0" />
 
-              <span className="relative">Download CV</span>
+  <span className="relative z-10">Download CV</span>
 
-              <Download size={18} className="relative" />
-            </motion.a>
+  <Download
+    size={18}
+    className="relative z-10 transition-transform duration-300 group-hover:translate-y-0.5"
+  />
+</motion.a>
 
             <motion.a
               href="https://github.com/zero-route"
@@ -331,6 +332,30 @@ export default function About() {
           );
         })}
       </div>
+      <style jsx>{`
+  .button-shine {
+    background: linear-gradient(
+      110deg,
+      transparent 25%,
+      rgba(255, 255, 255, 0.22) 48%,
+      transparent 70%
+    );
+    transform: translateX(-120%);
+    animation: buttonShine 4.5s ease-in-out infinite;
+  }
+
+  @keyframes buttonShine {
+    0%,
+    65%,
+    100% {
+      transform: translateX(-120%);
+    }
+
+    82% {
+      transform: translateX(120%);
+    }
+  }
+`}</style>
     </section>
   );
 }
