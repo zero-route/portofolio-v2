@@ -2,7 +2,7 @@ import fs from "node:fs"
 import path from "node:path"
 import { portfolioProjects } from "@/data/portofolioShowcase"
 import { toolCategories } from "@/data/tools"
-import { skillCategories } from "@/data/Skills"
+import { skillCategories } from "@/data/skills"
 
 function readContextFile() {
   try {
