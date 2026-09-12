@@ -2,290 +2,126 @@ export const skillCategories = [
   {
     id: "frontend",
     title: "FRONTEND",
+    type: "icon",
     skills: [
-      {
-        name: "HTML5",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg",
-      },
-      {
-        name: "CSS3",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg",
-      },
-      {
-        name: "Tailwind CSS",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg",
-      },
-      {
-        name: "SCSS",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sass/sass-original.svg",
-      },
-      {
-        name: "Bootstrap",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bootstrap/bootstrap-original.svg",
-      },
-      {
-        name: "JavaScript",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg",
-      },
-      {
-        name: "TypeScript",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg",
-      },
-      {
-        name: "React",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg",
-      },
+      { name: "HTML5", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" },
+      { name: "CSS3", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" },
+      { name: "Tailwind CSS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" },
+      { name: "SCSS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sass/sass-original.svg" },
+      { name: "Bootstrap", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bootstrap/bootstrap-original.svg" },
+      { name: "JavaScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" },
+      { name: "TypeScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" },
+      { name: "React", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" },
     ],
   },
-
   {
     id: "backend",
     title: "BACKEND",
+    type: "icon",
     skills: [
-      {
-        name: "Node.js",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg",
-      },
-      {
-        name: "PHP",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg",
-      },
-      {
-        name: "Ruby",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/ruby/ruby-original.svg",
-      },
+      { name: "Node.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" },
+      { name: "PHP", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" },
+      { name: "Ruby", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/ruby/ruby-original.svg" },
     ],
   },
-
   {
     id: "database",
     title: "DATABASE",
+    type: "icon",
     skills: [
-      {
-        name: "MongoDB",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg",
-      },
-      {
-        name: "MySQL",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg",
-      },
-      {
-        name: "PostgreSQL",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg",
-      },
+      { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg" },
+      { name: "MySQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" },
+      { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" },
     ],
   },
-
   {
     id: "programming",
     title: "PROGRAMMING",
+    type: "icon",
     skills: [
-      {
-        name: "C",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/c/c-original.svg",
-      },
-      {
-        name: "C++",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg",
-      },
-      {
-        name: "Java",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg",
-      },
-      {
-        name: "Python",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg",
-      },
+      { name: "C", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/c/c-original.svg" },
+      { name: "C++", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg" },
+      { name: "Java", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" },
+      { name: "Python", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" },
     ],
   },
-
   {
     id: "git",
     title: "GIT & COLLABORATION",
+    type: "icon",
     skills: [
-      {
-        name: "Git",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg",
-      },
-      {
-        name: "GitHub",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg",
-      },
-      {
-        name: "GitLab",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/gitlab/gitlab-original.svg",
-      },
-      {
-        name: "GitHub Codespaces",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/githubcodespaces/githubcodespaces-original.svg",
-      },
+      { name: "Git", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" },
+      { name: "GitHub", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg" },
+      { name: "GitLab", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/gitlab/gitlab-original.svg" },
+      { name: "GitHub Codespaces", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/githubcodespaces/githubcodespaces-original.svg" },
     ],
   },
-
   {
     id: "os",
     title: "OS INSTALLATION",
+    type: "icon",
     skills: [
-      {
-        name: "Windows 10",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/windows8/windows8-original.svg",
-      },
-      {
-        name: "Windows 11",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/windows8/windows8-original.svg",
-      },
-      {
-        name: "Ubuntu",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/ubuntu/ubuntu-original.svg",
-      },
-      {
-        name: "Arch Linux",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/archlinux/archlinux-original.svg",
-      },
-      {
-        name: "Artix Linux",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/artixlinux/artixlinux-original.svg",
-      },
-      {
-        name: "Linux Mint",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linuxmint/linuxmint-original.svg",
-      },
-      {
-        name: "Kali Linux",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/kalilinux/kalilinux-original.svg",
-      },
-      {
-        name: "Gentoo Linux",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/gentoo/gentoo-original.svg",
-      },
-      {
-        name: "Debian",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/debian/debian-original.svg",
-      },
+      { name: "Windows 10", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/windows8/windows8-original.svg" },
+      { name: "Windows 11", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/windows8/windows8-original.svg" },
+      { name: "Ubuntu", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/ubuntu/ubuntu-original.svg" },
+      { name: "Arch Linux", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/archlinux/archlinux-original.svg" },
+      { name: "Artix Linux", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/artixlinux/artixlinux-original.svg" },
+      { name: "Linux Mint", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linuxmint/linuxmint-original.svg" },
+      { name: "Kali Linux", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/kalilinux/kalilinux-original.svg" },
+      { name: "Gentoo Linux", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/gentoo/gentoo-original.svg" },
+      { name: "Debian", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/debian/debian-original.svg" },
     ],
   },
-
   {
     id: "cybersecurity",
     title: "CYBERSECURITY",
+    type: "badge",
     skills: [
-      {
-        name: "Penetration Testing",
-        custom: "shield",
-      },
-      {
-        name: "Web Security",
-        custom: "webshield",
-      },
-      {
-        name: "Network Security",
-        custom: "networkshield",
-      },
-      {
-        name: "OSINT",
-        custom: "osint",
-      },
-      {
-        name: "Wireless Security",
-        custom: "wireless",
-      },
-      {
-        name: "Security Automation",
-        custom: "automation",
-      },
+      { name: "Penetration Testing" },
+      { name: "Web Security" },
+      { name: "Network Security" },
+      { name: "OSINT" },
+      { name: "Wireless Security" },
+      { name: "Security Automation" },
     ],
   },
-
   {
     id: "networking",
     title: "NETWORKING",
+    type: "badge",
     skills: [
-      {
-        name: "TCP/IP",
-        custom: "network",
-      },
-      {
-        name: "Routing",
-        custom: "routing",
-      },
-      {
-        name: "Switching",
-        custom: "switching",
-      },
-      {
-        name: "MikroTik",
-        custom: "mikrotik",
-      },
-      {
-        name: "Network Troubleshooting",
-        custom: "troubleshoot",
-      },
-      {
-        name: "Network Monitoring",
-        custom: "monitor",
-      },
+      { name: "TCP/IP" },
+      { name: "Routing" },
+      { name: "Switching" },
+      { name: "MikroTik" },
+      { name: "Network Troubleshooting" },
+      { name: "Network Monitoring" },
     ],
   },
-
   {
     id: "embedded",
     title: "EMBEDDED & ELECTRICAL",
+    type: "badge",
     skills: [
-      {
-        name: "Arduino",
-        custom: "arduino",
-      },
-      {
-        name: "ESP32",
-        custom: "esp32",
-      },
-      {
-        name: "Microcontroller",
-        custom: "microcontroller",
-      },
-      {
-        name: "Embedded Systems",
-        custom: "embedded",
-      },
-      {
-        name: "Electronics",
-        custom: "electronics",
-      },
-      {
-        name: "Automation",
-        custom: "automation",
-      },
+      { name: "Arduino" },
+      { name: "ESP32" },
+      { name: "Microcontroller" },
+      { name: "Embedded Systems" },
+      { name: "Electronics" },
+      { name: "Automation" },
     ],
   },
-
   {
     id: "rf",
     title: "RF & WIRELESS",
+    type: "badge",
     skills: [
-      {
-        name: "RF",
-        custom: "antenna",
-      },
-      {
-        name: "SDR",
-        custom: "sdr",
-      },
-      {
-        name: "Radio Frequency",
-        custom: "radio",
-      },
-      {
-        name: "Wireless",
-        custom: "wireless",
-      },
-      {
-        name: "Signal Analysis",
-        custom: "signal",
-      },
-      {
-        name: "RF Monitoring",
-        custom: "rfmonitor",
-      },
+      { name: "RF" },
+      { name: "SDR" },
+      { name: "Radio Frequency" },
+      { name: "Wireless" },
+      { name: "Signal Analysis" },
+      { name: "RF Monitoring" },
     ],
   },
 ]
