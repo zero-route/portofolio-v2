@@ -37,22 +37,22 @@ export const portfolioProjects = [
     title: "RF Calculator",
     category: "Kalkulator",
     description:
-      "Website kalkulasi gelombang frekuensi RF, menggunakan pengukuran basis DBM & DBI, Guna untuk mengindari potensi perangkat menjadi pengacau sinyal (JAMMER) ",
+      "Website kalkulasi gelombang frekuensi RF, menggunakan pengukuran basis DBM & DBI, Guna untuk mengindari potensi perangkat menjadi pengacau sinyal (JAMMER) .",
     image: "/images/Website-4.png",
     technologies: ["JavaScript", "Html", "CSS"],
     platform: "GitHub Pages",
     url: "https://zero-route.github.io/Eirp-Calculator/",
   },
   {
-    id: "it-techmap",
-    title: "IT-TechMap",
-    category: "Utility",
+    id: "Website-5",
+    title: "Pmr Website",
+    category: "Public",
     description:
-      "Interactive map for exploring IT roles, career paths, and different areas within the technology field.",
-    image: "/imagesg/projects/it-techmap.webp",
-    technologies: ["React", "Vite", "JavaScript"],
-    platform: "Vercel",
-    url: "#",
+      "Website organisasi palang merah remaja, Untuk membantu mengenalkan ekstrakulikuler palang merah remaja kepada seluruh siswa.",
+    image: "/images/Website-5.png",
+    technologies: ["Github", "Hrml", "Css"],
+    platform: "Github pages",
+    url: "https://zero-route.github.io/Pmr-web/",
   },
 ]
 
