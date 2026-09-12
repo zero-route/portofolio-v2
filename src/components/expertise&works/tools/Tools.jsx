@@ -119,7 +119,13 @@ export default function Tools() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <motion.div
+          key={activeData.id}
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+          className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3"
+        >
           {activeData.tools.map((tool) => (
             <article
               key={tool.name}
@@ -153,7 +159,7 @@ export default function Tools() {
               </div>
             </article>
           ))}
-        </div>
+        </motion.div>
       </div>
     </div>
   )
