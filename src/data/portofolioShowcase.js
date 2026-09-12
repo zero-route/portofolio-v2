@@ -50,7 +50,7 @@ export const portfolioProjects = [
     description:
       "Website organisasi palang merah remaja, Untuk membantu mengenalkan ekstrakulikuler palang merah remaja kepada seluruh siswa.",
     image: "/images/Website-5.png",
-    technologies: ["Github", "Hrml", "Css"],
+    technologies: ["Github", "Html", "Css"],
     platform: "Github pages",
     url: "https://zero-route.github.io/Pmr-web/",
   },
