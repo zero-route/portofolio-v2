@@ -274,7 +274,7 @@ export default function Contact() {
                     type="text"
                     value={name}
                     onChange={(event) => setName(event.target.value)}
-                    placeholder="William"
+                    placeholder="Your Name Example"
                     required
                     className="h-10 w-full rounded-lg border border-white/[0.07] bg-black/20 px-3 font-sans text-[11px] text-white outline-none transition-all duration-300 placeholder:text-white/20 focus:border-purple-400/35 focus:bg-white/[0.025]"
                   />
