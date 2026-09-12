@@ -58,7 +58,7 @@ function Polaroid({ photo, index }) {
       </div>
 
       {photo.caption && (
-        <p className="mt-2 text-center font-sans text-[18px] text-black/60">
+        <p className="mt-2 text-center font-arial text-[18px] text-black/60">
           {photo.caption}
         </p>
       )}
