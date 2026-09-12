@@ -1,8 +1,8 @@
 export const portfolioProjects = [
   {
     id: "Website 1",
-    title: "Website Client",
-    category: "Client",
+    title: "Website Public",
+    category: "Public",
     description:
       "Website IT TechMap, Berisi kumpulan seluruh role dibidang Information Technology/IT, Fungsi membantu orang awam dalam memilih karir dibidang IT.",
     image: "/images/Website-1.png",
@@ -11,15 +11,15 @@ export const portfolioProjects = [
     url: "https://it-role-qyj5zfrsx-zero-route.vercel.app/",
   },
   {
-    id: "organization-website",
-    title: "Organization Website",
-    category: "Client",
+    id: "Website 2",
+    title: "Website Public",
+    category: "Public",
     description:
       "Modern organization website focused on responsive presentation, structured content, and accessible navigation.",
-    image: "/imagesg/projects/organization-website.webp",
+    image: "/images/Website-2.png",
     technologies: ["React", "Vite", "Tailwind CSS"],
-    platform: "Netlify",
-    url: "#",
+    platform: "Vercel",
+    url: "https://cyber-security-role-kn3od4869-zero-route.vercel.app/",
   },
   {
     id: "monitoring-dashboard",
