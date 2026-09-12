@@ -199,12 +199,12 @@ export default function Home() {
     },
     {
       icon: Linkedin,
-      href: "https://www.linkedin.com/dimas-aksa-oktapian",
+      href: "https://www.linkedin.com/in/dimas-aksa-oktapian-096541406?utm_source=share_via&utm_content=profile&utm_medium=member_android",
       label: "LinkedIn",
     },
     {
       icon: Send,
-      href: "https://t.me/Tehpucuts",
+      href: "https://t.me/Tehpucuts
       label: "Telegram",
     },
     {
@@ -214,7 +214,7 @@ export default function Home() {
     },
     {
       icon: Music2,
-      href: "https://www.tiktok.com/altera1975",
+      href: "https://www.tiktok.com/@altera1975?_r=1&_t=ZS-99ffkzffnuL",
       label: "TikTok",
     },
   ];
