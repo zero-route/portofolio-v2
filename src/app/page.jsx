@@ -6,6 +6,7 @@ import About from "@/components/section/About";
 import Beyond from "@/components/section/Beyond";
 import Portofolio from "@/components/section/PortofolioShowcase";
 import Contact from "@/components/section/Contact";
+import Footer from "@/components/layout/Footer", 
 import Navigation from "@/components/layout/Navigation";
 import IntroLoader from "@/components/intro/IntroLoader";
 
@@ -41,6 +42,7 @@ export default function Page() {
       <section id="contact">
         <Contact />
         
+        <Footer />
       </section>
     </main>
   );
