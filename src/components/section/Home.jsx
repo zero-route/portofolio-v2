@@ -349,7 +349,7 @@ export default function Home() {
               className="mt-7 flex flex-wrap gap-3 sm:mt-8"
             >
               <a
-                href="@/components/section/PortofolioShowcase"
+                href="#expertise&works"
                 className="group relative flex items-center gap-2 overflow-hidden rounded-xl border border-[#a78bfa]/30 bg-gradient-to-r from-purple-600 to-indigo-600 px-5 py-3 font-sans text-[12px] font-semibold text-white shadow-[0_0_25px_rgba(124,58,237,0.18)] transition-all duration-300 hover:scale-[1.025] hover:shadow-[0_0_35px_rgba(139,92,246,0.3)]"
               >
                 <span className="button-shine absolute inset-0" />

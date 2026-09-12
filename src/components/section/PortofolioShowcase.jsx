@@ -15,7 +15,7 @@ export default function PortofolioShowcase() {
 
   return (
     <section
-      id="capabilities"
+      id="expertise&works"
       className="relative w-full bg-[#030305] px-5 py-20 text-white sm:px-7 sm:py-24 lg:px-10 xl:px-14"
     >
       <div className="mx-auto w-full max-w-7xl">
