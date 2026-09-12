@@ -35,7 +35,7 @@ export const portfolioProjects = [
   {
     id: "Website 4",
     title: "RF Calculator",
-    category: "Utility",
+    category: "Kalkulator",
     description:
       "Website kalkulasi gelombang frekuensi RF, menggunakan pengukuran basis DBM & DBI, Guna untuk mengindari potensi perangkat menjadi pengacau sinyal (JAMMER) ",
     image: "/images/Website-4.png",
