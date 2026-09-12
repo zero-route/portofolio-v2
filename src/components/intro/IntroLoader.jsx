@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Code2, User, Globe } from "lucide-react";
 
@@ -9,6 +9,7 @@ const lineTwo = ["PORTOFOLIO", "WEBSITE"];
 
 const LOADING_START_DELAY = 2200;
 const LOADING_DURATION = 1500;
+const PROGRESS_TICK = 50;
 
 const easeOut = [0.16, 1, 0.3, 1];
 
@@ -95,15 +96,18 @@ const lineTwoItemVariants = {
 
 export default function IntroLoader({ onComplete }) {
   const [progress, setProgress] = useState(0);
+  const [barStarted, setBarStarted] = useState(false);
+  const completedRef = useRef(false);
 
   useEffect(() => {
-    let interval;
+    let tickInterval;
     let completeTimeout;
 
     const startTimeout = setTimeout(() => {
       const startTime = Date.now();
+      setBarStarted(true);
 
-      interval = setInterval(() => {
+      tickInterval = setInterval(() => {
         const elapsed = Date.now() - startTime;
 
         const percentage = Math.min(
@@ -113,8 +117,9 @@ export default function IntroLoader({ onComplete }) {
 
         setProgress(percentage);
 
-        if (percentage >= 100) {
-          clearInterval(interval);
+        if (percentage >= 100 && !completedRef.current) {
+          completedRef.current = true;
+          clearInterval(tickInterval);
 
           completeTimeout = setTimeout(() => {
             if (typeof window !== "undefined") {
@@ -126,13 +131,13 @@ export default function IntroLoader({ onComplete }) {
             }
           }, 150);
         }
-      }, 16);
+      }, PROGRESS_TICK);
     }, LOADING_START_DELAY);
 
     return () => {
       clearTimeout(startTimeout);
       clearTimeout(completeTimeout);
-      clearInterval(interval);
+      clearInterval(tickInterval);
     };
   }, [onComplete]);
 
@@ -226,15 +231,11 @@ export default function IntroLoader({ onComplete }) {
         <div className="h-2 w-full overflow-hidden rounded-full border border-white/10 bg-white/10">
           <motion.div
             className="h-full rounded-full bg-white"
-            initial={{
-              width: "0%",
-            }}
-            animate={{
-              width: `${progress}%`,
-            }}
+            initial={{ width: "0%" }}
+            animate={{ width: barStarted ? "100%" : "0%" }}
             transition={{
+              duration: LOADING_DURATION / 1000,
               ease: "linear",
-              duration: 0.05,
             }}
           />
         </div>
