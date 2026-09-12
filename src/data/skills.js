@@ -2,7 +2,6 @@ export const skillCategories = [
   {
     id: "frontend",
     title: "FRONTEND",
-    type: "icon",
     skills: [
       { name: "HTML5", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" },
       { name: "CSS3", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" },
@@ -17,7 +16,6 @@ export const skillCategories = [
   {
     id: "backend",
     title: "BACKEND",
-    type: "icon",
     skills: [
       { name: "Node.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" },
       { name: "PHP", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" },
@@ -27,7 +25,6 @@ export const skillCategories = [
   {
     id: "database",
     title: "DATABASE",
-    type: "icon",
     skills: [
       { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg" },
       { name: "MySQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" },
@@ -37,7 +34,6 @@ export const skillCategories = [
   {
     id: "programming",
     title: "PROGRAMMING",
-    type: "icon",
     skills: [
       { name: "C", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/c/c-original.svg" },
       { name: "C++", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg" },
@@ -48,7 +44,6 @@ export const skillCategories = [
   {
     id: "git",
     title: "GIT & COLLABORATION",
-    type: "icon",
     skills: [
       { name: "Git", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" },
       { name: "GitHub", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg" },
@@ -59,7 +54,6 @@ export const skillCategories = [
   {
     id: "os",
     title: "OS INSTALLATION",
-    type: "icon",
     skills: [
       { name: "Windows 10", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/windows8/windows8-original.svg" },
       { name: "Windows 11", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/windows8/windows8-original.svg" },
@@ -70,58 +64,6 @@ export const skillCategories = [
       { name: "Kali Linux", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/kalilinux/kalilinux-original.svg" },
       { name: "Gentoo Linux", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/gentoo/gentoo-original.svg" },
       { name: "Debian", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/debian/debian-original.svg" },
-    ],
-  },
-  {
-    id: "cybersecurity",
-    title: "CYBERSECURITY",
-    type: "badge",
-    skills: [
-      { name: "Penetration Testing" },
-      { name: "Web Security" },
-      { name: "Network Security" },
-      { name: "OSINT" },
-      { name: "Wireless Security" },
-      { name: "Security Automation" },
-    ],
-  },
-  {
-    id: "networking",
-    title: "NETWORKING",
-    type: "badge",
-    skills: [
-      { name: "TCP/IP" },
-      { name: "Routing" },
-      { name: "Switching" },
-      { name: "MikroTik" },
-      { name: "Network Troubleshooting" },
-      { name: "Network Monitoring" },
-    ],
-  },
-  {
-    id: "embedded",
-    title: "EMBEDDED & ELECTRICAL",
-    type: "badge",
-    skills: [
-      { name: "Arduino" },
-      { name: "ESP32" },
-      { name: "Microcontroller" },
-      { name: "Embedded Systems" },
-      { name: "Electronics" },
-      { name: "Automation" },
-    ],
-  },
-  {
-    id: "rf",
-    title: "RF & WIRELESS",
-    type: "badge",
-    skills: [
-      { name: "RF" },
-      { name: "SDR" },
-      { name: "Radio Frequency" },
-      { name: "Wireless" },
-      { name: "Signal Analysis" },
-      { name: "RF Monitoring" },
     ],
   },
 ]

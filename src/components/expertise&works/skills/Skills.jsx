@@ -62,21 +62,6 @@ function SkillItem({ skill }) {
   )
 }
 
-function SkillBadges({ skills }) {
-  return (
-    <div className="flex flex-wrap gap-2.5">
-      {skills.map((skill) => (
-        <span
-          key={skill.name}
-          className="rounded-full border border-cyan-400/25 bg-white/[0.03] px-3 py-1.5 text-[11px] text-white/65 transition-colors duration-300 hover:border-cyan-400/60 hover:text-white"
-        >
-          {skill.name}
-        </span>
-      ))}
-    </div>
-  )
-}
-
 function SkillCategory({ category }) {
   return (
     <section className="mb-14 last:mb-0 sm:mb-16">
@@ -89,16 +74,11 @@ function SkillCategory({ category }) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2, margin: "0px 0px -40px 0px" }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        className="grid grid-cols-4 gap-x-4 gap-y-10 sm:grid-cols-6 sm:gap-x-6 sm:gap-y-12 lg:grid-cols-8 xl:grid-cols-10"
       >
-        {category.type === "badge" ? (
-          <SkillBadges skills={category.skills} />
-        ) : (
-          <div className="grid grid-cols-4 gap-x-4 gap-y-10 sm:grid-cols-6 sm:gap-x-6 sm:gap-y-12 lg:grid-cols-8 xl:grid-cols-10">
-            {category.skills.map((skill) => (
-              <SkillItem key={skill.name} skill={skill} />
-            ))}
-          </div>
-        )}
+        {category.skills.map((skill) => (
+          <SkillItem key={skill.name} skill={skill} />
+        ))}
       </motion.div>
     </section>
   )
