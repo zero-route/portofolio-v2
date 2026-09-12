@@ -157,16 +157,9 @@ export default function AstreaChatModal({
                 </div>
 
                 <div>
-                  <div className="flex items-center gap-2">
-                    <h2 className="font-mono text-sm font-semibold text-white">
-                      Astrea
-                    </h2>
-
-                    <span className="flex items-center gap-1 rounded-full border border-emerald-400/15 bg-emerald-400/[0.06] px-2 py-0.5 font-mono text-[8px] text-emerald-300/70">
-                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                      ONLINE
-                    </span>
-                  </div>
+                  <h2 className="font-mono text-sm font-semibold text-white">
+                    Astrea
+                  </h2>
 
                   <p className="mt-0.5 font-mono text-[9px] text-white/30">
                     AI Assistant
