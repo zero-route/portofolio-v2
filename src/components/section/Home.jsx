@@ -204,7 +204,7 @@ export default function Home() {
     },
     {
       icon: Send,
-      href: "https://t.me/Tehpucuts
+      href: "https://t.me/Tehpucuts", 
       label: "Telegram",
     },
     {
