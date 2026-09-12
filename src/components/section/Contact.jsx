@@ -50,7 +50,7 @@ const socialLinks = [
 const infoVariants = {
   hidden: {
     opacity: 0,
-    x: 45,
+    x: 35,
   },
   visible: {
     opacity: 1,
@@ -66,8 +66,7 @@ const socialContainerVariants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.15,
+      staggerChildren: 0.09,
     },
   },
 }
@@ -75,45 +74,36 @@ const socialContainerVariants = {
 const socialItemVariants = {
   hidden: {
     opacity: 0,
-    y: 28,
+    y: 24,
   },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.65,
+      duration: 0.55,
       ease: [0.22, 1, 0.36, 1],
     },
   },
 }
 
 export default function Contact() {
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    comment: "",
-  })
-
-  const handleChange = (event) => {
-    const { name, value } = event.target
-
-    setForm((prev) => ({
-      ...prev,
-      [name]: value,
-    }))
-  }
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [comment, setComment] = useState("")
 
   const handleSubmit = (event) => {
     event.preventDefault()
 
-    const subject = "Contact from Portfolio"
+    const subject = name.trim()
+      ? `Portfolio Contact - ${name.trim()}`
+      : "Portfolio Contact"
 
     const body = [
-      `Name: ${form.name}`,
-      `Email: ${form.email}`,
+      `Nama: ${name.trim() || "-"}`,
+      `Email Pengirim: ${email.trim() || "-"}`,
       "",
       "Comment:",
-      form.comment,
+      comment.trim() || "-",
     ].join("\n")
 
     const mailto = `mailto:dimzishere854@gmail.com?subject=${encodeURIComponent(
@@ -126,11 +116,11 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden bg-[#030305] px-5 py-24 text-white sm:px-7 sm:py-28 lg:px-10 lg:py-32 xl:px-14"
+      className="relative w-full overflow-hidden bg-[#030305] px-5 py-20 text-white sm:px-7 sm:py-24 lg:px-10 xl:px-14"
     >
       <div className="mx-auto w-full max-w-7xl">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{
@@ -144,19 +134,18 @@ export default function Contact() {
           </h2>
 
           <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-white/55 sm:text-lg">
-            Have a project in mind or just want to say hi? My inbox is always
-            open.
+            Have a project in mind or just want to say hi? My inbox is always open.
           </p>
         </motion.div>
 
-        <div className="mt-14 grid grid-cols-1 gap-12 lg:mt-16 lg:grid-cols-[0.82fr_1.18fr] lg:items-start lg:gap-16 xl:grid-cols-[0.8fr_1.2fr] xl:gap-20">
+        <div className="mt-14 grid items-start gap-12 md:grid-cols-[minmax(0,0.9fr)_minmax(380px,0.85fr)] md:gap-14 lg:mt-16 lg:grid-cols-[minmax(0,0.95fr)_minmax(430px,0.8fr)] lg:gap-20">
           <div className="min-w-0">
             <motion.div
               initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
+              viewport={{ once: true, amount: 0.2 }}
               transition={{
-                duration: 0.7,
+                duration: 0.65,
                 ease: [0.22, 1, 0.36, 1],
               }}
             >
@@ -164,59 +153,77 @@ export default function Contact() {
                 Let&apos;s work together
               </h3>
 
-              <p className="mt-3 max-w-md text-xs leading-6 text-white/45 sm:text-sm sm:leading-7">
-                I&apos;m always looking for exciting new projects. Whether you
-                need a website, a web app, or just want to collaborate — feel
-                free to reach out!
+              <p className="mt-3 max-w-[520px] text-[12px] leading-6 text-white/50 sm:text-[13px] sm:leading-6">
+                I&apos;m always looking for exciting new projects. Whether you need a
+                website, a web app, or just want to collaborate — feel free to reach
+                out!
               </p>
             </motion.div>
 
-            <motion.div
-              variants={infoVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
-              className="mt-8 space-y-3"
-            >
-              <a
+            <div className="mt-8 space-y-4">
+              <motion.a
                 href="mailto:dimzishere854@gmail.com"
-                className="group flex w-fit items-center gap-3"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                variants={infoVariants}
+                className="group flex w-fit items-center gap-4"
               >
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/[0.07] bg-white/[0.025] text-white/50 transition-all duration-300 group-hover:border-purple-400/30 group-hover:bg-purple-500/[0.08] group-hover:text-white">
-                  <Mail size={15} strokeWidth={1.7} />
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.025] text-white/50 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:border-purple-400/30 group-hover:bg-purple-500/[0.07] group-hover:text-purple-200">
+                  <Mail size={16} strokeWidth={1.7} />
                 </span>
 
                 <span>
-                  <span className="block font-mono text-[8px] uppercase tracking-[0.18em] text-white/30">
+                  <span className="block text-[8px] font-medium uppercase tracking-[0.18em] text-white/30">
                     Email
                   </span>
-                  <span className="mt-0.5 block text-[11px] text-white/70 transition-colors duration-300 group-hover:text-white sm:text-xs">
+                  <span className="mt-1 block text-[11px] text-white/70 transition-colors duration-300 group-hover:text-white sm:text-xs">
                     dimzishere854@gmail.com
                   </span>
                 </span>
-              </a>
+              </motion.a>
 
-              <div className="flex w-fit items-center gap-3">
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/[0.07] bg-white/[0.025] text-white/50">
-                  <MapPin size={15} strokeWidth={1.7} />
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                variants={{
+                  hidden: {
+                    opacity: 0,
+                    x: 35,
+                  },
+                  visible: {
+                    opacity: 1,
+                    x: 0,
+                    transition: {
+                      duration: 0.7,
+                      delay: 0.08,
+                      ease: [0.22, 1, 0.36, 1],
+                    },
+                  },
+                }}
+                className="flex w-fit items-center gap-4"
+              >
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.025] text-white/50">
+                  <MapPin size={16} strokeWidth={1.7} />
                 </span>
 
                 <span>
-                  <span className="block font-mono text-[8px] uppercase tracking-[0.18em] text-white/30">
+                  <span className="block text-[8px] font-medium uppercase tracking-[0.18em] text-white/30">
                     Location
                   </span>
-                  <span className="mt-0.5 block text-[11px] text-white/70 sm:text-xs">
+                  <span className="mt-1 block text-[11px] text-white/70 sm:text-xs">
                     Barru, Indonesia
                   </span>
                 </span>
-              </div>
-            </motion.div>
+              </motion.div>
+            </div>
 
             <motion.div
-              variants={socialContainerVariants}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, amount: 0.15 }}
+              viewport={{ once: true, amount: 0.2 }}
+              variants={socialContainerVariants}
               className="mt-8 flex flex-wrap gap-3"
             >
               {socialLinks.map((item) => {
@@ -230,54 +237,30 @@ export default function Contact() {
                     rel="noopener noreferrer"
                     aria-label={item.label}
                     variants={socialItemVariants}
-                    className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.02] text-white/45 transition-all duration-300 hover:-translate-y-1 hover:border-purple-400/30 hover:bg-purple-500/[0.08] hover:text-white hover:shadow-[0_8px_25px_rgba(139,92,246,0.12)]"
+                    className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.025] text-white/45 transition-all duration-300 hover:-translate-y-1 hover:border-purple-400/30 hover:bg-purple-500/[0.07] hover:text-white"
                   >
                     <Icon size={16} strokeWidth={1.7} />
                   </motion.a>
                 )
               })}
             </motion.div>
-
-            <motion.p
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{
-                duration: 0.65,
-                delay: 0.25,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              className="mt-7 max-w-md text-[10px] leading-5 text-white/30 sm:text-xs"
-            >
-              Whether it&apos;s a technical project, collaboration, or simply
-              an interesting idea, feel free to reach out.
-            </motion.p>
           </div>
 
           <motion.div
-            initial={{
-              opacity: 0,
-              x: 70,
-            }}
-            whileInView={{
-              opacity: 1,
-              x: 0,
-            }}
-            viewport={{
-              once: true,
-              amount: 0.12,
-            }}
+            initial={{ opacity: 0, x: 55 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
             transition={{
-              duration: 0.85,
+              duration: 0.8,
               ease: [0.22, 1, 0.36, 1],
             }}
-            className="w-full"
+            className="w-full md:justify-self-end"
           >
             <form
               onSubmit={handleSubmit}
-              className="rounded-2xl border border-white/[0.08] bg-white/[0.018] p-4 shadow-[0_20px_70px_rgba(0,0,0,0.28)] sm:p-5 lg:p-6"
+              className="w-full max-w-[520px] rounded-2xl border border-white/[0.07] bg-white/[0.018] p-4 shadow-[0_20px_60px_rgba(0,0,0,0.2)] sm:p-5 lg:p-6"
             >
-              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div>
                   <label
                     htmlFor="contact-name"
@@ -288,13 +271,12 @@ export default function Contact() {
 
                   <input
                     id="contact-name"
-                    name="name"
                     type="text"
-                    value={form.name}
-                    onChange={handleChange}
-                    required
+                    value={name}
+                    onChange={(event) => setName(event.target.value)}
                     placeholder="William"
-                    className="h-11 w-full rounded-xl border border-white/[0.07] bg-black/20 px-3 text-[11px] text-white outline-none transition-all duration-300 placeholder:text-white/20 focus:border-purple-400/40 focus:bg-white/[0.025] focus:ring-1 focus:ring-purple-400/10"
+                    required
+                    className="h-10 w-full rounded-lg border border-white/[0.07] bg-black/20 px-3 font-sans text-[11px] text-white outline-none transition-all duration-300 placeholder:text-white/20 focus:border-purple-400/35 focus:bg-white/[0.025]"
                   />
                 </div>
 
@@ -308,18 +290,17 @@ export default function Contact() {
 
                   <input
                     id="contact-email"
-                    name="email"
                     type="email"
-                    value={form.email}
-                    onChange={handleChange}
-                    required
+                    value={email}
+                    onChange={(event) => setEmail(event.target.value)}
                     placeholder="hello@example.com"
-                    className="h-11 w-full rounded-xl border border-white/[0.07] bg-black/20 px-3 text-[11px] text-white outline-none transition-all duration-300 placeholder:text-white/20 focus:border-purple-400/40 focus:bg-white/[0.025] focus:ring-1 focus:ring-purple-400/10"
+                    required
+                    className="h-10 w-full rounded-lg border border-white/[0.07] bg-black/20 px-3 font-sans text-[11px] text-white outline-none transition-all duration-300 placeholder:text-white/20 focus:border-purple-400/35 focus:bg-white/[0.025]"
                   />
                 </div>
               </div>
 
-              <div className="mt-5">
+              <div className="mt-4">
                 <label
                   htmlFor="contact-comment"
                   className="mb-2 block font-mono text-[9px] text-purple-300/70"
@@ -329,24 +310,23 @@ export default function Contact() {
 
                 <textarea
                   id="contact-comment"
-                  name="comment"
-                  value={form.comment}
-                  onChange={handleChange}
-                  required
-                  rows={7}
+                  value={comment}
+                  onChange={(event) => setComment(event.target.value)}
                   placeholder="Tell me about your project..."
-                  className="w-full resize-none rounded-xl border border-white/[0.07] bg-black/20 px-3 py-3 text-[11px] leading-5 text-white outline-none transition-all duration-300 placeholder:text-white/20 focus:border-purple-400/40 focus:bg-white/[0.025] focus:ring-1 focus:ring-purple-400/10"
+                  required
+                  rows={5}
+                  className="w-full resize-none rounded-lg border border-white/[0.07] bg-black/20 px-3 py-3 font-sans text-[11px] leading-5 text-white outline-none transition-all duration-300 placeholder:text-white/20 focus:border-purple-400/35 focus:bg-white/[0.025]"
                 />
               </div>
 
               <button
                 type="submit"
-                className="group mt-5 flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-500 text-[10px] font-semibold text-white shadow-[0_8px_30px_rgba(124,58,237,0.18)] transition-all duration-300 hover:from-purple-500 hover:to-indigo-400 hover:shadow-[0_10px_35px_rgba(124,58,237,0.28)]"
+                className="group mt-4 flex h-10 w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-purple-600 to-indigo-500 font-sans text-[10px] font-semibold text-white shadow-[0_0_25px_rgba(124,58,237,0.16)] transition-all duration-300 hover:shadow-[0_0_35px_rgba(124,58,237,0.28)]"
               >
                 <span>Send Message</span>
 
                 <ArrowUpRight
-                  size={14}
+                  size={13}
                   strokeWidth={1.8}
                   className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                 />
