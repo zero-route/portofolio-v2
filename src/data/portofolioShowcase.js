@@ -8,7 +8,7 @@ export const portfolioProjects = [
     image: "/images/Website-1.png",
     technologies: ["Next.js", "React", "Tailwind CSS"],
     platform: "Vercel",
-    url: "#https://it-role-qyj5zfrsx-zero-route.vercel.app/",
+    url: "https://it-role-qyj5zfrsx-zero-route.vercel.app/",
   },
   {
     id: "organization-website",
